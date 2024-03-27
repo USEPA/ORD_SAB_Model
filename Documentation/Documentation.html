@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ORD Service Area Boundary Model Documentation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Documentation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Documentation_files/libs/quarto-html/quarto.js"></script>
+<script src="Documentation_files/libs/quarto-html/popper.min.js"></script>
+<script src="Documentation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Documentation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Documentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Documentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Documentation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Documentation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Documentation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Topics</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a>
+  <ul class="collapse">
+  <li><a href="#sdwa-reporting-universe" id="toc-sdwa-reporting-universe" class="nav-link" data-scroll-target="#sdwa-reporting-universe">SDWA Reporting Universe</a></li>
+  <li><a href="#count-of-systems-by-primacy-agency" id="toc-count-of-systems-by-primacy-agency" class="nav-link" data-scroll-target="#count-of-systems-by-primacy-agency">Count of Systems by Primacy Agency</a></li>
+  <li><a href="#systems-by-type-of-service-area" id="toc-systems-by-type-of-service-area" class="nav-link" data-scroll-target="#systems-by-type-of-service-area">Systems by Type of Service Area</a></li>
+  </ul></li>
+  <li><a href="#state-data" id="toc-state-data" class="nav-link" data-scroll-target="#state-data">State Data</a></li>
+  <li><a href="#place-matched-service-area-boundaries" id="toc-place-matched-service-area-boundaries" class="nav-link" data-scroll-target="#place-matched-service-area-boundaries">Place Matched Service Area Boundaries</a>
+  <ul class="collapse">
+  <li><a href="#mobile-homes---osm" id="toc-mobile-homes---osm" class="nav-link" data-scroll-target="#mobile-homes---osm">Mobile Homes - OSM</a></li>
+  <li><a href="#mobile-homes---parcels" id="toc-mobile-homes---parcels" class="nav-link" data-scroll-target="#mobile-homes---parcels">Mobile Homes - Parcels</a></li>
+  </ul></li>
+  <li><a href="#modeled-service-area-boundaries" id="toc-modeled-service-area-boundaries" class="nav-link" data-scroll-target="#modeled-service-area-boundaries">Modeled Service Area Boundaries</a>
+  <ul class="collapse">
+  <li><a href="#binary-water-use-model" id="toc-binary-water-use-model" class="nav-link" data-scroll-target="#binary-water-use-model">Binary Water Use Model</a></li>
+  <li><a href="#match" id="toc-match" class="nav-link" data-scroll-target="#match">1:1 Match</a></li>
+  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest">Random Forest</a>
+  <ul class="collapse">
+  <li><a href="#variables-that-describe-the-census-block" id="toc-variables-that-describe-the-census-block" class="nav-link" data-scroll-target="#variables-that-describe-the-census-block">Variables that Describe the Census Block</a></li>
+  <li><a href="#variables-that-describe-the-closest-systems" id="toc-variables-that-describe-the-closest-systems" class="nav-link" data-scroll-target="#variables-that-describe-the-closest-systems">Variables that Describe the Closest Systems</a></li>
+  <li><a href="#training-validation" id="toc-training-validation" class="nav-link" data-scroll-target="#training-validation">Training &amp; Validation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#post-processing" id="toc-post-processing" class="nav-link" data-scroll-target="#post-processing">Post Processing</a>
+  <ul class="collapse">
+  <li><a href="#distance-thresholding" id="toc-distance-thresholding" class="nav-link" data-scroll-target="#distance-thresholding">Distance Thresholding</a></li>
+  <li><a href="#hole-filling" id="toc-hole-filling" class="nav-link" data-scroll-target="#hole-filling">Hole Filling</a></li>
+  <li><a href="#polygon-part-removal" id="toc-polygon-part-removal" class="nav-link" data-scroll-target="#polygon-part-removal">Polygon Part Removal</a></li>
+  </ul></li>
+  <li><a href="#known-issues" id="toc-known-issues" class="nav-link" data-scroll-target="#known-issues">Known Issues</a>
+  <ul class="collapse">
+  <li><a href="#overlapping-boundaries" id="toc-overlapping-boundaries" class="nav-link" data-scroll-target="#overlapping-boundaries">Overlapping Boundaries</a></li>
+  <li><a href="#dataset-universe-missing-systems" id="toc-dataset-universe-missing-systems" class="nav-link" data-scroll-target="#dataset-universe-missing-systems">Dataset Universe &amp; Missing Systems</a></li>
+  <li><a href="#incorrect-locations" id="toc-incorrect-locations" class="nav-link" data-scroll-target="#incorrect-locations">Incorrect Locations</a></li>
+  <li><a href="#kentucky" id="toc-kentucky" class="nav-link" data-scroll-target="#kentucky">Kentucky</a></li>
+  <li><a href="#florida" id="toc-florida" class="nav-link" data-scroll-target="#florida">Florida</a>
+  <ul class="collapse">
+  <li><a href="#population-served-by-state" id="toc-population-served-by-state" class="nav-link" data-scroll-target="#population-served-by-state">Population Served by State</a></li>
+  </ul></li>
+  <li><a href="#missing-boundaries" id="toc-missing-boundaries" class="nav-link" data-scroll-target="#missing-boundaries">Missing Boundaries</a></li>
+  </ul></li>
+  
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Documentation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ORD Service Area Boundary Model Documentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Disclaimer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This document is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It has not been formally disseminated by the U.S. Environmental Protection Agency. It does not represent and should not be construed to represent any agency determination or policy.</p>
+</div>
+</div>
+<p><strong>Version 1.0</strong></p>
+<p><strong>SDWIS Data Vintage:</strong> 2023 (Quarter 4)</p>
+<p>The Office of Research and Development has released a publicly available dataset of community water system (CWS) service area boundaries (SAB). CWS are defined as systems that provide water for human consumption through pipes or other constructed conveyances to at least 15 service connections or serves an average of at least 25 people year-round [1]. Under the safe drinking water act (SDWA) and various drinking water rules (see EPA Drinking Water Regulations) public water systems must test and report on the quality of their drinking water. These boundaries enable linking SDWA violations to their associated geographic areas, and concomitantly linking treated community water system water to their respective customers. This service area boundary dataset is a combinatio of publicly available service area boundaries and modeled boundaries. This document describes how the data was collected and modeled and details the modeling techniques used to generate this dataset.</p>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>Public water systems regulated under SDWA are required to treat their drinking water. A sample of 931 public wells found that “one or more chemical contaminants were detected at concentrations greater than MCLs or HBSLs in more than one in five (22 percent)” of the sampled wells (Toccalino, Norman, and Hitt 2010). This substantiates the need for federal requirements; these samples were collected prior to treatment and treatment processes, or dilution can substantially reduce the risk of contaminants getting to the consumer. While federal standards help reduce the likelihood of contaminated drinking water, of the 50,000 public water system in the US, 2,741 were in continuous health-based violation of National Primary Drinking Water Violations in 2021 (U.S. EPA 2022). Community water systems have testing and reporting requirements that may increase based on the size of the system, compliance history and local or state specific requirements. While the source of water for a home may by a primary determinate of its quality, the type of system, whether private, mobile home park, small community water system, or large community water system can play an equally important role in the ability for a system to have adequate treatment processes. It is therefore critical that we understand where people are sourcing their water, who is consuming the water, and how it is delivered to their home in order to more completely understand regional and national trends of water quality and the health impacts to the public. This research on geographically the extent of public water use leverages a new spatial disaggregation technique to increase the spatial resolution of well estimates in addition to using machine learning techniques to estimate the total number of housing units getting their water from public sources in 2020 at the census block level. After that is achieved we use a random forest model to associate the corresponding public water system ID to each census block identified as “publicly supplied”.</p>
+<p>The boundaries presented in this dataset are an aggregate of several methods used to present the most accurate representation possible with available data. These methods range in source and accuracy. Each method is described in detail.</p>
+<section id="sdwa-reporting-universe" class="level2">
+<h2 class="anchored" data-anchor-id="sdwa-reporting-universe">SDWA Reporting Universe</h2>
+<p>The current ORD dataset (Version 1.0), uses the 2023 (Q4) release of SDWA data. As of this release, there were a total of 49,396 active community water systems, which primarily serve residential areas (Figure 2). There are many systems, however, which primarily wholesale water to other systems and therefore do not have a service area boundary. The universe of systems in our efforts is limited to currently active community water systems which serve at least 15 service connections or serves an average of at least 25 people for at least 60 days a year.. The total number of systems that fit this criteria for 2023 (Q4) is: 49,396</p>
+</section>
+<section id="count-of-systems-by-primacy-agency" class="level2">
+<h2 class="anchored" data-anchor-id="count-of-systems-by-primacy-agency">Count of Systems by Primacy Agency</h2>
+<p>Community water systems each fall under a primacy agency, which is typically determined by the state which they serve. The exception to this rule is tribal systems, which report to the EPA regional offices directly.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-statePlot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statePlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Documentation_files/figure-html/fig-statePlot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statePlot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Bar plot showing the count of active community water systems by state, region or territory.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="systems-by-type-of-service-area" class="level2">
+<h2 class="anchored" data-anchor-id="systems-by-type-of-service-area">Systems by Type of Service Area</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-systemType" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-systemType-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Documentation_files/figure-html/fig-systemType-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-systemType-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Types of Active Systems in SDWA Reporting
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="state-data" class="level1">
+<h1>State Data</h1>
+<p>When detailed public water service area boundaries are publicly available from state or municipal sources, we consider that to be the highest quality spatial data possible. A detailed review was conducted of available data and used to determine what would be included in the ORD national map versus what would be modeled. Detailed descriptions of state data are available in the state boundary appendix.</p>
+<div class="cell" data-layout-nrow="1" data-layout-align="top">
+<div id="tbl-stateCounts" class="quarto-layout-panel anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stateCounts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Number of system boundaries from state and municipal sources included in the ORD dataset. The total number of systems included is 18,374.
+</figcaption>
+<div aria-describedby="tbl-stateCounts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-top">
+<figure class="figure">
+<p><img src="img/state_table_1.png" class="img-fluid quarto-figure quarto-figure-top figure-img" width="188"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-top">
+<figure class="figure">
+<p><img src="img/state_table_2.png" class="img-fluid quarto-figure quarto-figure-top figure-img" width="188"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-top">
+<figure class="figure">
+<p><img src="img/state_table_3.png" class="img-fluid quarto-figure quarto-figure-top figure-img" width="188"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="place-matched-service-area-boundaries" class="level1">
+<h1>Place Matched Service Area Boundaries</h1>
+<section id="mobile-homes---osm" class="level2">
+<h2 class="anchored" data-anchor-id="mobile-homes---osm">Mobile Homes - OSM</h2>
+<p>Areas delineated as mobile home parks were extracted from Open Street Map and fuzzy name matched with community water system names reported under SDWA. To find open street map delineated areas, the point locations for mobile home parks from Homeland Infrastructure Foundation-Level Data (HIFLD) was intersected with areas tagged as ‘residental=trailer_park’ in open street map. If a match was found, the given names of that mobile home park (from both sources) were matched with SDWA reported names.</p>
+</section>
+<section id="mobile-homes---parcels" class="level2">
+<h2 class="anchored" data-anchor-id="mobile-homes---parcels">Mobile Homes - Parcels</h2>
+<p>Where open street map delineated areas were not present, point locations of mobile home parks from HIFLD were intersected with parcels from <a href="https://app.regrid.com/us#">REGRID</a>. The name of the mobile home park was then fuzzy matched with SDWA reported system names.</p>
+</section>
+</section>
+<section id="modeled-service-area-boundaries" class="level1">
+<h1>Modeled Service Area Boundaries</h1>
+<section id="binary-water-use-model" class="level2">
+<h2 class="anchored" data-anchor-id="binary-water-use-model">Binary Water Use Model</h2>
+<p>A decision tree model was created to determine the probability that a census block is served by a public water system. This model was levered in two different ways: 1.) to aid in the 1:1 matching discussed later and 2.) as a model input (explanatory variable) for the random forest model. The variables included are listed in Table 2. To validate the model, public water systems from three states (New Jersey, Connecticut &amp; California) were joined to census blocks to classify the intersecting blocks as public water users. These three states were chosen based on the completeness and detail of their service area boundaries. The final decision tree model (<a href="#fig-dt" class="quarto-xref">Figure&nbsp;3</a>) predicted the type of water supply correctly in 93.14% of blocks in the testing dataset which was removed prior to training. The accuracy of public use (sensitivity) was 95% and the accuracy of private use (specificity) was 81%. For more details on this initial model, refer to the <a href="https://github.com/USEPA/ORD_Water_Source_2020">2020 Water Source Model GitHub Site</a>.</p>
+<div class="cell">
+<div id="tbl-importance" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Variables included in decision tree model.
+</figcaption>
+<div aria-describedby="tbl-importance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<div id="rjissrnavh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rjissrnavh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rjissrnavh thead, #rjissrnavh tbody, #rjissrnavh tfoot, #rjissrnavh tr, #rjissrnavh td, #rjissrnavh th {
+  border-style: none;
+}
+
+#rjissrnavh p {
+  margin: 0;
+  padding: 0;
+}
+
+#rjissrnavh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rjissrnavh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rjissrnavh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rjissrnavh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rjissrnavh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rjissrnavh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rjissrnavh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rjissrnavh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rjissrnavh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rjissrnavh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rjissrnavh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rjissrnavh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rjissrnavh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rjissrnavh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rjissrnavh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rjissrnavh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rjissrnavh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rjissrnavh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rjissrnavh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rjissrnavh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rjissrnavh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rjissrnavh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rjissrnavh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rjissrnavh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rjissrnavh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rjissrnavh .gt_left {
+  text-align: left;
+}
+
+#rjissrnavh .gt_center {
+  text-align: center;
+}
+
+#rjissrnavh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rjissrnavh .gt_font_normal {
+  font-weight: normal;
+}
+
+#rjissrnavh .gt_font_bold {
+  font-weight: bold;
+}
+
+#rjissrnavh .gt_font_italic {
+  font-style: italic;
+}
+
+#rjissrnavh .gt_super {
+  font-size: 65%;
+}
+
+#rjissrnavh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rjissrnavh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rjissrnavh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rjissrnavh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rjissrnavh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rjissrnavh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rjissrnavh .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
+<th id="Description" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Description</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Imperviousness</td>
+<td class="gt_row gt_left" headers="Description">Urban Imperviousness in percent, derived from the National Land Cover Dataset</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">2020 Housing Unit Density</td>
+<td class="gt_row gt_left" headers="Description">Housing units per square kilometer</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">Area</td>
+<td class="gt_row gt_left" headers="Description">Area in square kilometers</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">% Public Use in 1990</td>
+<td class="gt_row gt_left" headers="Description">% of housing units that reported public water use from 1990 Census</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">% Sewer Use in 1990</td>
+<td class="gt_row gt_left" headers="Description">% of housing units that reported public sewer use from 1990 Census</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">1990 Housing Units</td>
+<td class="gt_row gt_left" headers="Description">Count of housing units in block from 1990 Census</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">% Housing Unit Change 1990-2020</td>
+<td class="gt_row gt_left" headers="Description">% change in housing units between 1990 and 2020 Census</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">Distance to Public Water Intake</td>
+<td class="gt_row gt_left" headers="Description">Distance in kilometers between block centroid and closest public water intake as derived from the Safe Drinking Water Information System</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="fig-dt" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/DT.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Visualization of decision tree to predict whether a census block is served by a public water system.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="match" class="level2">
+<h2 class="anchored" data-anchor-id="match">1:1 Match</h2>
+<p>Census blocks that are predicted to be served by public water by the binary water use model (<a href="#fig-dt" class="quarto-xref">Figure&nbsp;3</a>) are ‘aggregated’ or ‘dissolved’ spatially, meaning they are combined with any contiguous blocks that are also estimated to be served by public water systems into larger polygons. A public probability threshold of .7 and higher was used to classify block as exclusively on public water. These aggregated polygons are then spatially joined with facility locations from SDWIS, which include intakes, wells, and treatment plants. If a single aggregated area can only be associated with facilities from a single public water system, that area is assigned its associated PWSID.</p>
+<p>As a general approach to modeling, simplicity is typically preferred over complexity. The 1:1 matching was an attempt to resolve system assignments in a very simple way, eliminating the need for more complex random forest modeling. Approximately 8,000 systems were assigned (or matched) using this method. This method leveraged the decision tree output to determine system boundary size. Since the model provided confidence levels associated to every block, from 0=confident that that the block is privately supplied; to 1= confident that block is publicly supplied. We found that a value of 0.7 closely approximated the system boundary size and shape when compared to state supplied boundaries. After applying this criteria, we sought to match the system boundaries to their associated PWSID. Spatially continuous blocks were aggregated together into larger polygons.</p>
+<p>To determine a match, we used SDWIS locations (wells, treatment plant, intakes) and SDWA locations (reported system addresses that we geocoded) to conduct a spatial join to the aggregated decision tree boundaries (at 0.7 confidence). The logic here is that for some systems there is only one PWS that serves the polygon area—as opposed to a more complex nested set of systems within a single polygon. More complex systems are mainly associated with urban and suburban areas where the simple systems are largely associated with smaller to mid-size towns in rural areas. The other assumption we had was that it is more likely that a system’s infrastructure is close to the population that it serves than farther away.</p>
+<p>We performed a spatial join on all decision tree boundaries and SDWIS and SDWA locations. If more than one unique system was joined, those boundaries were returned for random forest modeling. If only one PWSID was returned for a polygon we validated that the joins were associated with the correct PWS. To do this we performed a graphical validation method by regressing the service connection of the joined public water system against the sum 2020 housing units within the modeled boundary. Because each state uses a different formula for calculating the service connections, these regressions had to be limited to intra-state comparisons. In other words, the regressions coefficients could vary widely between states, creating an “apples-to-oranges” comparison. The regression was trimmed to systems that fell close to the 1-to-1 regression line. Systems that deviated from that line were removed for later random forest matching. <a href="#fig-IA" class="quarto-xref">Figure&nbsp;4</a> is an example of Iowa systems that were matched using this graphical method for matching systems.</p>
+<div id="fig-IA" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-IA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/IA_Regression.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-IA-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: example of “matched” 1:1 systems using the graphical regression method. These systems have a strong correlation between housing units (x) and reported service connections (y). The bottom right image shows how census block housing units are aggregated per unique PWS
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="random-forest" class="level2">
+<h2 class="anchored" data-anchor-id="random-forest">Random Forest</h2>
+<p>The goal of the random forest model is to be able to determine what public water system (or PWSID) a census block is most likely to be served by. For example, a block in a rural area that is using public water may be more likely to be close to its source water intake if it is a very small system and more likely to be farther away if it a very large rural water district. If you are served by a system that purchases all of its water, the infrastructure may be farther away as well.</p>
+<p>The random forest is set up to evaluate the relationship between a single census block and a single point associated with a public water system. The tabular data used to train and apply the random forest model has one row for the relationship between every block and every unique PWSID within 25 miles (as determined by CWS infrastructure such as wells, treatment plants, facility addresses, and intakes). As an example, if there are seven different facilities within twenty-five miles of a census block, the table used for the random forest will have seven rows for that census block. Each facility is associated with a parent PWSID. The random forest model then predicts a probability that the parent PWSID is serving the census block in the same row of the table. Predictor variables can be thought of as belonging to one of two groups:</p>
+<ul>
+<li>Variables that that characterize the census block</li>
+<li>Variables that characterize the water system.</li>
+</ul>
+<p>The random forest model then determines the correct interplay between the variables to determine a probability that a particular system serves a particular census block or is not served by a public water system at all.</p>
+<section id="variables-that-describe-the-census-block" class="level3">
+<h3 class="anchored" data-anchor-id="variables-that-describe-the-census-block">Variables that Describe the Census Block</h3>
+<section id="population" class="level4">
+<h4 class="anchored" data-anchor-id="population">Population</h4>
+<p>Variable Name: <code>Population</code></p>
+<p>Population is taken from the 2020 Census, obtained at the census block level.</p>
+</section>
+<section id="local-population-density" class="level4">
+<h4 class="anchored" data-anchor-id="local-population-density">Local Population Density</h4>
+<p>Variable Name: <code>Pop_km</code></p>
+<p>The centroid of each block is buffered by 2 miles (3,218.69 meters). The population density is then calculated as an areal weighted population density of census blocks that intersect the buffer. This variable informs each block of its surroundings—in particular how dense is the nearby city, suburb or rural area.</p>
+</section>
+<section id="area" class="level4">
+<h4 class="anchored" data-anchor-id="area">Area</h4>
+<p>Variable Name: <code>Area_Km</code></p>
+<p>Area is calculated for each block in square kilometers using the Albers equal area projection (crs = 5070).</p>
+</section>
+<section id="probability-of-public-water" class="level4">
+<h4 class="anchored" data-anchor-id="probability-of-public-water">Probability of Public Water</h4>
+<p>Variable Name: <code>Prob_Pub</code></p>
+<p>The probability (0-1) of a block being served by public water as estimated from the ORD water use decision tree model (<a href="#fig-dt" class="quarto-xref">Figure&nbsp;3</a>).</p>
+</section>
+<section id="buildings" class="level4">
+<h4 class="anchored" data-anchor-id="buildings">Buildings</h4>
+<p>Variable Name: <code>nBuildings</code></p>
+<p>The number of buildings within a census block that are greater then 50 square meters in area. This is calculated using microsoft building footprints.</p>
+</section>
+<section id="percent-buildings" class="level4">
+<h4 class="anchored" data-anchor-id="percent-buildings">Percent Buildings</h4>
+<p>Variable Name: <code>PctBldg</code></p>
+<p>The percent area of the census block that is covered by buildings. This is calculated as the total area of microsoft building footprints divided by the area of the census block.</p>
+</section>
+<section id="mean-building-area" class="level4">
+<h4 class="anchored" data-anchor-id="mean-building-area">Mean Building Area</h4>
+<p>Variable Name: <code>meanBldg_m</code></p>
+<p>The mean area in square meters of buildings within the census block.</p>
+</section>
+<section id="minimum-building-area" class="level4">
+<h4 class="anchored" data-anchor-id="minimum-building-area">Minimum Building Area</h4>
+<p>Variable Name: <code>minBldg_m</code></p>
+<p>The area in square meters of the smallest building within the census block (Only buildings greater than or equal to 50 square meters included).</p>
+</section>
+<section id="maximum-building-area" class="level4">
+<h4 class="anchored" data-anchor-id="maximum-building-area">Maximum Building Area</h4>
+<p>Variable Name: <code>maxBldg_m</code></p>
+<p>The area in square meters of the largest building within the census block (Only buildings greater than or equal to 50 square meters included).</p>
+</section>
+<section id="standard-deviation-of-building-area" class="level4">
+<h4 class="anchored" data-anchor-id="standard-deviation-of-building-area">Standard Deviation of Building Area</h4>
+<p>Variable Name: <code>sdBldg_m</code></p>
+<p>The standard deviation of area of buildings in square meters within a census block.</p>
+</section>
+<section id="rural-urban" class="level4">
+<h4 class="anchored" data-anchor-id="rural-urban">Rural / Urban</h4>
+<p>Variable Name: <code>PctRural</code></p>
+<p>The census defined urban / rural classifier; A binary classification, in which to qualify as an urban area, the block identified must encompass at least 2,000 housing units or have a population of at least 5,000 for 2020 (census block level).</p>
+</section>
+<section id="mean-residential-acres" class="level4">
+<h4 class="anchored" data-anchor-id="mean-residential-acres">Mean Residential Acres</h4>
+<p>Variable Name: <code>meanResAcres</code></p>
+<p>The mean value in acres of parcels within the census block that are zoned for residential use.</p>
+</section>
+<section id="count-of-parcels" class="level4">
+<h4 class="anchored" data-anchor-id="count-of-parcels">Count of Parcels</h4>
+<p>Variable Name: <code>nParcels</code></p>
+<p>The total count of parcels within the census block.</p>
+</section>
+<section id="count-of-mobile-homes" class="level4">
+<h4 class="anchored" data-anchor-id="count-of-mobile-homes">Count of Mobile Homes</h4>
+<p>Variable Name: <code>MH_Count</code></p>
+<p>The count of mobile home communities within a census block as derived from the (Homeland Infrastructure Foundation Level database)[https://hifld-geoplatform.opendata.arcgis.com/datasets/mobile-home-parks/explore].</p>
+</section>
+<section id="mobile-home-size" class="level4">
+<h4 class="anchored" data-anchor-id="mobile-home-size">Mobile Home Size</h4>
+<p>Variable Name: <code>MH_Size</code></p>
+<p>The cumulative size of mobile home parks within a census block representing the number of mobile home units. This variable is presented as a factor.</p>
+<p><strong>Possible Values:</strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>‘50’</td>
+<td>&lt;50 Mobile Homes</td>
+</tr>
+<tr class="even">
+<td>‘75’</td>
+<td>50-100 Mobile Homes</td>
+</tr>
+<tr class="odd">
+<td>‘100’</td>
+<td>&gt;100 Mobile Homes</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="variables-that-describe-the-closest-systems" class="level3">
+<h3 class="anchored" data-anchor-id="variables-that-describe-the-closest-systems">Variables that Describe the Closest Systems</h3>
+<section id="distance" class="level4">
+<h4 class="anchored" data-anchor-id="distance">Distance</h4>
+<p>Variable Name: <code>Facility_Dist</code> The distance in meters between the census block centroid and a single point from SDWIS for a system.</p>
+</section>
+<section id="distance-rank" class="level4">
+<h4 class="anchored" data-anchor-id="distance-rank">Distance Rank</h4>
+<p>Variable Name: <code>Dist_Rank</code></p>
+<p>Describes the closeness rank of the particular facility being measured to. For example, if <code>Dist_Rank = 5</code>, there would be 4 other facility points closer to the centroid of that census block.</p>
+</section>
+<section id="facility-type" class="level4">
+<h4 class="anchored" data-anchor-id="facility-type">Facility Type</h4>
+<p>Variable Name: <code>Facility_Type</code></p>
+<p>The type of system point that was used in the distance calculation. Options include:</p>
+<ul>
+<li>“Well”</li>
+<li>“Treatment Plant”</li>
+<li>“Consecutive Connection”</li>
+<li>“Intake”</li>
+<li>“Other”</li>
+</ul>
+<p>The ‘Other’ Category contains less frequent data and data used when there are no wells, intakes or treatment plants associated with a system. Some examples of less frequent locations are springs, reservoirs and infiltration zones. This class also contains the office addresses of systems as reported to SDWIS which are typically within a service area but are also known to be unreliable depending on the system. Office locations were geolocated and curated to only include street intersections or better.</p>
+</section>
+<section id="population-served" class="level4">
+<h4 class="anchored" data-anchor-id="population-served">Population Served</h4>
+<p>Variable Name: <code>Population_Served_Count</code></p>
+<p>The reported population that is served by the system in SDWA reporting.</p>
+</section>
+<section id="connections" class="level4">
+<h4 class="anchored" data-anchor-id="connections">Connections</h4>
+<p>Variable Name: <code>Service_Connections_Count</code></p>
+<p>The reported number of service connections within a system in SDWA reporting.</p>
+</section>
+<section id="distance-to-center-of-system" class="level4">
+<h4 class="anchored" data-anchor-id="distance-to-center-of-system">Distance to Center of System</h4>
+<p>Variable Name: <code>Ctr_Dist</code></p>
+<p>If a system has more than one SDWIS point (intakes, wells treatment plants etc…) the mean center of all points is calculated and measured in meters from the centroid of the census block. If only one point exists within a system, this value will be identical to <code>Facility_Dist</code>.</p>
+</section>
+<section id="system-type" class="level4">
+<h4 class="anchored" data-anchor-id="system-type">System Type</h4>
+<p>Variable Name: <code>Service_Area_Type</code></p>
+<p>The Primary type of area that is served by the public water system.</p>
+<p><strong>Possible Values:</strong></p>
+<ul>
+<li>‘Homeowners Association’</li>
+<li>‘Mobile Home Park’</li>
+<li>‘Multiple’</li>
+<li>‘Municipality’<br>
+</li>
+<li>‘Other’</li>
+<li>‘Residential Area’</li>
+<li>‘Subdivision’</li>
+</ul>
+</section>
+<section id="sub-county-match" class="level4">
+<h4 class="anchored" data-anchor-id="sub-county-match">Sub-County Match</h4>
+<p>Variable Name: <code>SubCounty_Match</code></p>
+<p>Reflects a classified Jaro-Winkler string distance between the census place the census block is within and the ‘City Served’ of the public water system associated with the point being measured to.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Jaro-Winkler Distance</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt;0.1</td>
+<td>“Full Match”</td>
+</tr>
+<tr class="even">
+<td>&gt;0.1 &amp; &lt;0.3</td>
+<td>“Partial Match”</td>
+</tr>
+<tr class="odd">
+<td>≥0.3</td>
+<td>“No Match”</td>
+</tr>
+<tr class="even">
+<td>if no census sub county</td>
+<td>“No SubCounty”</td>
+</tr>
+<tr class="odd">
+<td>if no city served</td>
+<td>“No City Served”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="place-match" class="level4">
+<h4 class="anchored" data-anchor-id="place-match">Place Match</h4>
+<p>Variable Name: <code>Place_Match</code></p>
+<p>Reflects a classified Jaro-Winkler string distance between the census place the census block is within and the ‘City Served’ of the public water system associated with the point being measured to.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Jaro-Winkler Distance</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt;0.1</td>
+<td>“Full Match”</td>
+</tr>
+<tr class="even">
+<td>&gt;0.1 &amp; &lt;0.3</td>
+<td>“Partial Match”</td>
+</tr>
+<tr class="odd">
+<td>≥0.3</td>
+<td>“No Match”</td>
+</tr>
+<tr class="even">
+<td>if no census place</td>
+<td>“No Place”</td>
+</tr>
+<tr class="odd">
+<td>if no city served</td>
+<td>“No City Served”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="county-match" class="level4">
+<h4 class="anchored" data-anchor-id="county-match">County Match</h4>
+<p>Variable Name: <code>County_Match</code></p>
+<p>A categorical value denoting whether the county that the census block is within matches a county reported to be served by the system being measured.</p>
+<p><strong>Possible Values:</strong></p>
+<ul>
+<li>‘Match’</li>
+<li>‘No Match’</li>
+<li>‘No County’</li>
+</ul>
+</section>
+<section id="place-name-present-in-system-name" class="level4">
+<h4 class="anchored" data-anchor-id="place-name-present-in-system-name">Place Name Present in System Name</h4>
+<p>Variable Name: <code>Place_in_PWS</code></p>
+<p>A measure of how much of the system name also appears in the census place name that the census block is within. The longest common sub-string (LCS) is calculated between the census place and the system name and is then using the formula:</p>
+<p><span class="math display">\[(pwsName_{length}-LCS)/Place_{length}\]</span> where <span class="math inline">\(pwsName_{length}\)</span> is the length of the place name string in characters, <span class="math inline">\(Place_{length}\)</span> is the length of the public water system name in characters and <span class="math inline">\(LCS\)</span> is the length of the longest common sub-string between the two. An exact match would result in a value of 1. If either string is missing, a value of zero is assigned.</p>
+</section>
+<section id="sub-county-name-present-in-system-name" class="level4">
+<h4 class="anchored" data-anchor-id="sub-county-name-present-in-system-name">Sub-County Name Present in System Name</h4>
+<p>Variable Name: <code>SC_in_PWS</code></p>
+<p>A measure of how much of the system name also appears in the census place name that the census block is within. The longest common sub-string (LCS) is calculated between the census place and the system name and is then using the formula:</p>
+<p><span class="math display">\[(pwsName_{length}-LCS)/SubCounty_{length}\]</span> where <span class="math inline">\(pwsName_{length}\)</span> is the length of the place name string in characters, <span class="math inline">\(SubCounty_{length}\)</span> is the length of the public water system name in characters and <span class="math inline">\(LCS\)</span> is the length of the longest common sub-string between the two. An exact match would result in a value of 1. If either string is missing, a value of zero is assigned.</p>
+</section>
+</section>
+<section id="training-validation" class="level3">
+<h3 class="anchored" data-anchor-id="training-validation">Training &amp; Validation</h3>
+<p>The random forest is applied to every census block and returns a probability for each facility location within 25 miles of each census block. That probability can be interpreted as the probability that the system PWSID associated with that facility is serving public water to that census block. A full comparison between the training and testing sets is shown in <a href="#tbl-train" class="quarto-xref">Table&nbsp;3</a></p>
+<p>The data used to build the random forest model was split randomly across Arizona, Arkansas, California, Connecticut, New Jersey and Texas into training and testing sets (<a href="#tbl-train" class="quarto-xref">Table&nbsp;3</a>). This is done so the relationships constructed by the random forest model can be evaluated against data it has not been exposed to (out-of-bag sample).</p>
+<div id="tbl-train" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Summary statistics of the training and testing sets used to build the random forest.
+</figcaption>
+<div aria-describedby="tbl-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Training Set</th>
+<th>Testing Set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td># Rows</td>
+<td>3.1 Million</td>
+<td>47 Million</td>
+</tr>
+<tr class="even">
+<td># Census Blocks</td>
+<td>760 Thousand</td>
+<td>1.1 Million</td>
+</tr>
+<tr class="odd">
+<td># Correct</td>
+<td>350 Thousand</td>
+<td>“No Match”</td>
+</tr>
+<tr class="even">
+<td># Incorrect</td>
+<td>if no census place</td>
+<td>“No Place”</td>
+</tr>
+<tr class="odd">
+<td># Systems</td>
+<td>if no city served</td>
+<td>“No City Served”</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The random forest model was tuned on the number of trees and the value of m-try (the number of random variables considered at each split). The final model used a forest of fifty decision trees with <span class="math inline">\(m_{try}=20\)</span>. The out-of-bag testing set returned 4,201,409 ‘TRUE’ predictions (the system PWSID is correct) and 42,738,447 ‘FALSE’ predictions (the system PWSID is not correct) and predicted 99.7% of rows correctly. The sensitivity (accuracy of true positives) was 98.38% and the specificity (accuracy of true negatives) was 99.83%. The kappa value for the entire testing set was 0.982.</p>
+</section>
+</section>
+</section>
+<section id="post-processing" class="level1">
+<h1>Post Processing</h1>
+<section id="distance-thresholding" class="level2">
+<h2 class="anchored" data-anchor-id="distance-thresholding">Distance Thresholding</h2>
+</section>
+<section id="hole-filling" class="level2">
+<h2 class="anchored" data-anchor-id="hole-filling">Hole Filling</h2>
+</section>
+<section id="polygon-part-removal" class="level2">
+<h2 class="anchored" data-anchor-id="polygon-part-removal">Polygon Part Removal</h2>
+<p>The random forest model was post processed to “cleaned-up” to simplify the results and remove spatial outliers. First, blocks were dissolved by their predicted PWSID. It was discovered that there were many small “artifacts” the model created: small in size and mostly isolated blocks that were relatively far away from where their parent (primary—or largest) system boundary was located. To carefully remove these, the features were ‘exploded’ so unique polygon parts could be examined individually. Before ‘explosion’, the total aggregate system size was calculated (Km2). The exploded polygon parts size was then calculated (Km2), and each polygon part area was divided by the totally system area in order to get a percent of total area. To remove these fragments, a threshold was applied: any polygon part that was less than 20% of the total system area and was less than 3 km2 in size was removed. This eliminated some 100k polygon parts. After this procedure, only ~48,000 polygon parts remained (close to the number of total systems—suggesting most systems now only have 1 polygon per system.</p>
+</section>
+</section>
+<section id="known-issues" class="level1">
+<h1>Known Issues</h1>
+<section id="overlapping-boundaries" class="level2">
+<h2 class="anchored" data-anchor-id="overlapping-boundaries">Overlapping Boundaries</h2>
+<p>Within the final dataset there are instances where two or more boundaries occupy the same area. Theoretically two or more systems can occupy a single block (the spatial scale of the model) but this is known to be rare. Overlaps usually occur in two scenarios:</p>
+<ol type="1">
+<li>State boundaries overlapping modeled boundaries: <a href="#fig-overlap1" class="quarto-xref">Figure&nbsp;5</a> shows an example of Altoona, IA (modeled) overlapping the state supplied boundary of Des Moines. In this example the modeled boundary for Altoona appears correct. Altoona has a unique PWS. However, the state supplied boundary didn’t “erase” the Altoona system from the service area boundary. This conflict is a function of course or inaccurate state supplied boundaries.</li>
+</ol>
+<div id="fig-overlap1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overlap1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/overlap1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overlap1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: State boundary (pink) overlapping a modeled boundary (purple)
+</figcaption>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>State boundaries overlapping other state boundaries: <a href="#fig-overlap2" class="quarto-xref">Figure&nbsp;6</a> shows an example of two state systems overlapping each other. Because these are state supplied boundaries, nothing can be done to resolve this issue. They are either incorrectly drawn or multiple systems serve approximately the same areas.</li>
+</ol>
+<div id="fig-overlap2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overlap2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/overlap2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overlap2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Multiple California state supplied boundaries overlapping each other.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="dataset-universe-missing-systems" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-universe-missing-systems">Dataset Universe &amp; Missing Systems</h2>
+<p>The universe of systems we attempt to model is 47,952 systems. We were able to model or gather state supplied boundaries for 42,743 systems (89%). The unmatched systems predominately serve relatively small populations. This is proven when we calculate the % of the population served by modeled boundaries vs the universe of systems: 98.3%. This high percentage gives us confidence that we are capturing the service area boundaries for most people reliant on public water. Figure 7 shows the percent of modeled/state supplied boundaries and their percent population served of the total universe.</p>
+<p>We remove any system that serves less than 25 people or has less than 15 service connections (unless we were able to model them or they were state supplied)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. These systems are typically sub-block in size and cannot reasonably be modeled. A large majority of these systems also did not meet the federal definition of a public water system.<br>
+Systems that are exclusively wholesalers of water were also removed from the universe because these systems don’t distribute water to customers—and thus have no service area boundaries. Puerto Rico and US territory systems are not included because explanatory data for model inputs are not available for these geographies.</p>
+</section>
+<section id="incorrect-locations" class="level2">
+<h2 class="anchored" data-anchor-id="incorrect-locations">Incorrect Locations</h2>
+<p>All models have error. Trying to accurately model such a complex human phenomenon such as public drinking water infrastructure is difficult. The drivers that manifest a public drinking infrastructure—economic, social, environmental—is also complex and varies from state-to-state, community-to-community. The decision tree model was trained on 3 states and the random forest was trained on 6 states. This limited geographic range creates bias in the model and may not represent different drinking water infrastructure assumptions that may be relevant in one state, but not in others. One known issue is the poor accuracy of rural water systems serving very rural geographies. Our decision tree dataset was trained on states with a fairly urban population and states that didn’t have very many rural water districts to train the model on. South Dakota, for example, is a state with many rural water districts that cover large swaths of the rural landscape. We deliberately avoided including such districts in our training dataset because rural water districts are unique to only some states. Generally speaking, rural farmland does not have public water—so we did not want to train a model that saw farmland as being served by public water. Because of this model bias, modeled rural water districts are a known issue in our model and are typically not modeled accurately.</p>
+</section>
+<section id="kentucky" class="level2">
+<h2 class="anchored" data-anchor-id="kentucky">Kentucky</h2>
+<p>You may notice Kentucky’s service area boundaries look different from other state boundaries. In particular, almost the entire area of KY is covered by public water—and for the most part, Kentucky homes are almost completely supplied by public water. We received water line data from the state of kentucky, which delineated the main water lines. However, we need to delineate the area served by these water lines, not the two-dimensional line features. To delineate service areas, Voronoi polygons (also known as Thiessen polygons) were generated from service line data. It should be noted that the Voronoi polygons were derived from state supplied data, but the polygons themselves are not state supplied.</p>
+</section>
+<section id="florida" class="level2">
+<h2 class="anchored" data-anchor-id="florida">Florida</h2>
+<p>For some state supplied boundaries in Florida, one polygon was associated with multiple PWSIDs. We are unable to disaggregate these multiple systems from their single geography. For these features in the dataset, you will see multiple PWSIDs within the ‘PWSID’ field.</p>
+<p>The final output dataset includes 42,743 systems out of a universe of 47,952 (89.1%)</p>
+<section id="population-served-by-state" class="level3">
+<h3 class="anchored" data-anchor-id="population-served-by-state">Population Served by State</h3>
+<p>The modeled boundaries represent 98.3 % of the population served as reported in SDWIS (<a href="#fig-statePopServed" class="quarto-xref">Figure&nbsp;7</a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-statePopServed" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statePopServed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Documentation_files/figure-html/fig-statePopServed-1.png" class="img-fluid figure-img" width="384">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statePopServed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Bar plot showing the percent of population served by state or region that is captured by service area boundaries. Regions refer to tribal systems within that EPA region.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="missing-boundaries" class="level2">
+<h2 class="anchored" data-anchor-id="missing-boundaries">Missing Boundaries</h2>
+</section>
+</section>
+
+
+
+<div id="quarto-appendix" class="default"><section id="state-boundary-data" class="level1 appendix"><h2 class="anchored quarto-appendix-heading">State Boundary Data</h2><div class="quarto-appendix-contents">
+
+<section id="arizona" class="level3">
+<h3 class="anchored" data-anchor-id="arizona">Arizona</h3>
+<p><strong>CWS Service Area (Arizona Department of Water Resources)</strong></p>
+<p><strong>Link:</strong> <a href="https://gisdata2016-11-18t150447874z-azwater.opendata.arcgis.com/datasets/cws-service-area-1/about" class="uri">https://gisdata2016-11-18t150447874z-azwater.opendata.arcgis.com/datasets/cws-service-area-1/about</a></p>
+<p><strong>Last Updated:</strong> March 24, 2022</p>
+<section id="description" class="level4">
+<h4 class="anchored" data-anchor-id="description">Description</h4>
+<p>“The purpose of this feature class is to provide service area boundaries for community water systems regulated by the Arizona Department of Water Resources. This feature class contains service area polygons for each Community Water System (CWS). To determine the service area, ADWR utilized primary data provided directly from the water system (i.e.&nbsp;PDF, shapefile, verbal definition). If primary data is unavailable, secondary data was utilized to determine service area boundaries (i.e.&nbsp;Certificate of Convenience and Necessity (CCN), Census Designated Place shapefile from U.S Census Bureau.) New water systems are added, and contact information is updated for existing water systems on an annual basis. Service area maps are updated every 5 years. ADWR cannot verify the spatial accuracy of the information contained on this map.” Arizona also supplies a mapper (https://azwatermaps.azwater.gov/cws) with this layer and others (active/inactive well locations, groundwater basins) as a tool to allow the public to identify water providers in their area. It is also used by water systems to view the contact information and service area boundary that ADWR has on file for them. (They can submit corrections separately if anything is not right). The mapper will link to all annual reports and other files/correspondence for the CWS available to the public on the ADWR website. There is also a Community Water Systems Data Dashboard that includes visualizations from annual report data. There are visuals of population served, deliveries, demand, emergency water supply, etc.</p>
+</section>
+<section id="method" class="level4">
+<h4 class="anchored" data-anchor-id="method">Method</h4>
+<p>“ADWR utilized primary data provided directly from the water system (i.e., PDF, shapefile, verbal definition). If primary data is unavailable, secondary data was utilized to determine service area boundaries (i.e., Certificate of Convenience and Necessity (CCN), Census Designated Place shapefile from U.S Census Bureau.)” New systems are added annually by the AZ Department of Water Resources (ADWR). The service area maps are updated every 5 years. ADWR does not verify the shapes presented are accurate.</p>
+</section>
+<section id="coverage" class="level4">
+<h4 class="anchored" data-anchor-id="coverage">Coverage</h4>
+<ul>
+<li>886 PWSs in the file (887 records – one PWS is listed twice)</li>
+<li>Includes 717 of the 746 active CWS in SDWIS (96%)</li>
+<li>Missing 29 active CWS from SDWIS</li>
+</ul>
+</section>
+</section>
+<section id="arkansas" class="level3">
+<h3 class="anchored" data-anchor-id="arkansas">Arkansas</h3>
+<p><strong>Link:</strong> <a href="https://gis.arkansas.gov/product/public-water-systems-polygon/" class="uri">https://gis.arkansas.gov/product/public-water-systems-polygon/</a></p>
+<p><strong>Last Updated:</strong> August 7, 2023</p>
+<section id="description-1" class="level4">
+<h4 class="anchored" data-anchor-id="description-1">Description</h4>
+<p>“This dataset contains polygons which represent public water system boundaries in the State of Arkansas. The compilation of this data is an effort of the Engineering Division of the Arkansas Department of Health (ADH) to build a comprehensive geographic database of water utilities and services in the public water system. A visual aid of water system boundaries overlaid on current digital aerial photography, associated road names, and landmarks, were verified by representatives of ADH to confirm the accuracy of the boundaries.”</p>
+</section>
+<section id="method-1" class="level4">
+<h4 class="anchored" data-anchor-id="method-1">Method</h4>
+<p>“A visual aid of water system boundaries overlaid on current digital aerial photography, associated road names, and landmarks, were verified by representatives of ADH to confirm the accuracy of the boundaries.” The data are compiled by the Engineering Division of the Arkansas Department of Health. Number of shapes (and likely coverage of shapes) appears to be being updated over time.</p>
+</section>
+<section id="coverage-1" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-1">Coverage</h4>
+<ul>
+<li>787 PWSs in the file (788 shapes – one PWS is listed twice)</li>
+<li>Includes 657 of the 672 active CWS in SDWIS (98%)</li>
+<li>Missing 15 active CWS from SDWIS, although with fuzzy name matching they are likely in the file</li>
+</ul>
+</section>
+<section id="notes" class="level4">
+<h4 class="anchored" data-anchor-id="notes">Notes</h4>
+<ul>
+<li>Does not overlap with Census Place, county, Zip Code, data.</li>
+<li>One PWS is included twice/has two separate shapes</li>
+<li>Some shapes seem to follow roads/pipes</li>
+<li>Some shapes overlap with each other</li>
+<li>Does not include active/inactive indication</li>
+<li>No data fields include indication of method/quality</li>
+<li>Includes PWSID (objected = numeric portion of SWDIS PWSID)</li>
+</ul>
+</section>
+</section>
+<section id="california" class="level3">
+<h3 class="anchored" data-anchor-id="california">California</h3>
+<p><strong>Link:</strong> <a href="https://gis.data.ca.gov/datasets/fbba842bf134497c9d611ad506ec48cc/explore" class="uri">https://gis.data.ca.gov/datasets/fbba842bf134497c9d611ad506ec48cc/explore</a></p>
+<p><strong>Last Updated:</strong> November 13, 2023</p>
+<section id="description-2" class="level4">
+<h4 class="anchored" data-anchor-id="description-2">Description</h4>
+<p>“Service area boundaries of drinking water service providers, as verified by the Division of Drinking Water, State Water Resources Control Board. In order to provide an accurate data set of service area boundaries for California drinking water systems, the Division of Drinking Water of the California Water Resources Control Board (SWRCB DDW) has undertaken a project to vet and verify the data collected by the Tracking California’s Water Boundary Tool (WBT). SWRCB DDW downloaded a copy of the current water system service areas loaded in the WBT as of June 27, 2019. Additional attribute fields indicating verification status, verification staff and system type were appended to the data set. SWRCB DDW staff are reviewing and validating the displayed boundaries of each service area as well as contacting the service providers regarding necessary corrections. The verification status of any particular service area may be found in the Verification Status field.”</p>
+</section>
+<section id="method-2" class="level4">
+<h4 class="anchored" data-anchor-id="method-2">Method</h4>
+<p>Water systems and other qualified users used California’s Water Boundary Tool (WBT) to input or edit water system service area boundaries. The majority of these service area boundaries were adapted from paper maps or individual waster providers digitized service area boundaries.</p>
+</section>
+<section id="coverage-2" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-2">Coverage</h4>
+<ul>
+<li>4,782 PWSs in the file (20 duplicate records)</li>
+<li>Includes 2,788 of the 2,842 active CWS in SDWIS (98%)</li>
+</ul>
+</section>
+<section id="notes-1" class="level4">
+<h4 class="anchored" data-anchor-id="notes-1">Notes</h4>
+<ul>
+<li>Shapes have overlap with each other</li>
+<li>Does include active/inactive field</li>
+<li>Includes verification status and date for each shape</li>
+<li>Data are maintained and updated continuously</li>
+<li>Incudes the type of boundary (served area or jurisdictional) and the original source of the data</li>
+<li>Methods and details for the WBT are well documented</li>
+</ul>
+</section>
+</section>
+<section id="colorado" class="level3">
+<h3 class="anchored" data-anchor-id="colorado">Colorado</h3>
+<p><strong>Link:</strong> <a href="https://data.openwaterfoundation.org/state/co/owf/municipal-water-provider-boundaries/" class="uri">https://data.openwaterfoundation.org/state/co/owf/municipal-water-provider-boundaries/</a></p>
+<p><strong>Last Updated:</strong> Nov 14, 2023</p>
+<section id="description-3" class="level4">
+<h4 class="anchored" data-anchor-id="description-3">Description</h4>
+<p>“Boundaries and district names aggregated for this dataset represent a first version of effort toward an authoritative Statewide Special Districts Dataset. Each was aggregated from thousands of local jurisdictions by the Colorado Department of Local Affairs Demography office. Many of the district boundaries were created from scanned drawings or digitized PDFs, and therefore no guarantee of accuracy can be made for the data.”</p>
+</section>
+<section id="method-3" class="level4">
+<h4 class="anchored" data-anchor-id="method-3">Method</h4>
+<ul>
+<li>PWSID not included in the file, however, it is possible to link the LGID to PWSID using the data provided in a related spreadsheet (https://github.com/OpenWaterFoundation/owf-data-co-municipal-water-providers/blob/main/data/co-municipal-water-providers.xlsx)</li>
+<li>There are 254 systems in the Districts map, and 531 in the spreadsheet (949 active CWSs in SDWIS).</li>
+</ul>
+</section>
+<section id="notes-2" class="level4">
+<h4 class="anchored" data-anchor-id="notes-2">Notes</h4>
+<ul>
+<li>Shapes do overlap with each other</li>
+<li>Metadata and method information is sparse.</li>
+<li>The “source” field does provide detailed information about where the data come from.</li>
+<li>Would need to link multiple sources to get all the data available, and coverage is still low (25% to 50% of active CWSs)</li>
+</ul>
+</section>
+</section>
+<section id="connecticut" class="level3">
+<h3 class="anchored" data-anchor-id="connecticut">Connecticut</h3>
+<p><strong>Link:</strong> <a href="https://maps.ct.gov/portal/home/item.html?id=684908bf05a2430f8a60d58a96d640d6" class="uri">https://maps.ct.gov/portal/home/item.html?id=684908bf05a2430f8a60d58a96d640d6</a></p>
+<p><strong>Last Updated:</strong> March 2, 2020</p>
+<section id="description-4" class="level4">
+<h4 class="anchored" data-anchor-id="description-4">Description</h4>
+<p>An approximation of public water system service areas in Connecticut</p>
+</section>
+<section id="method-4" class="level4">
+<h4 class="anchored" data-anchor-id="method-4">Method</h4>
+<p>Shapes are a buffered approximation based on service lines.</p>
+</section>
+<section id="coverage-3" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-3">Coverage</h4>
+<ul>
+<li>531 PWSIDs in the file<br>
+</li>
+<li>Includes 448 of the 477 active CWS in SDWIS (94%)</li>
+</ul>
+</section>
+<section id="notes-3" class="level4">
+<h4 class="anchored" data-anchor-id="notes-3">Notes</h4>
+<ul>
+<li>Shapes have some overlap with each other</li>
+<li>Metadata is minimal</li>
+<li>Does not include active/inactive field</li>
+<li>No overlap with Census Places</li>
+<li>Includes PWSID to link to SDWIS</li>
+</ul>
+</section>
+</section>
+<section id="florida-1" class="level3">
+<h3 class="anchored" data-anchor-id="florida-1">Florida</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-5" class="level4">
+<h4 class="anchored" data-anchor-id="description-5">Description</h4>
+</section>
+<section id="method-5" class="level4">
+<h4 class="anchored" data-anchor-id="method-5">Method</h4>
+</section>
+<section id="coverage-4" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-4">Coverage</h4>
+</section>
+</section>
+<section id="kansas" class="level3">
+<h3 class="anchored" data-anchor-id="kansas">Kansas</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-6" class="level4">
+<h4 class="anchored" data-anchor-id="description-6">Description</h4>
+</section>
+<section id="method-6" class="level4">
+<h4 class="anchored" data-anchor-id="method-6">Method</h4>
+</section>
+<section id="coverage-5" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-5">Coverage</h4>
+</section>
+</section>
+<section id="mississippi" class="level3">
+<h3 class="anchored" data-anchor-id="mississippi">Mississippi</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-7" class="level4">
+<h4 class="anchored" data-anchor-id="description-7">Description</h4>
+</section>
+<section id="method-7" class="level4">
+<h4 class="anchored" data-anchor-id="method-7">Method</h4>
+</section>
+<section id="coverage-6" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-6">Coverage</h4>
+</section>
+</section>
+<section id="new-hampshire" class="level3">
+<h3 class="anchored" data-anchor-id="new-hampshire">New Hampshire</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-8" class="level4">
+<h4 class="anchored" data-anchor-id="description-8">Description</h4>
+</section>
+<section id="method-8" class="level4">
+<h4 class="anchored" data-anchor-id="method-8">Method</h4>
+</section>
+<section id="coverage-7" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-7">Coverage</h4>
+</section>
+</section>
+<section id="new-jersey" class="level3">
+<h3 class="anchored" data-anchor-id="new-jersey">New Jersey</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-9" class="level4">
+<h4 class="anchored" data-anchor-id="description-9">Description</h4>
+</section>
+<section id="method-9" class="level4">
+<h4 class="anchored" data-anchor-id="method-9">Method</h4>
+</section>
+<section id="coverage-8" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-8">Coverage</h4>
+</section>
+</section>
+<section id="new-mexico" class="level3">
+<h3 class="anchored" data-anchor-id="new-mexico">New Mexico</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-10" class="level4">
+<h4 class="anchored" data-anchor-id="description-10">Description</h4>
+</section>
+<section id="method-10" class="level4">
+<h4 class="anchored" data-anchor-id="method-10">Method</h4>
+</section>
+<section id="coverage-9" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-9">Coverage</h4>
+</section>
+</section>
+<section id="new-york" class="level3">
+<h3 class="anchored" data-anchor-id="new-york">New York</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-11" class="level4">
+<h4 class="anchored" data-anchor-id="description-11">Description</h4>
+</section>
+<section id="method-11" class="level4">
+<h4 class="anchored" data-anchor-id="method-11">Method</h4>
+</section>
+<section id="coverage-10" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-10">Coverage</h4>
+</section>
+</section>
+<section id="north-carolina" class="level3">
+<h3 class="anchored" data-anchor-id="north-carolina">North Carolina</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-12" class="level4">
+<h4 class="anchored" data-anchor-id="description-12">Description</h4>
+</section>
+<section id="method-12" class="level4">
+<h4 class="anchored" data-anchor-id="method-12">Method</h4>
+</section>
+<section id="coverage-11" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-11">Coverage</h4>
+</section>
+</section>
+<section id="pennsylvania" class="level3">
+<h3 class="anchored" data-anchor-id="pennsylvania">Pennsylvania</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-13" class="level4">
+<h4 class="anchored" data-anchor-id="description-13">Description</h4>
+</section>
+<section id="method-13" class="level4">
+<h4 class="anchored" data-anchor-id="method-13">Method</h4>
+</section>
+<section id="coverage-12" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-12">Coverage</h4>
+</section>
+</section>
+<section id="washington" class="level3">
+<h3 class="anchored" data-anchor-id="washington">Washington</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-14" class="level4">
+<h4 class="anchored" data-anchor-id="description-14">Description</h4>
+</section>
+<section id="method-14" class="level4">
+<h4 class="anchored" data-anchor-id="method-14">Method</h4>
+</section>
+<section id="coverage-13" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-13">Coverage</h4>
+</section>
+</section>
+<section id="west-virginia" class="level3">
+<h3 class="anchored" data-anchor-id="west-virginia">West Virginia</h3>
+<p><strong>Link:</strong></p>
+<p><strong>Last Updated</strong></p>
+<section id="description-15" class="level4">
+<h4 class="anchored" data-anchor-id="description-15">Description</h4>
+</section>
+<section id="method-15" class="level4">
+<h4 class="anchored" data-anchor-id="method-15">Method</h4>
+</section>
+<section id="coverage-14" class="level4">
+<h4 class="anchored" data-anchor-id="coverage-14">Coverage</h4>
+</section>
+</section>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This is similar to the EPA definition of a public water provider: “A public water system provides water for human consumption through pipes or other constructed conveyances to at least 15 service connections or serves an average of at least 25 people for at least 60 days a year.” https://www.epa.gov/dwreginfo/information-about-public-water-systems<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

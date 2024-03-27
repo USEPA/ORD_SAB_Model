@@ -1,0 +1,629 @@
+---
+title: "State Public Water Service Area Boundaries"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+---
+
+```{r library, include=FALSE}
+library(sf)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(vroom)
+library(here)
+library(DT)
+```
+
+The code in this document organizes available state boundary data and describes completeness with respect to active community water systems reported under SDWA. There are two major purposes for this script which are to identify systems we would like to include in our final dataset, and also to identify states to train our models on. If a state dataset has accurate boundaries but is missing a significant amount of them we want to include those systems in our final dataset but we only want to train the model on states where systems are generally completely represented.
+
+```{r load, include=FALSE}
+# Load System Data
+## Filter to active community water systems with populations and connections > 25
+df <- vroom(here("Public_Water_Systems/data/SDWA_Systems_2023Q2.csv"), show_col_types = FALSE)%>%
+  filter(POPULATION_SERVED_COUNT > 25 & SERVICE_CONNECTIONS_COUNT > 15 & PWS_ACTIVITY_CODE == "A" & PWS_TYPE_CODE == "CWS")%>%
+  filter(!substr(PWSID,1,2) %in% c("AS","GU","MP","PR","VI","XX"))
+
+vroom_write(df,here("Public_Water_Systems/data/Selected_Systems_2023Q2.csv"), delim = ",")
+# Load states
+states <- tigris::states(resolution = '20m', year = 2020)
+```
+
+
+## Arkansas
+
+Arkansas publishes a statewide shapefile of service area boundaries. However they do not have their associated SDWA identifiers. Therefore they must be name matched. We do this a few different ways in order to maximize the systems we can match. Arkansas names seem to match almost exactly with SDWA reported names. There seem to be certain special characters that can differ between datasets (i.e. '/','-'). We replace special characters with a space and convert all text to lowercase to standardize the data. We also remove duplicate whitespace.
+
+```{r}
+ar <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/Arkansas/PUBLIC_WATER_SYSTEMS/PUBLIC_WATER_SYSTEMS.shp",
+              quiet = TRUE)%>%
+  st_transform(4326)
+
+ar.st <- states%>%
+  filter(NAME == "Arkansas")%>%
+  st_transform(4326)
+```
+
+
+### Simple Name Matching
+
+```{r}
+ar.df <- df%>%
+  filter(substr(PWSID,1,2)=="AR")
+
+ar.sdwaNames <- ar.df%>%
+  select(PWSID,PWS_NAME)
+
+ar.nameJoin <- ar%>%
+  left_join(ar.sdwaNames, by = c("pws_name"="PWS_NAME"))%>%
+  mutate(nameMatch = ifelse(is.na(PWSID),FALSE,TRUE))
+
+ggplot(ar.nameJoin)+
+  geom_sf(data = ar.st, fill = "grey80")+
+  geom_sf(aes(fill = nameMatch))+
+  scale_fill_manual(values = c("TRUE" = "#1A85FF","FALSE"="#D41159"),name = "Matched by Name")
+
+ar.nameMatch <- ar.nameJoin%>%
+  filter(nameMatch==TRUE)
+
+ar.nomatch <- ar.nameJoin%>%
+  filter(nameMatch==FALSE)
+
+ar.sdwa.missing <- ar.df%>%
+  filter(!PWSID %in% ar.nameMatch$PWSID)
+```
+
+There are `r nrow(ar.df)` active community water systems in Arkansas according to SDWA reporting (`r df$SUBMISSIONYEARQUARTER[1]`). `r nrow(ar.nameMatch)` systems were successfully matched using the system name. `r nrow(ar.sdwa.missing)` systems that show as active community water systems in SDWA are missing. The next step is to check for punctuation or duplicate spaces preventing an exact match.
+
+### Removing Punctuation, Whitespace and Capitalization
+
+```{r}
+ar.sdwa.clean <- ar.sdwa.missing%>%
+  select(PWSID,PWS_NAME)%>%
+  mutate(PWS_NAME = tolower(PWS_NAME),
+         PWS_NAME = str_squish(str_replace_all(PWS_NAME, "[[:punct:]]", " ")))
+
+ar.nomatch <- ar%>%
+  filter(!pws_name %in% ar.nameMatch$pws_name)%>%
+  mutate(pws_name = tolower(pws_name),
+         pws_name = str_squish(str_replace_all(pws_name, "[[:punct:]]", " ")))%>%
+  left_join(ar.sdwa.clean, by = c("pws_name"="PWS_NAME"))
+
+ar.cleanMatch <- ar.nomatch%>%
+  mutate(nameMatch = ifelse(is.na(PWSID),FALSE,TRUE))%>%
+  filter(nameMatch == TRUE)
+
+```
+
+`r nrow(ar.cleanMatch)` more systems were matched when removing punctuation, extra white space and capitalization. 
+
+```{r}
+ar.allNameMatch <- rbind(ar.nameMatch,ar.cleanMatch)
+
+ar.df.join <- ar.df%>%
+  filter(!PWSID %in% ar.allNameMatch$PWSID)
+
+# already run
+#vroom_write(ar.df.join,here("data/state_pws_data/Arkansas/cleaning/AR_No_Name_Match.csv"),delim = ",")
+```
+
+
+The rest of the matches are performed manually using text search and map inspection. Once all names have been repaired, we perform the full join. Running a complete join all at once ensures we don't have duplicate matches.
+
+```{r}
+name.repair <- vroom(here("data/state_pws_data/Arkansas/cleaning/AR_No_Name_Match_fix.csv"), show_col_types = FALSE)%>%
+  select(PWSID,PWS_Name_State)%>%
+  setNames(c("PWSID","PWS_NAME"))
+
+ar.matchRepair <- ar%>%
+  left_join(name.repair,by = c("pws_name"="PWS_NAME"))%>%
+  mutate(nameMatch = ifelse(is.na(PWSID),FALSE,TRUE))%>%
+  filter(nameMatch == TRUE)
+
+ar.fullMatch <- rbind(ar.allNameMatch,ar.matchRepair)%>%
+  group_by(PWSID)%>%
+  filter(shape_STLe == max(shape_STLe))%>%
+  ungroup() # One boundary has two polygons but they completely overlap, so keep the larger one.
+
+ar.noboundary <- ar.df%>%
+  filter(!PWSID %in% ar.fullMatch$PWSID)
+
+ggplot(ar.fullMatch)+
+  geom_sf(data = ar.st, fill = "grey80")+
+  geom_sf(fill = "#1A85FF")+
+  labs(title = "Arkansas Systems with SDWA PWS ID",
+       subtitle = paste0("Matched: ",nrow(ar),"\nMissing: ",nrow(ar.noboundary),
+                         "\nPopulation Served Coverage: ",
+                         round(100*((sum(ar.df$POPULATION_SERVED_COUNT,na.rm=TRUE)-sum(ar.noboundary$POPULATION_SERVED_COUNT,na.rm=TRUE))/(sum(ar.df$POPULATION_SERVED_COUNT,na.rm=TRUE))),1),"%"))
+
+```
+
+Arkansas is 99.8% complete for active community water systems listed in the 2023 Q2 release of SDWA, missing only one system that serves water to 48 people.
+
+### Missing Systems
+Arkansas is missing `r nrow(ar.noboundary)` system(s).
+
+```{r arMissing}
+ar.missing.tbl <- ar.noboundary%>%
+  select(PWSID,PWS_NAME,POPULATION_SERVED_COUNT)%>%
+  arrange(desc(POPULATION_SERVED_COUNT))%>%
+  mutate(POPULATION_SERVED_COUNT = format(POPULATION_SERVED_COUNT,big.mark=","))
+
+datatable(ar.missing.tbl)
+```
+
+
+## Arizona
+
+```{r azLoad}
+az.df <- df%>%
+  filter(substr(PWSID,1,2)=="AZ")
+
+az <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/Arizona/CWS_Service_Area/CWS_Service_Area.shp", quiet=TRUE)%>%
+  select(ADEQ_ID)%>%
+  mutate(ADEQ_ID=ifelse(ADEQ_ID == "AZ0411043","AZ0407033",ADEQ_ID))%>%
+  filter(ADEQ_ID %in% az.df$PWSID)
+  
+  # sdwa.temp <- "AZ0407033"
+  # state.temp <- "AZ0411043"
+
+az.noboundary <- az.df%>%
+  filter(!PWSID %in% az$ADEQ_ID)
+
+#vroom_write(az.noboundary,here("data/state_pws_data/Arizona/cleaning/AZ_No_Name_Match.csv"), delim = ",", append = FALSE)
+
+az.st <- states%>%
+  filter(NAME == "Arizona")%>%
+  st_transform(st_crs(az))
+
+ggplot(az)+
+  geom_sf(data = az.st,fill="grey80")+
+  geom_sf(fill = "#1A85FF")+
+  labs(title = paste0("Arizona Systems with SDWA PWS ID (",round(100*(nrow(az)/nrow(az.df)),1),"%)"),
+       subtitle = paste0("Matched: ",nrow(az),"\nMissing: ",nrow(az.noboundary),
+                         "\nPopulation Served Coverage: ",
+                         round(100*((sum(az.df$POPULATION_SERVED_COUNT,na.rm=TRUE)-sum(az.noboundary$POPULATION_SERVED_COUNT,na.rm=TRUE))/(sum(az.df$POPULATION_SERVED_COUNT,na.rm=TRUE))),1),"%"))
+```
+
+
+There is at least one mis-match in IDs between Arizona and SDWA. The town of Queen Creek has a boundary and is listed by Arizona as having the ID: "AZ0411043". That ID does not appear in SDWA reporting, but there is an entry for the town of Queen Creek which has the ID: "AZ0407033". This system serves 95,000 people and is the largest system that did not match. A manual repair of this PWS ID was done.
+
+### Missing Systems
+Arizona is missing `r nrow(az.noboundary)` system(s).
+
+```{r azMissing}
+az.missing.tbl <- az.noboundary%>%
+  select(PWSID,PWS_NAME,POPULATION_SERVED_COUNT)%>%
+  arrange(desc(POPULATION_SERVED_COUNT))%>%
+  mutate(POPULATION_SERVED_COUNT = format(POPULATION_SERVED_COUNT,big.mark=","))
+
+datatable(az.missing.tbl)
+```
+
+## California
+
+California has some duplicate system IDs. In these cases there is typically a service area boundary and also a jurisdictional boundary. In this case the jurisdictional boundary should be removed. However if no service area boundary exists but a jurisdictional boundary does, it should be kept. There are some missing systems but it is unclear if they are really 'missing'. For example the San Bernardino valley water district has no boundary, but they appear to provide water to retailers who sell water to consumers. Those boundaries do exist. Typically in this case the water district would have a population served of zero because they are wholesaling water and the population served would be reflected in the retailers reporting. San Bernardino water district however lists a population served of 109,000. This appears to be double counting populations. 
+
+```{r}
+
+ca.df <- df%>%
+  filter(substr(PWSID,1,2)=="CA")
+ca <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/California/California_Drinking_Water_System_Area_Boundaries/California_Drinking_Water_System_Area_Boundaries.shp", quiet=TRUE)%>%
+  filter(SABL_PWSID%in%ca.df$PWSID)
+
+ca.dups <- ca%>%
+  st_drop_geometry()%>%
+  select(SABL_PWSID,BOUNDARY_T)%>%
+  group_by(SABL_PWSID)%>%
+  summarise(rows = n())%>%
+  filter(rows>1)
+
+ca.dup.rows <- ca%>%
+  filter(SABL_PWSID %in% ca.dups$SABL_PWSID)
+
+ca.dropDups <- ca%>%
+  mutate(drop = ifelse(SABL_PWSID %in% ca.dups$SABL_PWSID & BOUNDARY_T == "Jurisdictional",TRUE,FALSE))%>%
+  filter(drop == FALSE)
+
+ca.noboundary <- ca.df%>%
+  filter(!PWSID %in% ca.dropDups$SABL_PWSID)
+
+ca.st <- states%>%
+  filter(NAME == "California")%>%
+  st_transform(st_crs(ca.dropDups))
+
+
+ggplot(ca.dropDups)+
+  geom_sf(data=ca.st,fill="grey90")+
+  geom_sf(fill = "#1A85FF")+
+  labs(title = paste0("California Systems with SDWA PWS ID (",round(100*(nrow(ca)/nrow(ca.df)),1),"%)"),
+       subtitle = paste0("Matched: ",format(nrow(ca.dropDups),big.mark=","),"\nMissing: ",nrow(ca.noboundary),
+                         "\nPopulation Served Coverage: ",
+                         round(100*((sum(ca.df$POPULATION_SERVED_COUNT,na.rm=TRUE)-sum(ca.noboundary$POPULATION_SERVED_COUNT,na.rm=TRUE))/(sum(ca.df$POPULATION_SERVED_COUNT,na.rm=TRUE))),1),"%"))
+```
+
+### Missing Systems
+California is missing `r nrow(ca.noboundary)` system(s).
+
+```{r caMissing}
+ca.missing.tbl <- ca.noboundary%>%
+  select(PWSID,PWS_NAME,POPULATION_SERVED_COUNT)%>%
+  arrange(desc(POPULATION_SERVED_COUNT))%>%
+  mutate(POPULATION_SERVED_COUNT = format(POPULATION_SERVED_COUNT,big.mark=","))
+
+datatable(ca.missing.tbl)
+```
+
+## Colorado
+
+Colorado data is still in its early stages of development. At last check, there were only 182 boundaries of the 935 active community water systems listed in SDWA. The boundaries that do exist do not contain PWS IDs but a relate table exists to link 'LGID' to 'PWSID'.
+```{r}
+co.df <- df%>%
+  filter(substr(PWSID,1,2)=="CO")
+
+# Import relate table
+co.relate <- vroom("D:/Github/ORD_Water_Supply/data/state_pws_data/Colorado/co-municipal-water-providers_relate.csv")%>%
+  select(PWS_ID,DOLA_LG_ID)%>%
+  distinct()
+
+# Import spatial data and join PWS ID
+co <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/Colorado/co-municipal-water-provider-boundaries.geojson")%>%
+  drop_na(LGID)%>%
+  select(Name,LGID)%>%
+  left_join(co.relate, by = c("LGID"="DOLA_LG_ID"))%>%
+  drop_na(PWS_ID)
+
+
+co.noboundary <- co.df%>%
+  filter(!PWSID %in% co$PWS_ID)
+
+co.st <- states%>%
+  filter(NAME == "Colorado")%>%
+  st_transform(st_crs(co))
+
+
+ggplot(co)+
+  geom_sf(data=co.st,fill="grey90")+
+  geom_sf(fill = "#1A85FF")+
+  labs(title = paste0("Colorado Systems with SDWA PWS ID (",round(100*(nrow(co)/nrow(co.df)),1),"%)"),
+       subtitle = paste0("Matched: ",format(nrow(co),big.mark=","),"\nMissing: ",nrow(co.noboundary),
+                         "\nPopulation Served Coverage: ",
+                         round(100*((sum(co.df$POPULATION_SERVED_COUNT,na.rm=TRUE)-sum(co.noboundary$POPULATION_SERVED_COUNT,na.rm=TRUE))/(sum(co.df$POPULATION_SERVED_COUNT,na.rm=TRUE))),1),"%"))
+
+```
+
+### Missing Systems
+Colorado is missing `r nrow(co.noboundary)` system(s).
+
+```{r coMissing}
+co.missing.tbl <- co.noboundary%>%
+  select(PWSID,PWS_NAME,POPULATION_SERVED_COUNT)%>%
+  arrange(desc(POPULATION_SERVED_COUNT))%>%
+  mutate(POPULATION_SERVED_COUNT = format(POPULATION_SERVED_COUNT,big.mark=","))
+
+datatable(co.missing.tbl)
+```
+
+
+## Connecticut
+
+Connecticut data uses a buffered approach to service lines. The buffers appear to be roughly 225 meters. Although the data claims it is for visualization purposes only, we feel that buffered service lines are more detailed than other methods that simply assign boundaries like census places to systems. Interstingly, the largest four systems that are missing boundaries are managed by Aquarion water. Although theses systems lack boundaries that match their PWS ID, these areas are covered by the Aquarion Water 'main system', which also has a SDWA ID. IT is possible that these smaller systems have been incorporated into the larger 'main system'.
+
+```{r}
+ct.df <- df%>%
+  filter(substr(PWSID,1,2)=="CT")
+
+ct <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/Connecticut/Buffered_Community_PWS_Service_Areas/Buffered_Community_PWS_Service_Areas.shp")%>%
+  filter(pwsid %in% ct.df$PWSID)
+
+ct.noboundary <- ct.df%>%
+  filter(!PWSID %in% ct$pwsid)
+
+ct.st <- states%>%
+  filter(NAME == "Connecticut")%>%
+  st_transform(st_crs(ct))
+
+
+ggplot(ct)+
+  geom_sf(data=ct.st,fill="grey90")+
+  geom_sf(fill = "#1A85FF")+
+  labs(title = paste0("Connecticut Systems with SDWA PWS ID (",round(100*(nrow(ct)/nrow(ct.df)),1),"%)"),
+       subtitle = paste0("Matched: ",format(nrow(ct),big.mark=","),"\nMissing: ",nrow(ct.noboundary),
+                         "\nPopulation Served Coverage: ",
+                         round(100*((sum(ct.df$POPULATION_SERVED_COUNT,na.rm=TRUE)-sum(ct.noboundary$POPULATION_SERVED_COUNT,na.rm=TRUE))/(sum(ct.df$POPULATION_SERVED_COUNT,na.rm=TRUE))),1),"%"))
+```
+### Missing Systems
+Connecticut is missing `r nrow(ct.noboundary)` system(s).
+
+```{r ctMissing}
+ct.missing.tbl <- ct.noboundary%>%
+  select(PWSID,PWS_NAME,POPULATION_SERVED_COUNT)%>%
+  arrange(desc(POPULATION_SERVED_COUNT))%>%
+  mutate(POPULATION_SERVED_COUNT = format(POPULATION_SERVED_COUNT,big.mark=","))
+
+datatable(ct.missing.tbl)
+```
+
+## Florida
+No PWS ID is given in either the south Florida or southwest Florida water management district data.
+
+```{r}
+
+fl.df <- df%>%
+  filter(substr(PWSID,1,2)=="FL")
+
+sfwmd <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/Florida/Current_Public_Supply_Utility_Service_Areas/HYFAC_UTILITY_SERVICE_AREA_CURRENT.shp", quiet=TRUE)
+
+swfwmd <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/Florida/Public_Supply_Service_Areas/Public_Supply_Service_Areas.shp", quiet=TRUE)
+```
+
+
+### Name Matching
+```{r}
+fl.sdwa.names <- fl.df%>%
+  select(PWSID,PWS_NAME)
+
+sf.names <- sfwmd%>%
+  select(CUP_SA)%>%
+  setNames(c("Name_1","geometry"))
+
+sw.names <- swfwmd%>%
+  select(UTILITYNAM,SERVICEARE)%>%
+  setNames(c("Name_1","Name_2","geometry"))
+
+first.name.matched <- sw.names%>%
+  bind_rows(sf.names)%>%
+  left_join(fl.sdwa.names, by = c("Name_1"="PWS_NAME"))%>%
+  filter(!is.na(PWSID))
+
+second.match <- sw.names%>%
+  left_join(fl.sdwa.names, by = c("Name_2"="PWS_NAME"))%>%
+  filter(!is.na(PWSID))
+
+fl.namematch <- rbind(select(first.name.matched,PWSID),select(second.match,PWSID))
+
+fl.noboundary <- fl.df%>%
+  filter(!PWSID %in% fl.namematch$PWSID)
+
+ggplot(fl.namematch)+
+  geom_sf()
+```
+
+
+### Iterative Fuzzy Matching
+Each boundary has a name and a county. Therefore we will iterate through counties and fuzzy match system names to SDWA entries to determine the best match.
+
+```{r}
+# Load County Served Data
+fl.cnty.served <- vroom("D:/data/SDWA/SDWA_Full/SDWA_latest_downloads/SDWA_GEOGRAPHIC_AREAS.csv")%>%
+  select(PWSID,COUNTY_SERVED)%>%
+  filter(PWSID %in% fl.df$PWSID & !is.na(COUNTY_SERVED))%>%
+    mutate(COUNTY_SERVED = tolower(COUNTY_SERVED),
+           COUNTY_SERVED = str_replace(COUNTY_SERVED,'[.]',""))
+
+sf.names.df <- sfwmd%>%
+  st_drop_geometry()%>%
+  select(CUP_SA,COUNTY)%>%
+  setNames(c("Name","COUNTY"))
+
+sw.names.df <- swfwmd%>%
+  st_drop_geometry()%>%
+  select(UTILITYNAM,COUNTYNAME)%>%
+  setNames(c("Name","COUNTY"))
+
+all.names.df <- rbind(sf.names.df,sw.names.df)%>%
+  mutate(Name = tolower(Name),
+         COUNTY = tolower(COUNTY))
+
+fl.sdwa.lwr <- fl.df%>%
+  select(PWSID,PWS_NAME)%>%
+  left_join(fl.cnty.served)%>%
+  mutate(PWS_NAME = tolower(PWS_NAME))
+
+# Iterate through counties and search for name matches
+fuzzy.matches <- data.frame()
+for(cnty in unique(all.names.df$COUNTY)){
+  fl.cnty.systems <- all.names.df%>%
+    filter(COUNTY == cnty)
+  
+  sdwa.cnty.systems <- fl.sdwa.lwr%>%
+    filter(COUNTY_SERVED == cnty)
+  
+  if(nrow(sdwa.cnty.systems)>0){
+    # For every active system in SDWA, search accross boundaries in that county
+  for(n in 1:nrow(sdwa.cnty.systems)){
+    fuzzy <- stringdist::stringdist(sdwa.cnty.systems$PWS_NAME[n],fl.cnty.systems$Name,method = "jw")
+    
+    # Find best score
+    best.score <- min(fuzzy)
+    best.idx <- which(fuzzy==best.score)
+    newMatches <- data.frame(State_Name = fl.cnty.systems$Name[best.idx],
+                             SDWA_Name = sdwa.cnty.systems$PWS_NAME[n],
+                             PWSID = sdwa.cnty.systems$PWSID[n],
+                             Score = best.score)
+    fuzzy.matches <- rbind(fuzzy.matches,newMatches)
+    
+  }
+  }
+}
+
+
+```
+
+
+## New Jersey
+
+```{r NJ}
+nj.df <- df%>%
+  filter(substr(PWSID,1,2)=="NJ")
+
+nj <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/New Jersey/Purveyor_Service_Areas_of_New_Jersey/Purveyor_Service_Areas_of_New_Jersey.shp")%>%
+  filter(PWID %in% nj.df$PWSID)
+
+nj.noboundary <- nj.df%>%
+  filter(!PWSID %in% nj$PWID)
+
+nj.st <- states%>%
+  filter(NAME == "New Jersey")%>%
+  st_transform(st_crs(nj))
+
+
+ggplot(nj)+
+  geom_sf(data=nj.st,fill="grey90")+
+  geom_sf(fill = "#1A85FF")+
+  labs(title = paste0("New Jersey Systems with SDWA PWS ID (",round(100*(nrow(nj)/nrow(nj.df)),1),"%)"),
+       subtitle = paste0("Matched: ",format(nrow(nj),big.mark=","),"\nMissing: ",nrow(nj.noboundary),
+                         "\nPopulation Served Coverage: ",
+                         round(100*((sum(nj.df$POPULATION_SERVED_COUNT,na.rm=TRUE)-sum(nj.noboundary$POPULATION_SERVED_COUNT,na.rm=TRUE))/(sum(nj.df$POPULATION_SERVED_COUNT,na.rm=TRUE))),1),"%"))
+
+```
+
+### Missing Systems
+New Jersey is missing `r nrow(nj.noboundary)` system(s).
+
+```{r njMissing}
+nj.missing.tbl <- nj.noboundary%>%
+  select(PWSID,PWS_NAME,POPULATION_SERVED_COUNT)%>%
+  arrange(desc(POPULATION_SERVED_COUNT))%>%
+  mutate(POPULATION_SERVED_COUNT = format(POPULATION_SERVED_COUNT,big.mark=","))
+
+datatable(nj.missing.tbl)
+```
+
+## Washington
+
+Washington appears to be missing several small systems. The largest missing system is JBLM McChord Field. Interestingly, there is a system that covers this air field listed as JBLM Lewis, so there may be some overlap, or systems that are cross-referenced.
+
+```{r WA}
+wa.df <- df%>%
+  filter(substr(PWSID,1,2)=="WA")
+
+wa <- st_read("D:/Github/ORD_Water_Supply/data/state_pws_data/Washington/Drinking_Water_Service_Areas/Drinking_Water_Service_Areas.shp")%>%
+  mutate(PWSID = paste0("WA53",WS_ID))%>%
+  filter(PWSID %in% wa.df$PWSID)%>%
+  filter(!ServiceAre == "Future")
+
+
+wa.noboundary <- wa.df%>%
+  filter(!PWSID %in% wa$PWSID)
+
+wa.st <- states%>%
+  filter(NAME == "Washington")%>%
+  st_transform(st_crs(wa))
+
+
+ggplot(wa)+
+  geom_sf(data=wa.st,fill="grey90")+
+  geom_sf(fill = "#1A85FF")+
+  labs(title = paste0("Washington Systems with SDWA PWS ID (",round(100*(nrow(wa)/nrow(wa.df)),1),"%)"),
+       subtitle = paste0("Matched: ",format(nrow(wa),big.mark=","),"\nMissing: ",nrow(wa.noboundary),
+                         "\nPopulation Served Coverage: ",
+                         round(100*((sum(wa.df$POPULATION_SERVED_COUNT,na.rm=TRUE)-sum(wa.noboundary$POPULATION_SERVED_COUNT,na.rm=TRUE))/(sum(wa.df$POPULATION_SERVED_COUNT,na.rm=TRUE))),1),"%"))
+
+```
+
+### Missing Systems
+```{r waMissing}
+wa.missing.tbl <- wa.noboundary%>%
+  select(PWSID,PWS_NAME,POPULATION_SERVED_COUNT)%>%
+  arrange(desc(POPULATION_SERVED_COUNT))%>%
+  mutate(POPULATION_SERVED_COUNT = format(POPULATION_SERVED_COUNT,big.mark=","))
+
+datatable(wa.missing.tbl)
+```
+
+
+
+
+## Validation Dataset
+
+Based on the gathered information from state datasets, the following states have been selected to use as training data for the random forest model:
+
+- Arkansas
+- Arizona
+- California
+- Connecticut
+- New Jersey
+- Washington
+
+```{r}
+# Combine data for validation
+
+# Arkansas
+ar.trim <- ar.fullMatch%>%
+  select(PWSID)%>%
+  st_make_valid()
+
+# Arizona
+az.trim <- az%>%
+  select(ADEQ_ID)%>%
+  setNames(c("PWSID","geometry"))%>%
+  st_transform(4326)%>%
+  st_make_valid()
+
+# California
+ca.trim <- ca.dropDups%>%
+  select(SABL_PWSID)%>%
+  setNames(c("PWSID","geometry"))%>%
+  st_transform(4326)%>%
+  st_make_valid()
+
+# Connecticut
+ct.trim <- ct%>%
+  select(pwsid)%>%
+  setNames(c("PWSID","geometry"))%>%
+  st_transform(4326)%>%
+  st_make_valid()
+
+# New Jersey
+nj.trim <- nj%>%
+  select(PWID)%>%
+  setNames(c("PWSID","geometry"))%>%
+  st_transform(4326)%>%
+  st_make_valid()
+
+# Washington
+wa.trim <- wa%>%
+  select(PWSID)%>%
+  st_transform(4326)%>%
+  st_make_valid()
+
+validation.sf <- ar.trim%>%
+  rbind(az.trim)%>%
+  rbind(ca.trim)%>%
+  rbind(ct.trim)%>%
+  rbind(nj.trim)%>%
+  rbind(wa.trim)%>%
+  mutate(empty = st_is_empty(.))%>%
+  filter(empty == FALSE)%>%
+  st_make_valid()%>%
+  group_by(PWSID)%>%
+  summarise()
+
+# already run
+#st_write(validation.sf,here("data/state_pws_data/validation.gpkg"),layer = "validation_boundaries")
+  
+
+validation.summary <- validation.sf%>%
+  st_drop_geometry()%>%
+  group_by(substr(PWSID,1,2))%>%
+  summarise(nSystems = n())%>%
+  setNames(c("STUSPS","nSystems"))
+
+summary.sf <- states%>%
+  filter(!NAME %in% c("Alaska","Hawaii","Puerto Rico","Commonwealth of the Northern Mariana Islands",
+                      "American Samoa","Guam","United States Virgin Islands"))%>%
+  left_join(validation.summary, by = "STUSPS")%>%
+  st_transform(5070)
+
+ggplot(summary.sf)+
+  geom_sf(aes(fill = nSystems))+
+  scale_fill_gradient(low = "#E9D94B", high = "#56AC0B", na.value = "grey80",
+                      labels=function(x) format(x, big.mark = ",", scientific = FALSE))+
+  labs(title = "Count of Validation Service Area Boundaries", fill = "System Boundaries",
+       subtitle = paste0("Total = ",format(nrow(validation.sf),big.mark=",")))
+```
+

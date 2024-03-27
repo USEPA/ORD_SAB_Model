@@ -1,0 +1,107 @@
+---
+title: "Random Forest Modeling of Systems"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    toc: true
+---
+
+
+```{r setup, include=FALSE}
+library(sf)
+library(dplyr)
+library(vroom)
+library(here)
+```
+
+
+The random forest model is implemented to determine for each census block, the probability that it is served by one of the nearest public water systems. This document details the creation of data needed to build the random forest, model training and application.
+
+
+# Preparing Data for Random Forest
+
+## Validation Water Systems
+
+The validation data used to build the random forest model is derived from state supplied data, which is described in the document titled 'step1_state_boundaries.qmd/html'. Census block centroids are joined to validation systems to assign 'known' service areas to census blocks.
+
+```{r}
+library(sf)
+library(dplyr)
+library(vroom)
+
+start <- Sys.time()
+
+# Load state validation boundaries
+valid.sf <- st_read("/work/GRDVULN/PWS/data/validation.gpkg",layer = "validation_boundaries")%>%
+  st_transform(5070)%>%
+  st_make_valid()
+
+# Load Block Centroids
+block.cntrds <- vroom("/work/GRDVULN/PWS/data/blocks_2020_all_centroids.csv")%>%
+  filter(substr(GISJOIN,2,3)%in% c("04","05","06","09","34","53"))%>%
+  st_as_sf(coords = c("X","Y"), crs = 4326)%>%
+  st_transform(5070)
+
+validation.join <- st_intersection(block.cntrds,valid.sf)%>%
+  st_drop_geometry()
+
+vroom_write(validation.join,"/work/GRDVULN/PWS/data/Validation_Block_join.csv", delim=",")
+end <- Sys.time()
+
+elapsed <- round(as.numeric(difftime(end,start,units="mins")))
+
+print(paste0("Joined blocks to validation systems in: ",elapsed," minutes."))
+
+# Last Run: 15 minutes
+```
+
+
+
+
+## Parcel Data
+
+Parcel level data was obtained through the [NGST REGRID parcel service](https://epa.maps.arcgis.com/home/item.html?id=75da303642e74f4b8b25caa6c1bbfad0). Available data was downloaded for every county in the United States and aggregated to the census block.
+
+```{r}
+parcel.files <- data.frame(path = list.files("D:/Github/parcels/data/tables",full.names=TRUE),
+                           file = list.files("D:/Github/parcels/data/tables"))%>%
+  separate(file, into = c("county","state"),sep="_")%>%
+  mutate(state = str_replace(state,".csv",""))
+
+# Define a function to find the mode (max occurence)
+mode <- function(x, na.rm = FALSE) {
+  ux <- unique(x)
+  if(na.rm == TRUE & TRUE %in% is.na(ux)){
+    na.idx <- which(is.na(ux))
+    ux <- ux[-na.idx]
+  }
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+temp <- vroom(parcel.files$path[1])
+
+block.parcels <- data.frame()
+for(n in 1:nrow(parcel.files)){
+  cnty.df <- vroom(parcel.files$path[n], col_types = c("census_block"="c"), show_col_types = FALSE, progress=FALSE)%>%
+    select(ll_uuid,census_block,ll_gisacre,lbcs_function,lbcs_structure,ll_bldg_count,ll_bldg_footprint_sqft)%>%
+    group_by(census_block)%>%
+    summarise(meanParcelAcres = mean(ll_gisacre,na.rm=TRUE),
+              primaryFunction = mode(lbcs_function, na.rm=TRUE),
+              primaryStructure = mode(lbcs_structure,na.rm=TRUE),
+              MH_Present = if_else("1150" %in% lbcs_structure,TRUE,FALSE),
+              nBuildings = sum(ll_bldg_count,na.rm = TRUE),
+              meanBldgFoot = mean(ll_bldg_footprint_sqft,na.rm=TRUE),
+              sumBldgFoot = sum(ll_bldg_footprint_sqft,na.rm=TRUE)
+    )
+  
+  block.parcels <- rbind(block.parcels,cnty.df)
+}
+
+vroom_write(block.parcels,here("Public_Water_Systems/data/block_parcels_select.csv"), delim = ",")
+
+
+# Join housing units and population 
+
+```
+

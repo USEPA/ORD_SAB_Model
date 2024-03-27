@@ -1,0 +1,228 @@
+---
+title: "Random Forest vs. 1:1 Matching"
+format: html
+---
+
+```{r setup, include = FALSE}
+library(vroom)
+library(tidyverse)
+library(sf)
+library(plotly)
+library(here)
+
+knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message = FALSE)
+
+# Load 1:1 Matches
+match.table <- vroom(here("Input_Data/Utility_Data/Master_CWS_LIST_010924.csv"))%>%
+  filter(`MATCH SOURCE` == "ALEX")
+
+# Load buildings
+bldg.files <- list.files(here("Input_Data/MBFP/"), full.names = TRUE)
+bf <- vroom(bldg.files)
+
+# Load Block Matching for 1:1 boundaries
+bm <- vroom(here("Output_Data/Matching/Block_Matching.csv"))%>%
+  filter(PWS_ID %in% match.table$`PWS ID`)%>%
+  left_join(bf)%>%
+  group_by(PWS_ID)%>%
+  summarise(bldgs_11 = sum(nBuildings, na.rm=TRUE))
+
+# Calculate area of 1:1 boundaries
+o2o <- st_read(here("Input_Data/Utility_Data/Existing_Systems_010924.shp"))%>%
+  filter(PWSID %in% match.table$`PWS ID`)%>%
+  st_transform(5070)%>%
+  mutate(O2O_Area = as.numeric(st_area(.))/1000000)%>%
+  st_drop_geometry()%>%
+  select(PWSID,O2O_Area)%>%
+  left_join(bm, by = c("PWSID"="PWS_ID"))
+
+# Load RF modeled 1:1 systems
+rf <- st_read(here("D:/temp/All_Dissolve.shp"))%>%
+  filter(Near_PWSID %in% match.table$`PWS ID`)%>%
+  st_transform(5070)%>%
+  mutate(RF_Area = as.numeric(st_area(.))/1000000)%>%
+  st_drop_geometry()
+
+parts <- st_read(here("D:/temp/All_Dissolve.shp"))%>%
+  filter(Near_PWSID %in% match.table$`PWS ID`)%>%
+  st_transform(5070)%>%
+  st_cast("POLYGON")
+
+p.area <- parts%>%
+  mutate(Part_Area = as.numeric(st_area(.))/1000000)%>%
+  st_drop_geometry()%>%
+  group_by(Near_PWSID)%>%
+  mutate(maxSize = max(Part_Area))%>%
+  mutate(PctMax = Part_Area/maxSize)%>%
+  ungroup()
+
+
+%>%
+  summarise(nPolygons = n(),
+            maxSize = max(Part_Area)/1000000,
+            minSize = min(Part_Area)/1000000)%>%
+  ungroup()
+
+p <- p.area%>%
+  filter(!PctMax ==1)%>%
+  ggplot()+
+  geom_histogram(aes(x = PctMax))
+  
+sub <- p.area%>%
+  filter(nPolygons>1)
+
+p <- ggplot(sub)+
+  geom_point(aes(x = minSize, y = maxSize))
+
+# Import Population Category
+popcat <- vroom(here("Input_Data/SDWIS/Water_System_Detail_2023Q4.csv"))%>%
+  select(`PWS ID`,`Pop Cat 5`)%>%
+  setNames(str_replace_all(colnames(.)," ","_"))
+
+compare <- rf%>%
+  left_join(o2o, by = c("Near_PWSID"="PWSID"))%>%
+  left_join(popcat, by = c("Near_PWSID"="PWS_ID"))
+```
+
+
+## Count of Buildings in RF vs. 1:1 Methods
+
+```{r bldgs}
+plot_ly(compare)%>%
+  add_markers(x = ~Bldgs, y = ~bldgs_11, color = ~Pop_Cat_5,
+              text = ~paste(Name,"<br>",
+                            "PWSID: ",Near_PWSID,"<br>",
+                            "# Buildings (RF): ",format(Bldgs,big.mark=","),"<br>",
+                            "# Buildings (1:1): ",format(bldgs_11, big.mark=","),"<br>",
+                            "Service Connections: ",format(Cnctns, big.mark = ",")),
+    hoverinfo = 'text')%>%
+  layout(title = '', xaxis = list(title = 'Random Forest Buildings'), 
+         yaxis = list(title = '1:1 Buildings'), legend = list(title=list(text='<b> Population Category </b>')))
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+
+## Delta from Connections
+
+Shown as: $$connections - buildings$$
+
+```{r delta}
+delta <- compare%>%
+  mutate(RF_Delta = Cnctns - Bldgs,
+         O2O_Delta = Cnctns - bldgs_11)
+
+delta.labels <- data.frame(label = c("More RF Buildings /\n Less 1:1 Buildings than Connections",
+                                     "Less RF Buildings &\n 1:1 Buildings than Connections",
+                                     "More RF Buildings &\n 1:1 Buildings than Connections",
+                                     "Less RF Buildings /\n More 1:1 Buildings than Connections"),
+                           x = c(-30000,30000,-30000,30000),
+                           y = c(150000,150000,-150000,-150000))
+
+plot_ly(delta)%>%
+  add_markers(x = ~RF_Delta, y = ~O2O_Delta, color = ~Pop_Cat_5,
+              text = ~paste(Name,"<br>",
+                            "PWSID: ",Near_PWSID,"<br>",
+                            "# Buildings (RF): ",format(Bldgs,big.mark=","),"<br>",
+                            "# Buildings (1:1): ",format(bldgs_11, big.mark=","),"<br>",
+                            "Service Connections: ",format(Cnctns, big.mark = ",")),
+    hoverinfo = 'text')%>%
+  add_annotations(data=delta.labels, mode = "text", x = ~x, y = ~y, text = ~label)%>%
+  layout(title = '', xaxis = list(title = 'Random Forest Buildings Delta'), 
+         yaxis = list(title = '1:1 Buildings Delta'), legend = list(title=list(text='<b> Population Category </b>')))
+```
+
+
+## Area Delta
+The difference in service area boundary area between random forest and 1:1 matching
+
+```{r areaCompare}
+plot_ly(compare)%>%
+  add_markers(x = ~RF_Area, y = ~O2O_Area, color = ~Pop_Cat_5,
+              text = ~paste(Name,"<br>",
+                            "PWSID: ",Near_PWSID,"<br>",
+                            "# Buildings (RF): ",format(Bldgs,big.mark=","),"<br>",
+                            "# Buildings (1:1): ",format(bldgs_11, big.mark=","),"<br>",
+                            "Service Connections: ",format(Cnctns, big.mark = ",")),
+    hoverinfo = 'text')%>%
+  layout(title = '', xaxis = list(title = 'Random Forest Area'), 
+         yaxis = list(title = '1:1 Area'), legend = list(title=list(text='<b> Population Category </b>')))
+```
+
+
+
+## Selection Criteria
+
+
+### Buildings : Connections
+
+A simple way would be to choose the system that is closest to the number of connections. Here we use the absolute delta from connections.
+
+**1:1 Boundaries:** 1,733
+**Random Forest Boundaries:** 6,413
+
+```{r}
+bldg.class <- compare%>%
+  mutate(bldgs_11 = replace_na(bldgs_11,0),
+         rf_delta = abs(Cnctns - Bldgs),
+         O2O_delta = abs(Cnctns - bldgs_11),
+         choice = ifelse(rf_delta < O2O_delta, "Random Forest","1:1"))
+
+plot_ly(bldg.class)%>%
+  add_markers(x = ~Bldgs, y = ~bldgs_11, color = ~choice,
+              text = ~paste(Name,"<br>",
+                            "PWSID: ",Near_PWSID,"<br>",
+                            "# Buildings (RF): ",format(Bldgs,big.mark=","),"<br>",
+                            "# Buildings (1:1): ",format(bldgs_11, big.mark=","),"<br>",
+                            "Service Connections: ",format(Cnctns, big.mark = ",")),
+    hoverinfo = 'text')%>%
+  layout(title = '', xaxis = list(title = 'Random Forest Buildings'), 
+         yaxis = list(title = '1:1 Buildings'), legend = list(title=list(text='<b> Population Category </b>')))
+```
+
+
+## Export a Combined Dataset
+
+```{r split, eval=FALSE}
+
+rf.selected <- bldg.class%>%
+  filter(choice == "Random Forest")
+
+o2o.selected <- bldg.class%>%
+  filter(choice == "1:1")
+
+
+
+o2o.filt <- st_read(here("Input_Data/Utility_Data/Existing_Systems_010924.shp"))%>%
+  filter(PWSID %in% o2o.selected$Near_PWSID)%>%
+  select(PWSID)%>%
+  st_transform(4326)%>%
+  mutate(Method = "1:1")
+
+rf.filt <- st_read(here("D:/temp/All_Dissolve.shp"))%>%
+  filter(Near_PWSID %in% rf.selected$Near_PWSID)%>%
+  select(Near_PWSID)%>%
+  setNames(c("PWSID","geometry"))%>%
+  st_transform(4326)%>%
+  mutate(Method = "RF")
+
+o2o.NoModel <- st_read(here("Input_Data/Utility_Data/Existing_Systems_010924.shp"))%>%
+  filter(PWSID %in% match.table$`PWS ID` & !PWSID %in% compare$Near_PWSID)%>%
+  select(PWSID)%>%
+  st_transform(4326)%>%
+  mutate(Method = "1:1")
+  
+  
+
+deets <- vroom(here("Input_Data/SDWIS/Water_System_Detail_2023Q4.csv"))%>%
+  select(`PWS ID`,`PWS Name`,`Service Connections Count`,`Population Served Count`)%>%
+  setNames(str_replace_all(colnames(.)," ","_"))
+
+selected.out <- rbind(o2o.filt, rf.filt)%>%
+  rbind(o2o.NoModel)%>%
+  left_join(deets, by = c("PWSID"="PWS_ID"))
+
+st_write(selected.out, "D:/temp/Selected_O2O.shp", append = FALSE)
+
+```
+
