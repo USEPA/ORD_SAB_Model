@@ -1,10 +1,18 @@
 # EPA Open Source Reference
 
-## Brief Project Description
+## Project Description
+The Office of Research and Development has released a publicly available dataset of community
+water system (CWS) service area boundaries (SAB). CWS are defined as systems that provide
+water for human consumption through pipes or other constructed conveyances to at least 15 service
+connections or serves an average of at least 25 people year-round [1]. Under the safe drinking water
+act (SDWA) and various drinking water rules (see EPA Drinking Water Regulations) public water
+systems must test and report on the quality of their drinking water. These boundaries enable
+linking SDWA violations to their associated geographic areas, and concomitantly linking treated
+community water system water to their respective customers. This service area boundary dataset is
+a combination of publicly available service area boundaries and modeled boundaries. This repository
+documents how the data was collected and modeled and details the modeling techniques used to
+generate this dataset. All R scripts used in the production of the dataset are available here.
 
-This repository contains files for teams to reuse when working in and with EPA Open Source projects.
-
-Also, this repository contains the link to [EPA's System Lifecycle Management Policy and Procedure](https://www.epa.gov/irmpoli8/policy-procedures-and-guidance-system-life-cycle-management-slcm) which lays out EPA's Open Source Software Policy and [EPA's Open Source Code Guidance](https://www.epa.gov/developers/open-source-software-and-epa-code-repository-requirements). 
 
 ## For EPA Teams
 
@@ -18,4 +26,4 @@ This repository reused material from [GSA](https://www.gsa.gov/), [18F](https://
 
 ### Disclaimer
 
-The United States Environmental Protection Agency (EPA) GitHub project code is provided on an "as is" basis and the user assumes responsibility for its use.  EPA has relinquished control of the information and no longer has responsibility to protect the integrity , confidentiality, or availability of the information.  Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by EPA.  The EPA seal and logo shall not be used in any manner to imply endorsement of any commercial product or activity by EPA or the United States Government.
+The United States Environmental Protection Agency (EPA) GitHub project code is provided on an "as is" basis and the user assumes responsibility for its use. EPA has relinquished control of the information and no longer has responsibility to protect the integrity , confidentiality, or availability of the information. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by EPA. The EPA seal and logo shall not be used in any manner to imply endorsement of any commercial product or activity by EPA or the United States Government.

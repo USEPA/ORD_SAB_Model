@@ -76,7 +76,7 @@ The Office of Research and Development has released a publicly available dataset
 CWS are defined as systems that provide water for human consumption through pipes or other constructed conveyances to at least 15 service connections or serves an average of at least 25 people year-round \[1\].
 Under the safe drinking water act (SDWA) and various drinking water rules (see EPA Drinking Water Regulations) public water systems must test and report on the quality of their drinking water.
 These boundaries enable linking SDWA violations to their associated geographic areas, and concomitantly linking treated community water system water to their respective customers.
-This service area boundary dataset is a combinatio of publicly available service area boundaries and modeled boundaries.
+This service area boundary dataset is a combination of publicly available service area boundaries and modeled boundaries.
 This document describes how the data was collected and modeled and details the modeling techniques used to generate this dataset.
 
 # Summary
