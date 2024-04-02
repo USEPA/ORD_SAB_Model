@@ -19,21 +19,27 @@ generate this dataset. All R scripts used in the production of the dataset are a
 This repository is split into folders which contain data, code and analysis used to create the ORD service areas.
 
 **Analysis**
+
 Various code and documents with supporting analyses.
 
 **Documentation**
+
 Document describing the process for creating the service area dataset.
 
 **External_Boundaries**
+
 Contains source information for boundaries obtained from state and utility sources.
 
 **Input_Data**
+
 This folder contains raw data that is needed to initiate the execution of code. Some large datasets are not included in this folder and need to be downloaded by the end user. These are described in the README file within the 'Input_Data' folder. 
 
 **Output_Data**
+
 Final output dataset location.
 
 **Workflow**
+
 This folder contains all of the code used in the creation of the boundaries. Another 'Data' folder also exists within the 'Workflow' folder, which contains data created throughout the process. More information on the code can be found in the README file within the 'Workflow' folder.
 
 
