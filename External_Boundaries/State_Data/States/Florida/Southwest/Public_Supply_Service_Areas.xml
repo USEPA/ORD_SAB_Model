@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <pubdate>20031231</pubdate>
+                <title>Public Supply Service Areas 1</title>
+                <geoform>vector digital data</geoform>
+                <pubinfo>
+                    <pubplace/>
+                    <publish>USF</publish>
+                </pubinfo>
+                <onlink>https://www45.swfwmd.state.fl.us/arcgis12/rest/services/OpenData/Regulatory/MapServer/16</onlink>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>This dataset is a compilation of all water utility retail service boundaries within the South West Florida Water Management District. This service is for the Open Data Download application for the Southwest Florida Water Management District.</abstract>
+            <purpose>This dataset is a compilation of all water utility retail service boundaries. This service is for the Open Data Download application for the Southwest Florida Water Management District.</purpose>
+            <supplinf>More information, such as sales, purchases, and PWSI numbers, for each permit, can be found by utilizing relationships created to the appropriate tables when using ArcMap. The tables but not the relationships will be distributed for external use. According to the District's Water Use Permit Information Manual, "public water supply applicants and their wholesale customers that operate 'community water systems' as that term is defined by the Florida Department of Environmental Protection in Rule 62-550.200, F.A.C., shall be considered public water supply 'utilities'" (p. B2-2). The Florida Department of Environmental Protection in Rule 62-550.200, F.A.C. defines a community water system as "a system for the provision to the public of water for human consumption through pipes or other constructed conveyances, if such system has at least fifteen service connections or regularly serves an average of at least twenty-five individuals daily at least 60 days out of the year." Information regarding 'Public Supply Service Areas' within the WUP Basis of Review document (below): 2.5 PUBLIC WATER SUPPLY SERVICE AREA A public supply permit Applicant must define the entire area proposed to be serviced by the public supply system during the term of the permit. This area includes both the service area in which the supplier has the ability and legal right to distribute water, as well as other areas where an entity purchases water wholesale from the Applicant. Requested quantities for areas proposed to be supplied must be supported with detailed demand information and plans of the supply system proposed to accomplish this service. In cases where the Applicant does not have political control over a portion or portions of the area supplied (e.g., a county utility supplies a city), detailed demand information for the entire area will be required from the wholesaler. Wholesalers must provide the District with a written agreement from the water purchasers to abide by the conditions of the wholesaler's permit. Service areas are not considered to be under the control of the Applicant in terms of consideration of off-site impacts. Where there is a potential for adverse impacts to existing legal users due to the applicant's withdrawals, whether within or outside the applicant's service area, the applicant shall submit a plan by which the potential impacts shall be monitored and mitigated if such impacts should occur. Nothing in this provision shall affect continuation of Tampa Bay Water's Well Mitigation Policy set forth in Rule 49B-3.005, F.A.C., dated May 20, 2001. Amended 1-1-07. PUBLIC WATER SUPPLY SERVICE AREA In addition to the paragraph above, a public supply utility permit Applicant must define the entire area proposed to be serviced by the public supply system or utility with potable water during the term of the permit. A public water supply utility may have separate, discreet service areas; however, if water is routinely transferred between service areas, the service areas are counted as one. An applicant's public supply service area is composed of the following, unless the applicant demonstrates that factors unique to its utility make one or more of these situations inapplicable to the determination of the applicant's service area: 1. The current and projected geographic retail area for which a public water supply utility intends to provide and bill for potable water for the duration of the permit. 2. The current and projected geographical retail areas of a public water supply utility that is not required to have a Wholesale Water Use Permit but which purchases water wholesale from the Applicant. 3. Areas where the Applicant bills for water use although another entity or utility has a Wholesale Water Use Permit for distribution of the water to the population. &lt;More info on this can be obtained here: http://www.swfwmd.state.fl.us/rules/files/wup_basis_of_review.pdf&gt;</supplinf>
+        </descript>
+        <status>
+            <progress>In work</progress>
+            <update>As needed</update>
+        </status>
+        <spdom>
+            <bounding>
+                <westbc>-82.863609</westbc>
+                <eastbc>-81.322424</eastbc>
+                <northbc>29.404032</northbc>
+                <southbc>26.712514</southbc>
+            </bounding>
+        </spdom>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>retail service areas</themekey>
+                <themekey>water utility</themekey>
+                <themekey>public supply</themekey>
+            </theme>
+            <place>
+                <placekt>None</placekt>
+                <placekey>SWFWMD</placekey>
+            </place>
+        </keywords>
+        <accconst>Other Constraints</accconst>
+        <useconst>This REST service is only available from 6 A.M. to 10 P.M. daily. The data are being provided on an 'as is' basis. The District specifically disclaims any warranty, either expressed or implied, including, but not limited to, the implied warranties or merchantability and fitness for a particular use. The entire risk as to quality and performance is with the user. In no event will the District or its staff be liable for any direct, indirect, incidental, special, consequential, or other damages, including loss of profit, arising out of the use of these data even if the District has been advised of the possibility of such damages. All data are intended for resource management use and have not been collected or certified by a Florida-registered Surveyor and Mapper.</useconst>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Southwest Florida Water Management District</cntorg>
+                    <cntper>Mapping and GIS Section</cntper>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>2379 Broad Street (U.S. 41 South)</address>
+                    <city>Brooksville</city>
+                    <state>FL</state>
+                    <postal>34604-6899</postal>
+                </cntaddr>
+                <cntvoice>(352) 796-7211</cntvoice>
+                <cntfax>(352) 540-6018</cntfax>
+                <hours>8:00 a.m. to 5:00 p.m.</hours>
+            </cntinfo>
+        </ptcontac>
+        <datacred>Southwest Florida Water Management District</datacred>
+        <native>ESRI ArcCatalog 10.2.2</native>
+    </idinfo>
+    <dataqual>
+        <attracc>
+            <attraccr>Attributes for each water utility retail service area were added during aggregation, and all attributes are assumed to be 100% complete and correct at time of final delivery. Notes: 1) Polygons FID378 and FID460 were originally private utilities with separate boundaries, however, the attributes were changed to reflect incorporation into Pasco County Utilities. The original utility boundaries of these two polygons were not dissolved into the larger Pasco County due to project time constraints. 2) Marion County Utilities' water service information contains several areas of multiple adjacent polygons with the same attribute information. These boundaries were not aggregated in order to maintain Marion County Utilities' original sub-service area information. As of March 2004, the District has made no formal assessment of accuracy.</attraccr>
+        </attracc>
+        <logic>Final coverage was built and cleaned at 1 meter fuzzy tolerance to ensure correct topology.</logic>
+        <complete>There are no known omissions.</complete>
+        <posacc>
+            <horizpa>
+                <horizpar>This dataset is assumed to have a 1:24,000 accuracy level (or +/- 12 meters). As of March 2004, the District has made no formal assessment of accuracy.</horizpar>
+            </horizpa>
+        </posacc>
+        <lineage>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>Utility Information table</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20031215</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Utility Information table</srccitea>
+                <srccontr>Florida Center for Community Design &amp; Research</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>PWSI numbers for Permits table</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20031215</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>PWSI numbers for Permits table</srccitea>
+                <srccontr>Florida Center for Community Design &amp; Research</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>Permit Information Table</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20031215</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Permit Information Table</srccitea>
+                <srccontr>Florida Center for Community Design &amp; Research</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <pubdate>20031231</pubdate>
+                        <title>Coverage of the water utility service areas</title>
+                    </citeinfo>
+                </srccite>
+                <srcscale>24</srcscale>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20031231</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Coverage of the water utility service areas</srccitea>
+                <srccontr>Florida Center for Community Design &amp; Research</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>retail service information</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <rngdates>
+                            <begdate>20020201</begdate>
+                            <enddate>20031231</enddate>
+                        </rngdates>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>retail service information</srccitea>
+                <srccontr>directly from each water utility</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>Sales Information table</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20031215</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Sales Information table</srccitea>
+                <srccontr>Florida Center for Community Design &amp; Research</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>Table used to create relationships to other tables in the Access Database</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20031215</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Table used to create relationships to other tables in the Access Database</srccitea>
+                <srccontr>Florida Center for Community Design &amp; Research</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>Purchase Information Table</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20031215</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Purchase Information Table</srccitea>
+                <srccontr>Florida Center for Community Design &amp; Research</srccontr>
+            </srcinfo>
+            <procstep>
+                <procdesc>The feature class and tables will be updated by the Data and Records staff as modifications to public supply water use permits are applied for. This will be done using ArcMap and ArcCatalog to digitize new boundaries or update tabular information.</procdesc>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Southwest Florida Water Management District</cntorg>
+                            <cntper>Resource Data Department, Data and Records section</cntper>
+                        </cntorgp>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>2379 Broad Street (U.S. 41 South)</address>
+                            <city>Brooksville</city>
+                            <state>FL</state>
+                            <postal>34604-6899</postal>
+                        </cntaddr>
+                        <cntvoice>(352) 796-7211</cntvoice>
+                        <hours>8:00 a.m. to 5:00 p.m.</hours>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>Water utility retail service information was gathered either directly from each water utility or from SWFWMD archive files. Each service area was converted into a correctly registered coverage, given correct attributes, and then combined at the county level after overlap examination with other adjacent service areas. The final coverage was then built and cleaned at a 1 meter fuzzy tolerance to ensure correct topology.</procdesc>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Florida Center for Community Design &amp; Research</cntorg>
+                            <cntper>Shawn Landry</cntper>
+                        </cntorgp>
+                        <cntpos>Assistant Director</cntpos>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>3702 Spectrum Blvd. Ste: 180</address>
+                            <city>Tampa</city>
+                            <state>FL</state>
+                            <postal>33612</postal>
+                        </cntaddr>
+                        <cntvoice>(813) 974-4042</cntvoice>
+                        <cntfax>(813) 974-6023</cntfax>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>To avoid the risk of confusion, for external use, the feature class will exported as a shapefile with the duplicate records for multiple permits removed. The PERMITNUMBER will be removed from the shapefile. The ZIP file will contain the shapefile, sales, purchases, and pwsi_number tables.</procdesc>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Southwest Florida Water Management District</cntorg>
+                            <cntper>Mapping and GIS Section</cntper>
+                        </cntorgp>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>2379 Broad Street (U.S. 41 South)</address>
+                            <city>Brooksville</city>
+                            <state>FL</state>
+                            <postal>34604-6899</postal>
+                        </cntaddr>
+                        <cntvoice>(352) 796-7211</cntvoice>
+                        <cntfax>(352) 540-6018</cntfax>
+                        <hours>8:00 a.m. to 5:00 p.m.</hours>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>The coverage was exported out as a feature class (fclass) into a personal geodatabase using ArcCatalog. In ArcMap, out parcels were deleted. These were defined as those polygons with SVCAREAID = 0 and TYPE = non-served/non-delineated. Utility contact information wanted in the fclass. To get this information, a join was needed between the fclass and the Utility_Information table. The UTIL_ID attribute in the fclass was a text field, while the UTILITYINFORMATIONID attribute in the Utility_Information table was a numeric field. Therefore, the UTIL_ID was converted into the numeric UTILITYINFORMATIONID using the ADD FIELD and CALCULATE menu. Non-overlapping areas were then selected, and the fclass was temporarily joined with the Utility_Information table using the UTILITYINFORMATIONID. The contact information was then transferred to the corresponding attributes in the fclass using the CALCULATE menu. The join was removed and the original text field, UTIL_ID, was deleted. In order to create relationships and joins with other corresponding tables, duplicate polygons were created for those polygons that had multiple permits. Each polygon will have it's own permit number in a new field. These are stacked on top of one another like pancakes. This was done because the permit number is used as the primary key and the relationships are one to many, cascading down to several tables in several levels. So that area measurements and population studies would not be skewed by these added polygons, another attribute was added, AREAFLAG. This attribute was updated with a 'Y' for the original polygons and a 'N' for the duplicate polygons. Therefore, when needing area information, a pre-selection should be done for AREAFLAG = 'Y'. All of the permit numbers for this polygon can still be found in the ALLPERMITS field. Overlap areas and non-served/delineated areas should also not be used in population studies so these were flagged as AREAFLAG = 'N'. Another attribute, PERMITNUMBER, a text field, was added. The original permit attribute, now called ALLPERMITS, is also a text field, but has the permits as a string of permits with commas between them. Preceding zeros were added to the beginning of the permit so that it became a six-digit number, similar to the WUPERMITNUMBER field in the WUPPOLY data layer. For those polygons with multiple permits, the attribute table was opened in ArcMap and sorted by UTILITYINFORMATIONID. In order to create the duplicate polygons, polygons were selected where PERMITNUMBER was greater than one, then a copy and paste was done while in an edit session. Individual permit numbers were then updated in the attribute, PERMITNUMBER, along with the AREAFLAG attribute. The PERMITNUMBER found in all tables were modified from an integer field to a text field with preceding zeros as described above. The attributes NUMBEROFPERMITS and SERVICEAREANAME were also added to the fclass. The NUMBEROFPERMITS was updated by determining how many permits the polygon contained. To determine the number of permits the ALLPERMITS field was reviewed and then the number was manually entered into the new field. Once the number of permits was determined, those polygons with a single permit were selected. A temporary join was then created with the PERMIT table where the SERVICEAREANAME was found. This join was removed. Another join was created for all polygons using the PERMITNUMBER attribute. This time the MAPCONTACT information was added from the PERMIT table. Temporary joins were created between the tables for Purchases, Sales, and PWSI to the PERMIT table. The PERMITNUMBER was added to each of these tables. A join was created using the SURVEYID as the primary key. The PERMITNUMBER was then calculated and the joins removed. In ArcCatalog, relationship classes were created between the fclass and the Purchases, Sales, and PWSI tables using the PERMITNUMBER as the primary key. Relationships were created instead of joins between the tables again because the cardinalities are one to many.</procdesc>
+                <procdate>20040319</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Southwest Florida Water Management District</cntorg>
+                            <cntper>Mapping and GIS Section</cntper>
+                        </cntorgp>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>2379 Broad Street (U.S. 41 South)</address>
+                            <city>Brooksville</city>
+                            <state>FL</state>
+                            <postal>34604-6899</postal>
+                        </cntaddr>
+                        <cntvoice>(352) 796-7211</cntvoice>
+                        <cntfax>(352) 540-6018</cntfax>
+                        <hours>8:00 a.m. to 5:00 p.m.</hours>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>The Planning Department of the District discovered that the City of Winter Haven had been inadvertently deleted from the layer. On 11/02/2005, it was re-inserted into the layer using an older backup dataset found. The dateset with attribute tables and relationships in the District's enterprise GIS database were replaced.</procdesc>
+                <procdate>20051102</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Southwest Florida Water Management District</cntorg>
+                            <cntper>Mapping and GIS Section</cntper>
+                        </cntorgp>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>2379 Broad Street (U.S. 41 South)</address>
+                            <city>Brooksville</city>
+                            <state>FL</state>
+                            <postal>34604-6899</postal>
+                        </cntaddr>
+                        <cntvoice>(352) 796-7211</cntvoice>
+                        <cntfax>(352) 540-6018</cntfax>
+                        <hours>8:00 am to 5:00 pm</hours>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>In October 2009, the District's enterprise SDE vector data layers were re-projected from UTM to State Plane Feet. At this same time the data layers were loaded into SDE using ESRI's Spatial Data Type. The new data type allows users to use SQL queries for spatial inquiries.</procdesc>
+                <procdate>20091002</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Southwest Florida Water Management District</cntorg>
+                            <cntper>Mapping and GIS Section</cntper>
+                        </cntorgp>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>2379 Broad Street (U.S. 41 South)</address>
+                            <city>Brooksville</city>
+                            <state>FL</state>
+                            <postal>34604-6899</postal>
+                        </cntaddr>
+                        <cntvoice>(352) 796-7211</cntvoice>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>In October 2010 the feature classes table was re-ordered using XTools Pro 6.1's Table Restructure feature. The METHOD field was deleted. The DATE (GIS_UPDATE_DT) and PERMITNUMBER (WUP_PERMIT_NBR) fields were renamed to be consistant with other District layers. 3 Coded Value Domains were added to the following layers: SOURCE, TYPE, and AREAFLAG. (see Attribute definitions for details) An empty feature class schema was then provided to M&amp;GIS to use in updating the PS_SERVICEAREAS feature class.</procdesc>
+                <procdate>20101001</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Southwest Florida Water Management District</cntorg>
+                        </cntorgp>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>2379 Broad Street (U.S. 41 South)</address>
+                            <city>Brooksville</city>
+                            <state>Florida</state>
+                            <postal>34604-6899</postal>
+                        </cntaddr>
+                        <cntvoice>(352) 796-7211</cntvoice>
+                        <hours>8:00 a.m. to 5:00 p.m.</hours>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+        </lineage>
+    </dataqual>
+    <spdoinfo>
+        <direct>Vector</direct>
+        <ptvctinf>
+            <sdtsterm>
+                <sdtstype>GT-polygon composed of chains</sdtstype>
+            </sdtsterm>
+        </ptvctinf>
+    </spdoinfo>
+    <eainfo>
+        <detailed>
+            <enttyp>
+                <enttypl>SDECREATOR.PS_SERVICEAREAS</enttypl>
+                <enttypd>SDE Geodatabase feature class</enttypd>
+                <enttypds>ESRI Geodatabase</enttypds>
+            </enttyp>
+            <attr>
+                <attrlabl>SVCAREAID</attrlabl>
+                <attrdef>The Service Area ID. It identifies the foreign key link to the BOUNDARY_PERMIT table in the Access database, which leads to all additional water utility information collected under this project.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITYINFORMATIONID</attrlabl>
+                <attrdef>It is a numerical field of the utility IDs that identifies the foreign key link to the UTILITY_INFORMATION table in Access database, which leads to more detailed water utility information collected under this project.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>TYPE</attrlabl>
+                <attrdef>The type of water utility retail service area as specified in Attachment 1 of the original Scope of Work.</attrdef>
+                <attrdefs>User Defined</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(TSS) Totally Self-Supplied</edomv>
+                                                						
+                        
+                        <edomvd>The water utility retail service area pumps its own supply of water that is not supplemented by any other source.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(NSA-ND) Non-Served Areas - Non-Delineated</edomv>
+                                                						
+                        
+                        <edomvd>Areas that are designated as non-served, however this did not come from water utility retail service information.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(TWSS-NE) Totally Wholesale Supplied - Nonexclusive</edomv>
+                                                						
+                        
+                        <edomvd>The water utility retail service area has no wells and was provided with water by more than one utility.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(Overlap) Overlap</edomv>
+                                                						
+                        
+                        <edomvd>Indicates the polygon is part of an unresolved overlap and there may be more than one different type of service area involved.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(TWSS-E) Totally Wholesale Supplied - Exclusive</edomv>
+                                                						
+                        
+                        <edomvd>The water utility retail service area has no wells and was provided with water by a single utility.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(PWSS) Partially Wholesale Supplied</edomv>
+                                                						
+                        
+                        <edomvd>The water utility retail service area pumps its own supply of water but is partially provided for by one or more other utilities.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(NSA-D) Non-Served - Delineated</edomv>
+                                                						
+                        
+                        <edomvd>Areas that are designated as non-served and have been delineated as such by a utility.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>MAPPHONEEXT</attrlabl>
+                <attrdef>The phone extension (if applicable) of the contact person for the Utility. This corresponds to the contact information found in the PERMIT table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>phone number extension</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE.AREA</attrlabl>
+                <attrdef>Area of feature in internal units squared.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Positive real numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE</attrlabl>
+                <attrdef>Feature geometry.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Coordinates defining the features.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>GIS_UPDATE_DT</attrlabl>
+                <attrdef>Date record was last updated in the Mapping and GIS Section.</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>date</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS</attrlabl>
+                <attrdef>The Utility address. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>addresses</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>COUNTYNAME</attrlabl>
+                <attrdef>The name of the county the utility services.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>text</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>MAPCONTACTNAME</attrlabl>
+                <attrdef>The Map or GIS contact name. This corresponds to the contact information found in the PERMIT table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITYCONTACTTITLE</attrlabl>
+                <attrdef>Job title of the utility contact person.</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>text</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITYPHONENUMBER</attrlabl>
+                <attrdef>The Utility phone number. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>phone number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITYPHONEEXT</attrlabl>
+                <attrdef>The phone extension (if applicable) of the contact person for the Utility. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>phone number extension</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>AREAFLAG</attrlabl>
+                <attrdef>A flag to indicate whether the polygon can be used for area and population studies. This will remove overlap areas, non-served areas, and duplicate polygons</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Y</edomv>
+                                                						
+                        
+                        <edomvd>Yes = use to determine area for utility</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>N</edomv>
+                                                						
+                        
+                        <edomvd>No = Do not use for area determination</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SOURCE</attrlabl>
+                <attrdef>The data source format, type, and purpose of the original water utility retail service information.</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(NON-GIS OUTREACH) NON-GIS DATA UTILITY/CONSULTANT OUTREACH</edomv>
+                                                						
+                        
+                        <edomvd>Hard copy, digital map (pdf), or other non-GIS data received from utility as part of an outreach effort conducted by the Water Use Conservation and Outreach section or the Planning Department.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(NON-GIS SURVEY) NON-GIS DATA UTILITY/CONSULTANT SURVEY</edomv>
+                                                						
+                        
+                        <edomvd>Hard copy, digital map (pdf), or other non-GIS data received in response to a public supply survey.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(GIS SURVEY) GIS DATA UTILITY/CONSULTANT SURVEY</edomv>
+                                                						
+                        
+                        <edomvd>GIS data received from applicant as part of a response to a public supply survey</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(GIS OUTREACH) GIS DATA UTILITY/CONSULTANT OUTREACH</edomv>
+                                                						
+                        
+                        <edomvd>GIS data received from utility as part of an outreach effort conducted by the Water Use Conservation and Outreach section or the Planning Department</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(SWFWMD) SWFWMD LAYER MAINTENANCE</edomv>
+                                                						
+                        
+                        <edomvd>Record(s) edited as part of regular user maintenance. (tabular or polygonal)</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(NON-GIS APP) NON-GIS DATA UTILITY/CONSULTANT APPLICATION/RENEWAL</edomv>
+                                                						
+                        
+                        <edomvd>Hard copy, digital map (pdf), or other non-GIS data format received as part of a WUP application or renewal.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>(GIS APP) GIS DATA UTILITY/CONSULTANT APPLICATION/RENEWAL</edomv>
+                                                						
+                        
+                        <edomvd>GIS data received from applicant for a new/renewal WUP application</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE.LEN</attrlabl>
+                <attrdef>Length of feature in internal units.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Positive real numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITYEMAILADDRESS</attrlabl>
+                <attrdef>The Utility email address for the contact person. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>address</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>POSTALCODE</attrlabl>
+                <attrdef>The zip code of the Utility. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>STATE</attrlabl>
+                <attrdef>The state where the Utility is located. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>State Abbreviation</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SERVICEAREANAME</attrlabl>
+                <attrdef>The project or service area name for the area (particular polygon) of service. These names correspond to the PROJECTNAME in the PERMIT table of the Access database. This was defined by the utility itself. If more than one permit is given for a single permit and each permit has a different project name, then field was left blank.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Project names</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITYNAME</attrlabl>
+                <attrdef>The name(s) of the utility that claims that water utility retail service area.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Utility names</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>MAPPHONENUMBER</attrlabl>
+                <attrdef>The Map or GIS phone number. This corresponds to the contact information found in the PERMIT table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>phone number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITY_TYPE</attrlabl>
+                <attrdef>Type of Utility. Either Public or Private.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Either Public or Private.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UTILITYCONTACTNAME</attrlabl>
+                <attrdef>The Utility contact name. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>ALLPERMITS</attrlabl>
+                <attrdef>The permit number(s) of the utility(s) that claim the water utility retail service area. This is a text field to allow for all permits to be seen, such as for Overlap areas. The permits are strung together separated by commas. The preceding zeros have been removed.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Example: 7494,7104</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WUP_PERMIT_TYPE_DESC</attrlabl>
+                <attrdef>Description for the type of water use permit.</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>SMALL GENERAL</edomv>
+                                                						
+                        
+                        <edomvd>A Water Use Permit with Total Annual Average Demand Quantities less than 100,000 gallons per day.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>INDIVIDUAL</edomv>
+                                                						
+                        
+                        <edomvd>A Water Use Permit with Total Annual Average Demand Quantities greater than 500,000 gallons per day.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>GENERAL</edomv>
+                                                						
+                        
+                        <edomvd>A Water Use Permit with Total Annual Average Demand Quantities that exceed 100,000 gallons per day, but are less that 500.000 gallons per day.</edomvd>
+                                                						
+                        
+                        <edomvds>SWFWMD</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>MAPEMAILADDRESS</attrlabl>
+                <attrdef>The email address for the Map or GIS contact person. This corresponds to the contact information found in the PERMIT table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>address</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>MAPCONTACTTITLE</attrlabl>
+                <attrdef>Job title of map contact person</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>text</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>CITY</attrlabl>
+                <attrdef>The city the Utility is located. This corresponds to the contact information found in the Utility_Information table in the Access database.</attrdef>
+                <attrdefs>USF</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>city name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WUP_PERMIT_NBR</attrlabl>
+                <attrdef>Water Use Permit (WUP) number assigned to the service area(s).</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>NUMBEROFPERMITS</attrlabl>
+                <attrdef>The number of District permits for a single polygon. Duplicate polygons were created depending on this number.</attrdef>
+                <attrdefs>SWFWMD</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <rdom>
+                                                						
+                        
+                        <rdommin>1</rdommin>
+                                                						
+                        
+                        <rdommax>6</rdommax>
+                                                					
+                    
+                    </rdom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+        </detailed>
+    </eainfo>
+    <distinfo>
+        <distrib>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Southwest Florida Water Management District</cntorg>
+                    <cntper>Mapping and GIS Section</cntper>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>2379 Broad Street (U.S. 41 South)</address>
+                    <city>Brooksville</city>
+                    <state>FL</state>
+                    <postal>34604-6899</postal>
+                </cntaddr>
+                <cntvoice>(352) 796-7211</cntvoice>
+                <cntfax>(352) 540-6018</cntfax>
+                <hours>8:00 a.m. to 5:00 p.m.</hours>
+            </cntinfo>
+        </distrib>
+        <resdesc>The data are being provided on an 'as is' basis. The District specifically disclaims any warranty, expressed or implied, including, but not limited to, the implied warranties or merchantability and fitness for a particular use. The entire risk as to quality and performance is with the user. In no event will the District or its staff be liable for any direct, indirect, incidental, special, consequential, or other damages, including loss of profit, arising out of the use of these data even if the District has been advised of the possibility of such damages. All data are intended for resource management use.</resdesc>
+        <distliab>Translation of files to formats other than those described here is the sole responsibility of individuals downloading the data.</distliab>
+    </distinfo>
+    <metainfo>
+        <metd>20110223</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Southwest Florida Water Management District</cntorg>
+                    <cntper>Mapping and GIS Section</cntper>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>2379 Broad Street (U.S. 41 South)</address>
+                    <city>Brooksville</city>
+                    <state>FL</state>
+                    <postal>34604-6899</postal>
+                </cntaddr>
+                <cntvoice>(352) 796-7211</cntvoice>
+                <cntfax>(352) 540-6018</cntfax>
+                <hours>8:00 a.m. to 5:00 p.m.</hours>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+        <metuc>This metadata to be used only with final dataset provided to SWFWMD by the Florida Center for Community Design &amp; Research under the contract P890 (Digitization of Water Utility Retail Service Areas.)</metuc>
+    </metainfo>
+</metadata>

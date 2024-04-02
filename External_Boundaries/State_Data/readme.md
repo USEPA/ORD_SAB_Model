@@ -140,39 +140,64 @@ Shapes are a buffered approximation based on service lines.
 
 ### Florida
 
-**Link:**
+### St. Johns River Water Management District
 
-**Last Updated**
+**Link:** <https://www.arcgis.com/home/item.html?id=f2f54ba2896e464a890ce827644f250d>
+
+**Last Updated** Feb 7, 2024
 
 #### Description
+Does not contain PWSIDs and must be name matched.
 
 #### Method
 
 #### Coverage
+605 systems
+
+
+### Southwest Florida Water Managmenet District
+
+**Link:** <https://data-swfwmd.opendata.arcgis.com/datasets/swfwmd::public-supply-service-areas/explore>
+
+**Last Updated:** November 17, 2021
+
+#### Description 
+Does not have PWSIDs and must have names fuzzy matched with SDWIS
+
+#### Method
+
+#### Coverage 
+350 Systems
 
 ### Kansas
 
-**Link:**
+**Link:** <https://data.kansasgis.org/catalog/administrative_boundaries/shp/pws/>
 
-**Last Updated**
+**Last Updated** April 29, 2021
 
-#### Description
+#### Description 
+Contains federal PWSID field, other details unknown at this time.
 
 #### Method
 
-#### Coverage
+#### Coverage 
+801 Systems
 
 ### Mississippi
 
-**Link:**
+**Link:** https://mpsc-mississippi.opendata.arcgis.com/maps/5a08ea9c3f6140479260f1f15e115bd1/about
 
-**Last Updated**
+**Last Updated** November 22, 2021
 
 #### Description
 
+Utility Service Areas. There is no PWSID and names must be fuzzy matched to SDWIS names.
+
 #### Method
 
-#### Coverage
+#### Coverage 
+
+\> 5,000 rows with duplicates that must be combined. 
 
 ### New Hampshire
 
