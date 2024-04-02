@@ -22,6 +22,9 @@ bibliography: references.bib
 editor: 
   markdown: 
     wrap: sentence
+header-includes:
+  \usepackage{float}
+  \floatplacement{figure}{H}
 ---
 
 ```{r setup, include=FALSE}
@@ -33,7 +36,7 @@ library(vroom)
 library(here)
 
 # Load final boundaries
-pws <- st_read(here("Output_Data/Final_032624.gdb"), layer = "CWS_Final_032624")
+pws <- st_read(here("Output_Data/Final_Boundaries.gpkg"), layer = "Final_03282024")
 
 # Load Service Area Types
 sa.type <- vroom(here("Input_Data/SDWIS/Primary_Service_Area_Type.csv"))
@@ -73,40 +76,58 @@ It does not represent and should not be construed to represent any agency determ
 **SDWIS Data Vintage:** 2023 (Quarter 4)
 
 The Office of Research and Development has released a publicly available dataset of community water system (CWS) service area boundaries (SAB).
-CWS are defined as systems that provide water for human consumption through pipes or other constructed conveyances to at least 15 service connections or serves an average of at least 25 people year-round \[1\].
-Under the safe drinking water act (SDWA) and various drinking water rules (see EPA Drinking Water Regulations) public water systems must test and report on the quality of their drinking water.
+CWS are defined as systems that provide water for human consumption through pipes or other constructed conveyances to at least 15 service connections or serves an average of at least 25 people year-round [@cws].
+Under the safe drinking water act (SDWA) and various drinking water rules public water systems must test and report on the quality of their drinking water [@act1974safe].
 These boundaries enable linking SDWA violations to their associated geographic areas, and concomitantly linking treated community water system water to their respective customers.
 This service area boundary dataset is a combination of publicly available service area boundaries and modeled boundaries.
 This document describes how the data was collected and modeled and details the modeling techniques used to generate this dataset.
 
+# List of Acronyms & Abbreviations
+
+| Acronym / Abbreviation | Description                                       |
+|------------------------|---------------------------------------------------|
+| CWS                    | Community Water System                            |
+| HBSL                   | Health-Based Screening Level                      |
+| HIFLD                  | Homeland Infrastructure Foundation-Level Data     |
+| MCL                    | Maximum Contaminant Level                         |
+| NHGIS                  | National Historical Geographic Information System |
+| OOB                    | Out-of-Bag                                        |
+| ORD                    | EPA Office of Research and Development            |
+| OSM                    | Open Street Map                                   |
+| PWSID                  | Public Water System Identifier                    |
+| SAB                    | Service Area Boundary                             |
+| SDWA                   | Safe Drinking Water Act                           |
+| SDWIS                  | Safe Drinking Water Information System            |
+
 # Summary
 
 Public water systems regulated under SDWA are required to treat their drinking water.
-A sample of 931 public wells found that "one or more chemical contaminants were detected at concentrations greater than MCLs or HBSLs in more than one in five (22 percent)" of the sampled wells (Toccalino, Norman, and Hitt 2010).
+A sample of 931 public wells found that "one or more chemical contaminants were detected at concentrations greater than MCLs or HBSLs in more than one in five (22 percent)" of the sampled wells [@toccalino2010quality].
 This substantiates the need for federal requirements; these samples were collected prior to treatment and treatment processes, or dilution can substantially reduce the risk of contaminants getting to the consumer.
-While federal standards help reduce the likelihood of contaminated drinking water, of the 50,000 public water system in the US, 2,741 were in continuous health-based violation of National Primary Drinking Water Violations in 2021 (U.S. EPA 2022).
+While federal standards help reduce the likelihood of contaminated drinking water, of the total universe of public water systems in the U.S., 6% reported to have violated a health-based drinking water standard and 29% failed to meet at least one monitoring or reporting requirement in 2022 [@epaCompliance].
 Community water systems have testing and reporting requirements that may increase based on the size of the system, compliance history and local or state specific requirements.
-While the source of water for a home may by a primary determinate of its quality, the type of system, whether private, mobile home park, small community water system, or large community water system can play an equally important role in the ability for a system to have adequate treatment processes.
+While the source of water for a home may be a primary determinate of its quality, the type of system, whether private, mobile home park, small community water system, or large community water system can play an equally important role in the ability for a system to have adequate treatment processes.
 It is therefore critical that we understand where people are sourcing their water, who is consuming the water, and how it is delivered to their home in order to more completely understand regional and national trends of water quality and the health impacts to the public.
-This research on geographically the extent of public water use leverages a new spatial disaggregation technique to increase the spatial resolution of well estimates in addition to using machine learning techniques to estimate the total number of housing units getting their water from public sources in 2020 at the census block level.
-After that is achieved we use a random forest model to associate the corresponding public water system ID to each census block identified as "publicly supplied".
+This research on the extent of public water use leverages a new spatial disaggregation technique to increase the spatial resolution of public supply estimates in addition to using machine learning techniques to estimate the total number of housing units getting their water from public sources in 2020 at the census block level.
+After that is achieved we use a random forest model to associate the corresponding public water system ID to each census block identified
 
 The boundaries presented in this dataset are an aggregate of several methods used to present the most accurate representation possible with available data.
 These methods range in source and accuracy.
 Each method is described in detail.
 
-## SDWA Reporting Universe
+## SDWIS Reporting Universe
 
-The current ORD dataset (Version 1.0), uses the 2023 (Q4) release of SDWA data.
+The current ORD dataset (Version 1.0), uses the 2023 (Q4) release of SDWIS data.
 As of this release, there were a total of `r format(nrow(deets.all),big.mark=",")` active community water systems, which primarily serve residential areas (Figure 2).
-There are many systems, however, which primarily wholesale water to other systems and therefore do not have a service area boundary.
+There are many systems, however, which primarily wholesale water to other systems, meaning they do not directly serve water to consumers and therefore do not have a service area boundary.
 The universe of systems in our efforts is limited to currently active community water systems which serve at least 15 service connections or serves an average of at least 25 people for at least 60 days a year..
-The total number of systems that fit this criteria for 2023 (Q4) is: `r format(nrow(deets.all),big.mark=",")`
+The total number of systems that fit this criteria for 2023 (Q4) is: `r format(nrow(deets),big.mark=",")`
 
 ## Count of Systems by Primacy Agency
 
-Community water systems each fall under a primacy agency, which is typically determined by the state which they serve.
-The exception to this rule is tribal systems, which report to the EPA regional offices directly.
+Community water systems each fall under a primacy agency, which is the agency with primary responsibility for implementing SDWA, this is typically the state or territory.
+The exceptions, where EPA is the primacy agency are Wyoming, the District of Columbia, and federally recognized tribes excluding Navajo Nation.
+Navajo Nation is currently the only tribe with primacy agency status to enforce SDWA.
 
 ```{r sdwaStatePlot, fig.height=8}
 #| label: fig-statePlot
@@ -139,8 +160,8 @@ sa.type <- deets%>%
   
 ggplot(sa.type)+
   geom_col(aes(x = nSystems,y = fct_rev(Service_Area_Type), fill = popServed))+
-  labs(title = "Primary Area Served", x = "Count of Systems",
-       y = "Service Area Type", fill = "Population Served")+
+  labs(title = "Primary Service Area", x = "Count of Systems",
+       y = "Primary Service Area", fill = "Population Served")+
   scale_x_continuous(labels=function(x) format(x, big.mark = ",", scientific = FALSE))+
   scale_fill_continuous(type="viridis",labels = scales::label_number(scale_cut = scales::cut_short_scale()))
 ```
@@ -170,7 +191,7 @@ write.csv(pws.intersect,here("Documentation/Data/State_Counts.csv"))
 
 ```
 
-```{r stateData, fig.show='hold',fig.align='top'}
+```{r stateData, fig.show='hold'}
 #| label: tbl-stateCounts
 #| tbl-cap: "Number of system boundaries from state and municipal sources included in the ORD dataset. The total number of systems included is 18,374."
 #| column: body
@@ -202,14 +223,14 @@ knitr::include_graphics(c(here("Documentation/img/state_table_1.png"),
 
 ## Mobile Homes - OSM
 
-Areas delineated as mobile home parks were extracted from Open Street Map and fuzzy name matched with community water system names reported under SDWA.
-To find open street map delineated areas, the point locations for mobile home parks from Homeland Infrastructure Foundation-Level Data (HIFLD) was intersected with areas tagged as 'residental=trailer_park' in open street map.
-If a match was found, the given names of that mobile home park (from both sources) were matched with SDWA reported names.
+Areas delineated as mobile home parks were extracted from Open Street Map and fuzzy name matched with community water system names reported to SDWIS.
+To find open street map delineated areas, the point locations for mobile home parks from Homeland Infrastructure Foundation-Level Data [@hifld] was intersected with areas tagged as 'residental=trailer_park' in open street map.
+If an intersection occured, the given names of that mobile home park (from both sources) were matched with SDWIS reported names.
 
 ## Mobile Homes - Parcels
 
-Where open street map delineated areas were not present, point locations of mobile home parks from HIFLD were intersected with parcels from [REGRID](https://app.regrid.com/us#).
-The name of the mobile home park was then fuzzy matched with SDWA reported system names.
+Where open street map delineated areas were not present, point locations of mobile home parks from HIFLD [-@hifld] were intersected with parcels from REGRID [-@regrid].
+The name of the mobile home park was then fuzzy matched with SDWIS reported system names.
 
 # Modeled Service Area Boundaries
 
@@ -221,8 +242,8 @@ The variables included are listed in Table 2.
 To validate the model, public water systems from three states (New Jersey, Connecticut & California) were joined to census blocks to classify the intersecting blocks as public water users.
 These three states were chosen based on the completeness and detail of their service area boundaries.
 The final decision tree model (@fig-dt) predicted the type of water supply correctly in 93.14% of blocks in the testing dataset which was removed prior to training.
-The accuracy of public use (sensitivity) was 95% and the accuracy of private use (specificity) was 81%. A secondary validation was performed using data from Washington, which was never exposed to the model for training (@tbl-wash)
-For more details on this initial model, refer to the [2020 Water Source Model GitHub Site](https://github.com/USEPA/ORD_Water_Source_2020).
+The accuracy of public use (sensitivity) was 95% and the accuracy of private use (specificity) was 81%.
+A secondary validation was performed using data from Washington, which was never exposed to the model for training (@tbl-wash) For more details on this initial model, refer to the [2020 Water Source Model GitHub Site](https://github.com/USEPA/ORD_Water_Source_2020).
 
 ```{r}
 #| label: tbl-importance
@@ -251,9 +272,7 @@ For more details on this initial model, refer to the [2020 Water Source Model Gi
 knitr::include_graphics(here('Documentation/img/varTable.png'))
 ```
 
-
-![Confusion matrix showing both decision tree predictions for both the out of bag testing set and data from Washington.](img/performance_tbl.png){#tbl-wash width=3in}
-
+![Confusion matrix showing both decision tree predictions for both the out of bag testing set and data from Washington.](img/performance_tbl.png){#tbl-wash width="3in"}
 
 ![Visualization of decision tree to predict whether a census block is served by a public water system.](img/DT.png){#fig-dt}
 
@@ -273,12 +292,12 @@ We found that a value of 0.7 closely approximated the system boundary size and s
 After applying this criteria, we sought to match the system boundaries to their associated PWSID.
 Spatially continuous blocks were aggregated together into larger polygons.
 
-To determine a match, we used SDWIS locations (wells, treatment plant, intakes) and SDWA locations (reported system addresses that we geocoded) to conduct a spatial join to the aggregated decision tree boundaries (at 0.7 confidence).
+To determine a match, we used SDWIS locations (wells, treatment plant, intakes) and SDWIS locations (reported system addresses that we geocoded) to conduct a spatial join to the aggregated decision tree boundaries (at 0.7 confidence).
 The logic here is that for some systems there is only one PWS that serves the polygon area---as opposed to a more complex nested set of systems within a single polygon.
 More complex systems are mainly associated with urban and suburban areas where the simple systems are largely associated with smaller to mid-size towns in rural areas.
 The other assumption we had was that it is more likely that a system's infrastructure is close to the population that it serves than farther away.
 
-We performed a spatial join on all decision tree boundaries and SDWIS and SDWA locations.
+We performed a spatial join on all decision tree boundaries and SDWIS locations.
 If more than one unique system was joined, those boundaries were returned for random forest modeling.
 If only one PWSID was returned for a polygon we validated that the joins were associated with the correct PWS.
 To do this we performed a graphical validation method by regressing the service connection of the joined public water system against the sum 2020 housing units within the modeled boundary.
@@ -314,7 +333,7 @@ The random forest model then determines the correct interplay between the variab
 
 Variable Name: `Population`
 
-Population is taken from the 2020 Census, obtained at the census block level.
+Population is taken from the 2020 Census, obtained at the census block level from '2020_DHCa' downloaded from NHGIS [@manson2023ipums].
 
 #### Local Population Density
 
@@ -341,68 +360,72 @@ The probability (0-1) of a block being served by public water as estimated from 
 Variable Name: `nBuildings`
 
 The number of buildings within a census block that are greater then 50 square meters in area.
-This is calculated using microsoft building footprints.
+This is calculated using Microsoft building footprints [@mbfp].
+We use a cutoff of 50 square meters to remove smaller buildings such as detached garages and sheds (@fig-mbfp).
+
+![Aerial image showing Microsoft building footprints of a larger two-car garage and a residential home. Annotations show the garage is just under fifty square meters.](img/mbfp.png){#fig-mbfp width="4in"}
 
 #### Percent Buildings
 
 Variable Name: `PctBldg`
 
 The percent area of the census block that is covered by buildings.
-This is calculated as the total area of microsoft building footprints divided by the area of the census block.
+This is calculated as the total area of microsoft building footprints divided by the area of the census block [@mbfp].
 
 #### Mean Building Area
 
 Variable Name: `meanBldg_m`
 
-The mean area in square meters of buildings within the census block.
+The mean area in square meters of buildings within the census block [@mbfp].
 
 #### Minimum Building Area
 
 Variable Name: `minBldg_m`
 
-The area in square meters of the smallest building within the census block (Only buildings greater than or equal to 50 square meters included).
+The area in square meters of the smallest building within the census block (Only buildings greater than or equal to 50 square meters included) [@mbfp].
 
 #### Maximum Building Area
 
 Variable Name: `maxBldg_m`
 
-The area in square meters of the largest building within the census block (Only buildings greater than or equal to 50 square meters included).
+The area in square meters of the largest building within the census block (Only buildings greater than or equal to 50 square meters included) [@mbfp].
 
 #### Standard Deviation of Building Area
 
 Variable Name: `sdBldg_m`
 
-The standard deviation of area of buildings in square meters within a census block.
+The standard deviation of area of buildings in square meters within a census block [@mbfp].
 
 #### Rural / Urban
 
 Variable Name: `PctRural`
 
 The census defined urban / rural classifier; A binary classification, in which to qualify as an urban area, the block identified must encompass at least 2,000 housing units or have a population of at least 5,000 for 2020 (census block level).
+The dataset used is 'Urban and Rural' from '2020_DHCa' at the census block level, obtained from NHGIS [@manson2023ipums]
 
 #### Mean Residential Acres
 
 Variable Name: `meanResAcres`
 
-The mean value in acres of parcels within the census block that are zoned for residential use.
+The mean value in acres of parcels within the census block that are zoned for residential use [@regrid].
 
 #### Count of Parcels
 
 Variable Name: `nParcels`
 
-The total count of parcels within the census block.
+The total count of parcels within the census block [@regrid].
 
 #### Count of Mobile Homes
 
 Variable Name: `MH_Count`
 
-The count of mobile home communities within a census block as derived from the (Homeland Infrastructure Foundation Level database)\[https://hifld-geoplatform.opendata.arcgis.com/datasets/mobile-home-parks/explore\].
+The count of mobile home communities within a census block as derived from the Homeland Infrastructure Foundation Level database [@hifld].
 
 #### Mobile Home Size
 
 Variable Name: `MH_Size`
 
-The cumulative size of mobile home parks within a census block representing the number of mobile home units.
+The cumulative size of mobile home parks within a census block representing the number of mobile home units [@hifld].
 This variable is presented as a factor.
 
 **Possible Values:**
@@ -441,20 +464,20 @@ Options include:
 
 The 'Other' Category contains less frequent data and data used when there are no wells, intakes or treatment plants associated with a system.
 Some examples of less frequent locations are springs, reservoirs and infiltration zones.
-This class also contains the office addresses of systems as reported to SDWIS which are typically within a service area but are also known to be unreliable depending on the system.
-Office locations were geolocated and curated to only include street intersections or better.
+This class also contains the administrative contact addresses of systems as reported to SDWIS which are typically within a service area but are also known to be unreliable depending on the system.
+Administrative contact addresses were geolocated and curated to only include street intersections or better.
 
 #### Population Served
 
 Variable Name: `Population_Served_Count`
 
-The reported population that is served by the system in SDWA reporting.
+The reported population that is served by the system in SDWIS reporting.
 
 #### Connections
 
 Variable Name: `Service_Connections_Count`
 
-The reported number of service connections within a system in SDWA reporting.
+The reported number of service connections within a system in SDWIS reporting.
 
 #### Distance to Center of System
 
@@ -534,8 +557,8 @@ If either string is missing, a value of zero is assigned.
 
 Variable Name: `SC_in_PWS`
 
-A measure of how much of the system name also appears in the census place name that the census block is within.
-The longest common sub-string (LCS) is calculated between the census place and the system name and is then using the formula:
+A measure of how much of the system name also appears in the census sub-county name that the census block is within.
+The longest common sub-string (LCS) is calculated between the census sub-county and the system name and is then using the formula:
 
 $$(pwsName_{length}-LCS)/SubCounty_{length}$$ where $pwsName_{length}$ is the length of the place name string in characters, $SubCounty_{length}$ is the length of the public water system name in characters and $LCS$ is the length of the longest common sub-string between the two.
 An exact match would result in a value of 1.
@@ -548,16 +571,17 @@ That probability can be interpreted as the probability that the system PWSID ass
 A full comparison between the training and testing sets is shown in @tbl-train
 
 The data used to build the random forest model was split randomly across Arizona, Arkansas, California, Connecticut, New Jersey and Texas into training and testing sets (@tbl-train).
-This is done so the relationships constructed by the random forest model can be evaluated against data it has not been exposed to (out-of-bag sample).
+These six states were chosen due to their relative accuracy and completeness when inspected and evaluated against the current universe of active community water systems.
+Data is split into separate sets so the relationships constructed by the random forest model can be evaluated against data it has not been exposed to (out-of-bag sample).
 
 ::: {#tbl-train}
-|                  | Training Set       | Testing Set      |
-|------------------|--------------------|------------------|
-| \# Rows          | 3.1 Million        | 47 Million       |
-| \# Census Blocks | 760 Thousand       | 1.1 Million      |
-| \# Correct       | 350 Thousand       | 4.2 Million      |
-| \# Incorrect     | 2.8 Million        | 42.7 Million     |
-| \# Systems       | 1.7 Thousand       | 1.7 Thousand     |
+|                  | Training Set | Testing Set  |
+|------------------|--------------|--------------|
+| \# Rows          | 3.1 Million  | 47 Million   |
+| \# Census Blocks | 760 Thousand | 1.1 Million  |
+| \# Correct       | 350 Thousand | 4.2 Million  |
+| \# Incorrect     | 2.8 Million  | 42.7 Million |
+| \# Systems       | 1.7 Thousand | 1.7 Thousand |
 
 Summary statistics of the training and testing sets used to build the random forest.
 :::
@@ -569,17 +593,22 @@ The sensitivity (accuracy of true positives) was 98.38% and the specificity (acc
 The kappa value for the entire testing set was 0.982.
 
 # Post Processing
-The random forest model was post processed to "cleaned-up" to simplify the results and remove spatial outliers.
+
+The random forest model was post processed to simplify the boundary results and remove spatial outliers.
 
 ## Hole Filling
 
-Random forest outputs were spatially aggregated from the census block to the PWSID. To overcome spatial issues, such as interstate highways and right-of-ways, blocks were buffered by one-hundred meters, dissolved on the PWSID, then negatively buffered by one-hundred meters to conserve the correct footprint. A function to remove interior holes [@nngeo].
+Random forest outputs were spatially aggregated from the census block to the PWSID.
+To overcome spatial issues, such as interstate highways and right-of-ways, blocks were buffered by one-hundred meters, dissolved on the PWSID, then negatively buffered by one-hundred meters to conserve the correct footprint.
+A function to remove interior holes [@nngeo].
 
 ## Polygon Part Removal (Distance)
 
-For random forest outputs, if a system had more than one polygon that did not connect, we measured the distance between the largest polygon for the system and each of the satellite polygons. If the satellite polygon was more than ten kilometers away and had a lesser probability than the primary polygon, it was deleted.
+For random forest outputs, if a system had more than one polygon that did not connect, we measured the distance between the largest polygon for the system and each of the satellite polygons.
+If the satellite polygon was more than ten kilometers away and had a lesser probability than the primary polygon, it was deleted.
 
 ## Polygon Part Removal (Area)
+
 It was discovered that there were many small "artifacts" the model created: small in size and mostly isolated blocks that were relatively far away from where their parent (primary---or largest) system boundary was located.
 To carefully remove these, the features were 'exploded' so unique polygon parts could be examined individually.
 Before 'explosion', the total aggregate system size was calculated (Km2).
@@ -593,7 +622,7 @@ After this procedure, only \~48,000 polygon parts remained (close to the number 
 The universe of systems we attempt to model is 47,952 systems.
 We were able to model or gather state supplied boundaries for 42,743 systems (89%).
 The unmatched systems predominately serve relatively small populations.
-This is proven when we calculate the % of the population served by modeled boundaries vs the universe of systems: 98.3%.
+This is proven when we calculate the percent of the population served by modeled boundaries vs the universe of systems: 98.3%.
 This high percentage gives us confidence that we are capturing the service area boundaries for most people reliant on public water.
 Figure 7 shows the percent of modeled/state supplied boundaries and their percent population served of the total universe.
 
@@ -615,13 +644,17 @@ The modeled boundaries represent 98.3 % of the population served as reported in 
 #| label: fig-statePopServed
 #| fig-cap: "Bar plot showing the percent of population served by state or region that is captured by service area boundaries. Regions refer to tribal systems within that EPA region."
 
+# Primacy Agency
+pa.all <- deets.all%>%
+  select(`PWS ID`,`Primacy Agency`)
 
 comp.u <- universe%>%
-  mutate(bndry = ifelse(PWSID %in% pws$PWSID,TRUE,FALSE))
+  mutate(bndry = ifelse(PWSID %in% pws$PWSID,TRUE,FALSE))%>%
+  left_join(pa.all, by = c("PWSID"="PWS ID"))%>%
+  drop_na(`Primacy Agency`)
 
 pop.served.st <- comp.u%>%
-  mutate(PA = substr(PWSID,1,2))%>%
-  group_by(PA,bndry)%>%
+  group_by(`Primacy Agency`,bndry)%>%
   summarise(PopServed = sum(PopServed))%>%
   pivot_wider(names_from = bndry, values_from = PopServed)%>%
   setNames(c("PA","NoBoundaries","Boundaries"))%>%
@@ -633,7 +666,7 @@ pop.served.st <- comp.u%>%
 
 ggplot(pop.served.st)+
   geom_col(aes(x = PctPop, y = reorder(PA,PctPop)), color = "black", fill ="#6bacbf")+
-  labs(x = "% Population Served", y = "State / Region")
+  labs(title = "% Population Served by Primacy Agency",x = "% Population Served", y = "State / Region")
 
 ```
 
@@ -667,7 +700,12 @@ Because of this model bias, modeled rural water districts are a known issue in o
 
 ## Missing Systems
 
-Why can some systems not be modeled? Besides the issue of systems being too small to model, there is another reason. The model requires geographic signals, or clues, to accurately place a service area boundary on the map. These geographic clues come primarily from two sources: 1.) SDWIS locations such as wells, intakes, and treatment plants and 2.) SDWA reported system information such as 'City Served'. These signals help the model triangulate an appropriate geography for the service area. Approximately a dozen states don't report "City Served'. In addition some systems don't have corresponding SDWIS point locations or the information they provide is incorrect. For these reasons, a good portion of the systems that could not be modeled were not modeled. For example, @fig-missingCon shows the vast majority of systems we could not model report less than 100 connections. Certain types of systems are also difficult to model. As represented in @fig-missingType, the areas we struggle to model are areas like mobile home park or subdivisions.
+Why can some systems not be modeled?
+Besides the issue of systems being too small to model, there is another reason.
+The model requires geographic signals, or clues, to accurately place a service area boundary on the map.
+These geographic clues come primarily from two sources: 1.) SDWIS locations such as wells, intakes, and treatment plants and 2.) SDWIS reported system information such as 'City Served'.
+These signals help the model triangulate an appropriate geography for the service area.
+Approximately a dozen states don't report "City Served'. In addition some systems don't have corresponding SDWIS point locations or the information they provide is incorrect. For these reasons, a good portion of the systems that could not be modeled were not modeled. For example, @fig-missingCon shows the vast majority of systems we could not model report less than 100 connections. Certain types of systems are also difficult to model. As represented in @fig-missingType, the areas we struggle to model are areas like mobile home park or subdivisions.
 
 ```{r missingcon, fig.height=4}
 #| label: fig-missingCon
@@ -706,7 +744,7 @@ type.pct <- missing.type%>%
 
 ggplot(type.pct)+
   geom_col(aes(x = Pct,y = Service_Area_Type), color="black", fill = "#6bacbf")+
-  labs(title = "Percent of Systems Missing", subtitle="by Service Area Type",
+  labs(title = "Percent of Systems Missing", subtitle="by Primary Service Area Description",
        x = "Percent", y = "")
 
 
@@ -714,10 +752,9 @@ ggplot(type.pct)+
 
 ## Kentucky
 
-You may notice Kentucky's service area boundaries look different from other state boundaries.
-In particular, almost the entire area of KY is covered by public water---and for the most part, Kentucky homes are almost completely supplied by public water.
-We received water line data from the state of kentucky, which delineated the main water lines.
-However, we need to delineate the area served by these water lines, not the two-dimensional line features.
+According to the state of Kentucky, about 95% of Kentuckians have access to public drinking water [@kydow].
+Kentucky is relatively unique in the broad reach of their water systems to rural areas.
+While Kentucky does not publish service area boundaries, We received water line data from the state of kentucky, associated with PWSIDs, which delineated the main water lines.
 To delineate service areas, Voronoi polygons (also known as Thiessen polygons) were generated from service line data.
 It should be noted that the Voronoi polygons were derived from state supplied data, but the polygons themselves are not state supplied.
 
@@ -727,7 +764,8 @@ For some state supplied boundaries in Florida, one polygon was associated with m
 We are unable to disaggregate these multiple systems from their single geography.
 For these features in the dataset, you will see multiple PWSIDs within the 'PWSID' field.
 
+# Code and Additional Resources
 
-
-
-
+The data curation, modeling and analysis for this work was done using R [@R] and R Studio [@rstudio].
+All code can be viewed in the EPA agency GitHub page available at: <https://github.com/USEPA/ORD_SAB_Model>.
+Additional information is also available in this repository such as source information for boundary data obtained from state and utility sources.

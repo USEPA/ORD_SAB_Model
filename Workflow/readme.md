@@ -14,3 +14,11 @@ This script will define the universe of systems we attempt to include in our bou
 script name: `02_filter_external_systems.R`
 
 Some boundaries obtained from external sources may be dated and refer to PWSIDs that no longer exist. In these cases, they must be removed from the dataset. This will allow the model to place newer systems in the appropriate areas. A spatial dataset of all external boundaries is required for this step. If a new dataset is needed, follow the steps in the 'External_Boundaries' folder (located in the root folder of this repository).
+
+## Step 3: Mobile Home Matching
+
+
+## Step 4: 1:1 Matching
+
+
+## Step 5: 

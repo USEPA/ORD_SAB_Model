@@ -1,4 +1,4 @@
-# EPA Open Source Reference
+# EPA Office of Research and Development Community Water System Service Area Boundaries
 
 ## Project Description
 The Office of Research and Development has released a publicly available dataset of community
@@ -14,11 +14,28 @@ documents how the data was collected and modeled and details the modeling techni
 generate this dataset. All R scripts used in the production of the dataset are available here.
 
 
-## For EPA Teams
+## Repository Guide
 
-For EPA Teams, we have guidance on how EPA puts our open source software policies into practice on GitHub. Read [EPA's GitHub Guidance.](https://www.epa.gov/webguide/github-guidance)
+This repository is split into folders which contain data, code and analysis used to create the ORD service areas.
 
-[EPA's Open Source Project repo](https://github.com/USEPA/open-source-projects) is for EPA teams to reuse file for properly maintaining their open source project. All projects must include a readme.md, license.md, contributing.md file and the disclaimer below.   
+**Analysis**
+Various code and documents with supporting analyses.
+
+**Documentation**
+Document describing the process for creating the service area dataset.
+
+**External_Boundaries**
+Contains source information for boundaries obtained from state and utility sources.
+
+**Input_Data**
+This folder contains raw data that is needed to initiate the execution of code. Some large datasets are not included in this folder and need to be downloaded by the end user. These are described in the README file within the 'Input_Data' folder. 
+
+**Output_Data**
+Final output dataset location.
+
+**Workflow**
+This folder contains all of the code used in the creation of the boundaries. Another 'Data' folder also exists within the 'Workflow' folder, which contains data created throughout the process. More information on the code can be found in the README file within the 'Workflow' folder.
+
 
 ### Credits
 

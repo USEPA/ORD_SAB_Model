@@ -1,0 +1,14 @@
+[1] "Loading Blocks --- 2024-03-13 18:07:39"
+Reading layer `FL_3' from data source 
+  `/work/GRDVULN/PWS/data/Block_Subsets_2020.gpkg' using driver `GPKG'
+Simple feature collection with 96338 features and 2 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 797361.9 ymin: -1334055 xmax: 1600355 ymax: -648832.3
+Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
+[1] "Loaded 96,338 Blocks"
+[1] "Creating Buffers... 2024-03-13 18:08:06"
+[1] "Buffers Complete... Measuring Distances... 2024-03-13 18:08:09"
+[1] "Cluster created with 47 cores ... Beginning to Build Dataset of 78527 Blocks ... 2024-03-13 18:08:09.708228"
+[1] "Completed FL_3 at: 2024-03-13 19:21:03"
+[1] "Average Completion Time: 2e-05 seconds per block"
