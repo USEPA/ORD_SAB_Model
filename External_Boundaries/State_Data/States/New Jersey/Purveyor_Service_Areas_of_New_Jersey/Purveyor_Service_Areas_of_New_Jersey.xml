@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <pubdate>20220302</pubdate>
+                <title>Public Community Water Purveyor Service Areas, New Jersey, Edition 20220302 (Util_drinkingwater_PSA) (Web Mercator ArcGIS Online Service)</title>
+                <geoform>vector digital data</geoform>
+                <pubinfo>
+                    <pubplace/>
+                    <publish>NJ Department of Environmental Protection (NJDEP)</publish>
+                </pubinfo>
+                <onlink>https://www.nj.gov/dep/gis/digidownload/zips/OpenData/Util_drinkingwater_PSA.zip</onlink>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>This is a geographical representation of the 2017 Public Community Water Purveyor Service Areas GIS data layer. Water purveyors are regulated by the NJDEP Bureau of Safe Drinking Water, under the Safe Drinking Water Act. Public Community Water Purveyors are systems that pipe water for human consumption to at least 15 service connections used year-round, or one that regularly serves at least 25 year-round residents. Public purveyors can be government agencies, private companies, or quasi-government groups. The boundaries mapped are those of the actual water delivery or service area. Franchise areas are not depicted (areas with legal rights for future service once developed). Water sources (wells or surface water intakes) are often located outside the delivery area boundaries.</abstract>
+            <purpose>New Jersey Public Community Water Supply Purveyor service areas boundaries were collected and digitized to enable long term water supply planning, and to aid in emergency management during drought.</purpose>
+            <supplinf>The Public Community Water Supply Purveyor service area layer is considered complete, but in maintenance mode. As Purveyors submit water permit applications for expansion of service to the NJDEP, they are required submit a GIS layer of the new. As the submittal comes in, it is updated on an edit version. Also, each quarter, a business objects report is created from NJEMS and all purveyor closures or mergers are examined and updated. There are a few service areas that have not been updated due to a lack of information. As the information comes in through NJDEP Enforcement site visits, these service areas will be updated.</supplinf>
+        </descript>
+        <timeperd>
+            <timeinfo>
+                <sngdate>
+                    <caldate>20190211</caldate>
+                </sngdate>
+            </timeinfo>
+            <current>ground condition</current>
+        </timeperd>
+        <status>
+            <progress>Complete</progress>
+            <update>As needed</update>
+        </status>
+        <spdom>
+            <bounding>
+                <westbc>-75.583321</westbc>
+                <eastbc>-73.914542</eastbc>
+                <northbc>41.307467</northbc>
+                <southbc>38.924847</southbc>
+            </bounding>
+        </spdom>
+        <keywords>
+            <theme>
+                <themekt>ISO 19115 Topic Category</themekt>
+                <themekey>environment</themekey>
+            </theme>
+            <theme>
+                <themekt>User</themekt>
+                <themekey>Util_drinkingwater_PSA</themekey>
+            </theme>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>Statewide</themekey>
+                <themekey>NJDEP</themekey>
+                <themekey>Public Community Purveyors</themekey>
+                <themekey>Drinking Water</themekey>
+                <themekey>Purveyor</themekey>
+            </theme>
+            <place>
+                <placekt>None</placekt>
+                <placekey>NJ</placekey>
+                <placekey>New Jersey</placekey>
+            </place>
+        </keywords>
+        <accconst>In most cases, a downloadable shapefile (.zip) version of this layer is also available. Information to download the shapefile can be found in the Distribution Section of this metadata record. This data layer is shown in the NJDEP's NJ-GeoWeb mapping application accessable through the Online Linkage: https://www.nj.gov/dep/gis/geowebsplash.htm</accconst>
+        <useconst>New Jersey Department of Environmental Protection (NJDEP) Data Distribution Agreement. The data provided herein are distributed subject to the following conditions and restrictions: NJDEP assumes no responsibility to maintain them in any manner or form and disclaims any duty or obligation to either maintain availability of or to update the data. Terms of Agreement 1. All data is provided, as is, without any representation or warranty of any kind, implied, expressed or statutory including, but not limited to, the warranties of non-infringement of third party rights, title, merchantability or fitness for a particular use, freedom from computer virus nor are any such warranties to be implied with respect to the digital data layers furnished hereunder. User is responsible for understanding the accuracy limitations of all digital data layers provided herein, as documented in the accompanying cross-reference files (see SUPPLEMENTAL INFORMATION). Any reproduction or manipulation of the above data must ensure that the coordinate reference system remains intact. 2. Digital data received from the NJDEP may not be reproduced or redistributed without all the metadata provided. 3. Any maps, publications, reports, or other documents produced as a result of this project that utilize this digital data will credit the NJDEP's Geographic Information System (GIS) as the source of the data with the following credit/disclaimer: "This (map/publication/report) was developed using New Jersey Department of Environmental Protection Geographic Information System digital data, but this secondary product has not been verified by NJDEP and is not state-authorized or endorsed." 4. NJDEP makes no warranty that digital data are free of Copyright or Trademark claims or other restrictions or limitations on free use or display. Making a copy of this data may be subject to the copyright of trademark laws.</useconst>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Bureau of Water Resources and Geoscience</cntorg>
+                    <cntper>Michael Girard</cntper>
+                </cntorgp>
+                <cntpos>Geographic Information Systems Specialist</cntpos>
+                <cntaddr>
+                    <addrtype>mailing</addrtype>
+                    <address>401 East State Street</address>
+                    <city>Trenton</city>
+                    <state>NJ</state>
+                    <postal>08625</postal>
+                </cntaddr>
+                <cntvoice>609-292-2576</cntvoice>
+                <cntemail>Mike.Girard@dep.nj.gov</cntemail>
+                <cntinst>via email</cntinst>
+            </cntinfo>
+        </ptcontac>
+        <native>ESRI ArcCatalog 8.3.0.800</native>
+    </idinfo>
+    <dataqual>
+        <attracc>
+            <attraccr>Database fields were attributed and checked twice. Both edits were conducted by a staff member who did not do the original encoding of the information.</attraccr>
+        </attracc>
+        <logic>Topology was created for the Public Community Water Supply Purveyor service area and then edited using the ArcGIS Topology toolbar which finds all topological gaps and overlaps. All issues have been resolved and the topology is complete.</logic>
+        <posacc>
+            <horizpa>
+                <horizpar>This data set was created from multiple water purveyors. Water purveyor vector data submitted to the NJDEP met or exceeded the NJDEP's Digital Data Standards guideline</horizpar>
+            </horizpa>
+        </posacc>
+        <posacc>
+            <vertacc>
+                <vertaccr>n/a</vertaccr>
+            </vertacc>
+        </posacc>
+        <lineage>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <origin/>
+                        <pubdate>unknown</pubdate>
+                        <title>Data submission via NJDEP Inspection</title>
+                    </citeinfo>
+                </srccite>
+                <srcscale>0</srcscale>
+                <typesrc>hardcopyPaper</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <rngdates>
+                            <begdate>20140101</begdate>
+                            <enddate>20161201</enddate>
+                        </rngdates>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>NJDEP Enforcement &amp; Water Supply</srccitea>
+                <srccontr>For the remaining systems who did not submit a digital GIS dataset, the service area was mapped during the purveyor's bi-annual enforcement inspection.</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <origin/>
+                        <pubdate>unknown</pubdate>
+                        <title>Water Purveyor Submissions</title>
+                    </citeinfo>
+                </srccite>
+                <srcscale>0</srcscale>
+                <typesrc>CD-ROM</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <sngdate>
+                            <caldate>20170712</caldate>
+                        </sngdate>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Water Purveyor</srccitea>
+                <srccontr>The 2004 Safe Drinking Water Act Regulations require purveyors to submit digital GIS datasets representing the service area when applying for a Safe Drinking Water construction permit.</srccontr>
+            </srcinfo>
+            <procstep>
+                <procdesc>The 2004 Safe Drinking Water Act regulations required water purveyors to submit their service areas in digital GIS format compatible with the NJDEP's GIS when applying for a Safe Drinking Water construction permit. These polgyons were QA/QC'd by Water Supply staff and appended/merged into this dataset.</procdesc>
+                <procdate>20040101</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Bureau of Water Resources and Geoscience</cntorg>
+                            <cntper>Michael Girard</cntper>
+                        </cntorgp>
+                        <cntpos>Geographic Information Systems Specialist</cntpos>
+                        <cntaddr>
+                            <addrtype>mailing</addrtype>
+                            <address>401 East State Street</address>
+                            <city>Trenton</city>
+                            <state>NJ</state>
+                            <postal>08625</postal>
+                        </cntaddr>
+                        <cntvoice>609-292-2576</cntvoice>
+                        <cntemail>Mike.Girard@dep.nj.gov</cntemail>
+                        <cntinst>via email</cntinst>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>For all systems who did not submit a digital GIS dataset, the service area was mapped during the purveyor's bi-annual enforcement inspection and incorporated into this dataset after Water Supply staff QA/QC'd the data.</procdesc>
+                <procdate>20140101</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Bureau of Water Resources and Geoscience</cntorg>
+                            <cntper>Michael Girard</cntper>
+                        </cntorgp>
+                        <cntpos>Geographic Information Systems Specialist</cntpos>
+                        <cntaddr>
+                            <addrtype>mailing</addrtype>
+                            <address>401 East State Street</address>
+                            <city>Trenton</city>
+                            <state>NJ</state>
+                            <postal>08625</postal>
+                        </cntaddr>
+                        <cntvoice>609-292-2576</cntvoice>
+                        <cntemail>Mike.Girard@dep.nj.gov</cntemail>
+                        <cntinst>via email</cntinst>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+        </lineage>
+    </dataqual>
+    <spdoinfo>
+        <direct>Vector</direct>
+        <ptvctinf>
+            <sdtsterm>
+                <sdtstype>GT-polygon composed of chains</sdtstype>
+                <ptvctcnt>570</ptvctcnt>
+            </sdtsterm>
+        </ptvctinf>
+    </spdoinfo>
+    <eainfo>
+        <detailed>
+            <enttyp>
+                <enttypl>Util_drinkingwater_PSA</enttypl>
+                <enttypd>Public Water Purveyor Service Areas</enttypd>
+                <enttypds>NJDEP, Bureau of Safe Drinking Water and the federal Safe Drinking Water Act.</enttypds>
+            </enttyp>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>PI_ID</attrlabl>
+                <attrdef>NJDEP regulatory identification number State</attrdef>
+                <attrdefs>NJDEP/Bureau of Safe Drinking Water</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Unique</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>PWID</attrlabl>
+                <attrdef>Federal regulatory identification number. First 2 digits = county code, next 3 digits = municipal code, last 3 digits = sequential number assigned by EPA.  Codes are county or municipality, listed alphabetically, and assigned a value.  e.g. 01 = Atlantic, etc.</attrdef>
+                <attrdefs>EPA</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <codesetd>
+                                                						
+                        
+                        <codesetn>EPA regulatory identification number</codesetn>
+                                                						
+                        
+                        <codesets>EPA</codesets>
+                                                					
+                    
+                    </codesetd>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SYS_NAME</attrlabl>
+                <attrdef>Represents the system name for the water purveyor.</attrdef>
+                <attrdefs>NJDEP/Bureau of Safe Drinking Water</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Unique</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>AREA_TYPE</attrlabl>
+                <attrdef>Represents the system type for the water purveyor.</attrdef>
+                <attrdefs>NJDEP/Bureau of Safe Drinking Water</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>S</edomv>
+                                                						
+                        
+                        <edomvd>Service Area</edomvd>
+                                                						
+                        
+                        <edomvds>NJDEP</edomvds>
+                                                					
+                    
+                    </edom>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>W</edomv>
+                                                						
+                        
+                        <edomvd>Wholesale</edomvd>
+                                                						
+                        
+                        <edomvds>NJDEP</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>PWID_URL</attrlabl>
+                <attrdef>Internet link to the system's Source Water Assessment Report</attrdef>
+                <attrdefs>NJDEP</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>unique</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>AGENCY_URL</attrlabl>
+                <attrdef>Water purveyor website</attrdef>
+                <attrdefs>NJDEP</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>unique</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE</attrlabl>
+                <attrdef>Feature geometry.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Coordinates defining the features.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>GLOBALID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Unique ID</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE_Length</attrlabl>
+                <attrdef>Shape Length</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>unique</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE_Area</attrlabl>
+                <attrdef>Shape area</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>unique</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+        </detailed>
+    </eainfo>
+    <distinfo>
+        <distrib>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>NJDEP/DOIT/Bureau of GIS</cntorg>
+                    <cntper>GIS Help Desk</cntper>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>401 East State Street</address>
+                    <city>Trenton</city>
+                    <state>NJ</state>
+                    <postal>08625</postal>
+                </cntaddr>
+                <cntvoice>(609) 777-0672</cntvoice>
+                <cntfax>(609) 292-7900</cntfax>
+                <cntemail>gisnet@dep.nj.gov</cntemail>
+            </cntinfo>
+        </distrib>
+        <resdesc>Downloadable Data</resdesc>
+        <distliab>This organization provides the geographic data "as is". This organization makes no guarantee or warranty concerning the accuracy of information contained in the geographic data. Also, this organization makes no warranty either expressed or implied, regarding the condition of the product or its fitness for any particular purpose. The burden for determining fitness for use lies entirely with the user. Although these files have been processed successfully on computers at this organization, no warranty is made by this organization regarding the use of these data on any other system, nor does the fact of distribution constitute or imply any such warranty. See also "Use Constraints" for additional distribution and/or data use requirements.</distliab>
+        <stdorder>
+            <digform>
+                <digtinfo>
+                    <formname>DEP distributes ESRI .SHP and/or GDB. Some data may be NJ GeoWeb "display only" layers.</formname>
+                    <formvern>latest version</formvern>
+                    <filedec>WinZip</filedec>
+                </digtinfo>
+                <digtopt>
+                    <onlinopt>
+                        <computer>
+                            <networka>
+                                <networkr>https://www.nj.gov/dep/gis</networkr>
+                            </networka>
+                        </computer>
+                        <computer>
+                            <networka>
+                                <networkr>https://www.nj.gov/dep/gis/geowebsplash.htm</networkr>
+                            </networka>
+                        </computer>
+                    </onlinopt>
+                </digtopt>
+            </digform>
+            <fees>None</fees>
+            <ordering>All available NJDEP public GIS data can be downloaded for free. Some data shown in NJGeoWeb application may not yet be available for download due to various data or distribution issues. Please email gisnet@dep.nj.gov with any data distribution questions.</ordering>
+        </stdorder>
+    </distinfo>
+    <metainfo>
+        <metd>20220302</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Bureau of Water Resources and Geoscience</cntorg>
+                    <cntper>Michael Girard</cntper>
+                </cntorgp>
+                <cntpos>Geographic Information Systems Specialist</cntpos>
+                <cntaddr>
+                    <addrtype>mailing</addrtype>
+                    <address>401 East State Street</address>
+                    <city>Trenton</city>
+                    <state>NJ</state>
+                    <postal>08625</postal>
+                </cntaddr>
+                <cntvoice>609-292-2576</cntvoice>
+                <cntemail>Mike.Girard@dep.nj.gov</cntemail>
+                <cntinst>via email</cntinst>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>

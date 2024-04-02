@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <pubdate>20220224</pubdate>
+                <title>Water Service Areas</title>
+                <geoform>vector digital data</geoform>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>Polygons delineate general areas served by Washington State public water systems. Data is updated Monday mornings.</abstract>
+            <purpose>This data set is used as a reference layer for geographic information systems to show the areas serviced by Washington State public water systems.</purpose>
+        </descript>
+        <timeperd>
+            <timeinfo>
+                <rngdates>
+                    <begdate>20210621</begdate>
+                    <enddate>20210621</enddate>
+                </rngdates>
+            </timeinfo>
+            <current>Snapshot</current>
+        </timeperd>
+        <status>
+            <progress>In work</progress>
+            <update>Weekly</update>
+        </status>
+        <spdom>
+            <bounding>
+                <westbc>-124.429032</westbc>
+                <eastbc>-117.024985</eastbc>
+                <northbc>49.002473</northbc>
+                <southbc>45.543519</southbc>
+            </bounding>
+        </spdom>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>DOH</themekey>
+                <themekey>Drinking Water</themekey>
+                <themekey>Group A</themekey>
+                <themekey>Water</themekey>
+                <themekey>Public Water Supplies</themekey>
+                <themekey>Health</themekey>
+                <themekey>Service Areas</themekey>
+                <themekey>Boundaries</themekey>
+            </theme>
+            <theme>
+                <themekt>ISO 19115 Topic Categories</themekt>
+                <themekey>boundaries</themekey>
+                <themekey>health</themekey>
+                <themekey>utilitiesCommunication</themekey>
+            </theme>
+            <place>
+                <placekt>None</placekt>
+                <placekey>Washington</placekey>
+                <placekey>USA</placekey>
+                <placekey>WA</placekey>
+            </place>
+        </keywords>
+        <accconst>Other Constraints</accconst>
+        <useconst>None</useconst>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Washinton State Department of Health</cntorg>
+                    <cntper>Scott Kellogg</cntper>
+                </cntorgp>
+                <cntpos>GIS Analyst</cntpos>
+                <cntaddr>
+                    <addrtype>mailing</addrtype>
+                    <address>PO Box 47904</address>
+                    <city>Olympia</city>
+                    <state>WA</state>
+                    <postal>98504-7904</postal>
+                </cntaddr>
+                <cntvoice>(360)236-4569</cntvoice>
+                <cntemail>gis.dirm@doh.wa.gov</cntemail>
+            </cntinfo>
+        </ptcontac>
+        <datacred>DOH</datacred>
+        <native>Version 6.2 (Build 9200) ; Esri ArcGIS 10.8.1.14362</native>
+    </idinfo>
+    <dataqual>
+        <logic>None</logic>
+        <complete>None</complete>
+        <lineage>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <pubdate>20151022</pubdate>
+                        <title>Water Service Areas</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srctime>
+                    <timeinfo>
+                        <rngdates>
+                            <begdate>20151022</begdate>
+                            <enddate>20151022</enddate>
+                        </rngdates>
+                    </timeinfo>
+                    <srccurr>publication date</srccurr>
+                </srctime>
+                <srccitea>Water Service Areas</srccitea>
+                <srccontr>Multiple sources</srccontr>
+            </srcinfo>
+            <procstep>
+                <procdesc>Data was merged over time using ArcGIS.</procdesc>
+                <procdate>20170710</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>Washinton State Department of Health</cntorg>
+                            <cntper>Scott Kellogg</cntper>
+                        </cntorgp>
+                        <cntpos>GIS Analyst</cntpos>
+                        <cntaddr>
+                            <addrtype>mailing</addrtype>
+                            <address>PO Box 47904</address>
+                            <city>Olympia</city>
+                            <state>WA</state>
+                            <postal>98504-7904</postal>
+                        </cntaddr>
+                        <cntvoice>(360)236-4569</cntvoice>
+                        <cntemail>gis.dirm@doh.wa.gov</cntemail>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+        </lineage>
+    </dataqual>
+    <spdoinfo>
+        <direct>Vector</direct>
+        <ptvctinf>
+            <sdtsterm>
+                <sdtstype>GT-polygon composed of chains</sdtstype>
+                <ptvctcnt>3814</ptvctcnt>
+            </sdtsterm>
+        </ptvctinf>
+    </spdoinfo>
+    <eainfo>
+        <detailed>
+            <enttyp>
+                <enttypl>Water Service Areas</enttypl>
+                <enttypd>Entity Type</enttypd>
+                <enttypds>ESRI</enttypds>
+            </enttyp>
+            <attr>
+                <attrlabl>LERootId</attrlabl>
+                <attrdef>Database identifier</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <rdom>
+                                                						
+                        
+                        <rdommin>1</rdommin>
+                                                						
+                        
+                        <rdommax>30000</rdommax>
+                                                					
+                    
+                    </rdom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Comments</attrlabl>
+                <attrdef>GIS related editing comments</attrdef>
+                <attrdefs>DOH</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Comment</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>DataSourceType</attrlabl>
+                <attrdef>Source of original data provided to DOH</attrdef>
+                <attrdefs>DOH</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>GIS Data</edomv>
+                                                						
+                        
+                        <edomvd>Digital data was provided</edomvd>
+                                                						
+                        
+                        <edomvds>DOH</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Paper Map</edomv>
+                                                						
+                        
+                        <edomvd>Hardcopy map was provided and scanned</edomvd>
+                                                						
+                        
+                        <edomvds>DOH</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>DataSourceDate</attrlabl>
+                <attrdef>Date data was provided</attrdef>
+                <attrdefs>DOH</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Date</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>DataSource</attrlabl>
+                <attrdef>Source of original data provided to DOH</attrdef>
+                <attrdefs>DOH</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Name of data provider</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_ID</attrlabl>
+                <attrdef>PWS ID</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Alpha-numeric value assigned to each water system by Sentry.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Suffix</attrlabl>
+                <attrdef>Unknown</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Alpha-numeric</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Name</attrlabl>
+                <attrdef>Name of water system</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Region</attrlabl>
+                <attrdef>Office of Drinking Water regional office oversight for water systems</attrdef>
+                <attrdefs>Office of Drinking Water</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>SW</edomv>
+                                                						
+                        
+                        <edomvd>Southwest region - Water systems in southwestern Washington including olympic penninsula</edomvd>
+                                                						
+                        
+                        <edomvds>DOH / Office of Drinking Water</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>NW</edomv>
+                                                						
+                        
+                        <edomvd>Northwest region - water systems in central puget sound area</edomvd>
+                                                						
+                        
+                        <edomvds>DOH / Office of Drinking Water</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>EA</edomv>
+                                                						
+                        
+                        <edomvd>Eastern region - water systems in eastern washington</edomvd>
+                                                						
+                        
+                        <edomvds>DOH / Office of Drinking Water</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>UpdateDateTime</attrlabl>
+                <attrdef>Date data was updated</attrdef>
+                <attrdefs>DOH</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Date</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Grp</attrlabl>
+                <attrdef>Water system group</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>A</edomv>
+                                                						
+                        
+                        <edomvd>Group A water system</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>B</edomv>
+                                                						
+                        
+                        <edomvd>Group B water system</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>U</edomv>
+                                                						
+                        
+                        <edomvd>Unknown</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Type</attrlabl>
+                <attrdef>Water system type</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Comm</edomv>
+                                                						
+                        
+                        <edomvd>Group A Community Water System</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>GRPB</edomv>
+                                                						
+                        
+                        <edomvd>Group B Water System</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>NTNC</edomv>
+                                                						
+                        
+                        <edomvd>Non-transient and non-community</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>TNC</edomv>
+                                                						
+                        
+                        <edomvd>Transient non-community</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>OwnerID</attrlabl>
+                <attrdef>Database ID</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Ownership</attrlabl>
+                <attrdef>Type of ownership</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Free Text</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Contact_F_Name</attrlabl>
+                <attrdef>First name of contact</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Contact_L_Name</attrlabl>
+                <attrdef>Last name of contact</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Contact_Phone</attrlabl>
+                <attrdef>Contact phone number</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Phone number</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Address1</attrlabl>
+                <attrdef>Mailing address of the water system</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Address</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Address2</attrlabl>
+                <attrdef>Additional address information</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Free Text</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_City</attrlabl>
+                <attrdef>City of water system mailing address</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_State</attrlabl>
+                <attrdef>State portion of mailing address for the water system</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Name</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Zip</attrlabl>
+                <attrdef>Zip code of water system mailing address</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>5 digit zip code</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>EMailAddr</attrlabl>
+                <attrdef>Contact email address</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Email address</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>FT_ResPop</attrlabl>
+                <attrdef>Full time residential population served</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <rdom>
+                                                						
+                        
+                        <rdommin>0</rdommin>
+                                                						
+                        
+                        <rdommax>720000</rdommax>
+                                                					
+                    
+                    </rdom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>MaxTotalPop</attrlabl>
+                <attrdef>Maximum total population</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <rdom>
+                                                						
+                        
+                        <rdommin>0</rdommin>
+                                                						
+                        
+                        <rdommax>878000</rdommax>
+                                                					
+                    
+                    </rdom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Total_Conn</attrlabl>
+                <attrdef>Total Connections</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <rdom>
+                                                						
+                        
+                        <rdommin>0</rdommin>
+                                                						
+                        
+                        <rdommax>173833</rdommax>
+                                                					
+                    
+                    </rdom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>DOH_Apprvd_Srvcs</attrlabl>
+                <attrdef>Unknown</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Unknown</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Connection_Category</attrlabl>
+                <attrdef>Unknown</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Unknown</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Status</attrlabl>
+                <attrdef>Status of water system</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Active</edomv>
+                                                						
+                        
+                        <edomvd>Water system is active</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Inactive</edomv>
+                                                						
+                        
+                        <edomvd>Water system is inactive</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>No Longer Exists</edomv>
+                                                						
+                        
+                        <edomvd>Water system is no longer valid</edomvd>
+                                                						
+                        
+                        <edomvds>Sentry</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>WS_Inactive_Date</attrlabl>
+                <attrdef>Date the water system became inactive if applicable</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Date</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>EffctDate</attrlabl>
+                <attrdef>Date the water system became active</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Date</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>GroupADate</attrlabl>
+                <attrdef>Date the water system became classified as group A</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Date</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SmaId</attrlabl>
+                <attrdef>Satellite Management Agency Number</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Drinking water assigned value</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>ResConn</attrlabl>
+                <attrdef>Number of residential connections</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <rdom>
+                                                						
+                        
+                        <rdommin>0</rdommin>
+                                                						
+                        
+                        <rdommax>160347</rdommax>
+                                                					
+                    
+                    </rdom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>GWMA</attrlabl>
+                <attrdef>Unknown</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Unknown</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>JuriCode</attrlabl>
+                <attrdef>Unknown</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Unknown</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>ServiceAreaType</attrlabl>
+                <attrdef>Type of service area</attrdef>
+                <attrdefs>DOH</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Current</edomv>
+                                                						
+                        
+                        <edomvd>Current boundary, not future, conflict, or overlap</edomvd>
+                                                						
+                        
+                        <edomvds>DOH</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE</attrlabl>
+                <attrdef>Feature geometry.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Coordinates defining the features.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>County</attrlabl>
+                <attrdef>Administrative county for the water system</attrdef>
+                <attrdefs>Sentry</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Counties in Washington State</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Shape_Length</attrlabl>
+                <attrdef>Length of feature in internal units.</attrdef>
+                <attrdefs>Esri</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Positive real numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>Shape_Area</attrlabl>
+                <attrdef>Area of feature in internal units squared.</attrdef>
+                <attrdefs>Esri</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Positive real numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+        </detailed>
+    </eainfo>
+    <distinfo>
+        <distrib>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Washinton State Department of Health</cntorg>
+                    <cntper>Scott Kellogg</cntper>
+                </cntorgp>
+                <cntpos>GIS Analyst</cntpos>
+                <cntaddr>
+                    <addrtype>mailing</addrtype>
+                    <address>PO Box 47904</address>
+                    <city>Olympia</city>
+                    <state>WA</state>
+                    <postal>98504-7904</postal>
+                </cntaddr>
+                <cntvoice>(360)236-4569</cntvoice>
+                <cntemail>gis.dirm@doh.wa.gov</cntemail>
+            </cntinfo>
+        </distrib>
+        <resdesc>Winzip file of an ESRI File Geodatabase</resdesc>
+        <distliab>None</distliab>
+        <stdorder>
+            <digform>
+                <digtinfo>
+                    <formname>File Geodatabase</formname>
+                    <formvern>10.3.1</formvern>
+                    <filedec>WinZip</filedec>
+                    <transize>2</transize>
+                </digtinfo>
+                <digtopt>
+                    <onlinopt>
+                        <accinstr>Winzip file of an ESRI File Geodatabase</accinstr>
+                    </onlinopt>
+                </digtopt>
+            </digform>
+            <fees>None</fees>
+            <ordering>Requests can be made via e-mail, mail or phone.</ordering>
+            <turnarnd>Turnaround estimate will be provided within 5 days of request.</turnarnd>
+        </stdorder>
+        <availabl>
+            <timeinfo>
+                <rngdates>
+                    <begdate>20010101</begdate>
+                    <enddate>20170710</enddate>
+                </rngdates>
+            </timeinfo>
+        </availabl>
+    </distinfo>
+    <metainfo>
+        <metd>20210621</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Washinton State Department of Health</cntorg>
+                    <cntper>Scott Kellogg</cntper>
+                </cntorgp>
+                <cntpos>GIS Analyst</cntpos>
+                <cntaddr>
+                    <addrtype>mailing</addrtype>
+                    <address>PO Box 47904</address>
+                    <city>Olympia</city>
+                    <state>WA</state>
+                    <postal>98504-7904</postal>
+                </cntaddr>
+                <cntvoice>(360)236-4569</cntvoice>
+                <cntemail>gis.dirm@doh.wa.gov</cntemail>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>
