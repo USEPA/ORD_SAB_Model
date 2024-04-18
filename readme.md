@@ -1,18 +1,13 @@
----
-editor_options:
-  markdown:
-    wrap: 72
----
+
 
 # EPA Office of Research and Development Community Water System Service Area Boundaries
 
-::: {style="color: red;"}
-DISCLAIMER: This document is distributed solely for the purpose of
+<span style="color:red"> *DISCLAIMER:* This document is distributed solely for the purpose of
 pre-dissemination peer review under applicable information quality
 guidelines. It has not been formally disseminated by the U.S.
 Environmental Protection Agency. It does not represent and should not be
-construed to represent any agency determination or policy.
-:::
+construed to represent any agency determination or policy.</span>
+
 
 ## Project Description
 
