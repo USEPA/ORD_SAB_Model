@@ -1,0 +1,143 @@
+---
+title: "Estimated vs. Reported Populations of Community Water Systems"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+library(vroom)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(plotly)
+library(here)
+```
+
+
+## Load data
+
+```{r dataImport, eval = FALSE}
+# Load reported details
+system.deets <- vroom(here("Input_Data/SDWIS/Water_System_Detail_2023Q4.csv"), show_col_types = FALSE)
+  setNames(str_replace_all(colnames(.)," ","_"))%>%
+  select(PWS_Name,Primacy_Agency,PWS_ID,Population_Served_Count,Service_Connections_Count,Pop_Cat_5)
+
+# Load Census population counts
+census <- vroom("D:/data/nhgis/tables/Blocks/nhgis0307_ds248_2020_block.csv")%>%
+  select(GISJOIN,U7B001,U7G002)%>%
+  setNames(c("GISJOIN","Population_C","Housing_O"))
+
+methods <- vroom(here("Output_Data/Final_052024.csv"))%>%
+  select(PWSID_12,Method)
+
+# Load primary service area types
+sa.types <- vroom("D:/Github/ORD_SAB_Model/Input_Data/SDWIS/Primary_Service_Area_Type.csv")
+
+# Load CWS : Block crosswalk and join then filter
+cw <- vroom(here("Output_Data/Final_Blocks/CWS_Blocks_2023Q4.csv"))%>%
+  mutate(Pct_Block = round(100*(I_Area_km/Block_Area_km),2))%>%
+  left_join(census)%>%
+  left_join(sa.types, by = c("PWSID_12"="PWSID"))%>%
+  mutate(drop = ifelse(Pct_Block >= 10 | Service_Area_Type == "Mobile Home Park", FALSE,TRUE))%>%
+  filter(drop == FALSE)%>%
+  select(GISJOIN,PWSID_12,Population_C,Housing_O)
+
+# Aggregate to the system and join reported details
+cws <- cw%>%
+  group_by(PWSID_12)%>%
+  summarise(Population_C = sum(Population_C,na.rm=TRUE),
+            Housing_O = sum(Housing_O,na.rm=TRUE))%>%
+  left_join(system.deets, by = c("PWSID_12"="PWS_ID"))%>%
+  left_join(sa.types, by = c("PWSID_12"="PWSID"))%>%
+  mutate(PWS_Name = iconv(PWS_Name, "UTF-8", "UTF-8",sub=''))%>%
+  left_join(methods)
+colnames(cws)[1] <- "PWSID"
+
+vroom_write(cws, here("Analysis/Population_Served/CWS_Populations.csv"), append = FALSE)
+
+```
+
+
+## SDWIS Population Served vs. Service Connections
+
+Even within SDWIS there is not a uniform relationship between Population Served and Service Connections
+```{r popvConn}
+cws <- vroom(here("Analysis/Population_Served/CWS_Populations.csv"))%>%
+  drop_na(Method)
+
+lm <- lm(Population_Served_Count ~ Service_Connections_Count, data = cws)
+
+summary(lm)
+```
+
+
+Formula:
+
+$$POP_{served}=Connections*3.304-540.56$$
+
+R^2^ = 0.66
+```{r}
+new.df <- data.frame(Service_Connections_Count = c(0,3000000))
+
+new.df$Population_Served_Count <- predict(lm, newdata = new.df)
+
+plot_ly()%>%
+  add_lines(data = new.df, x = ~Service_Connections_Count, y = ~Population_Served_Count,name = "Regression", line = list(color = '#00673E', width = 4, dash = 'dot'))%>%
+  add_markers(data = cws, x = ~Service_Connections_Count, y = ~Population_Served_Count, color = ~Method,
+              text = ~paste(PWS_Name,"<br>",
+                           "PWS ID: ",PWSID,"<br>",
+                           "Census Population: ", format(Population_C, big.mark=","),"<br>",
+                           "SDWIS Population: ",format(Population_Served_Count, big.mark = ","),"<br>",
+                           "SDWIS Connections: ",format(Service_Connections_Count, big.mark=","),"<br>",
+                           "Housing Units: ",format(Housing_O, big.mark = ","),"<br>",
+                           "Method:", Method),
+              hoverinfo = 'text')%>%
+  layout(title = "",
+         xaxis = list(title = "Service Connections Count"),
+         yaxis = list (title = "Population Served Count"))
+```
+
+
+## Census Population vs. Reported Population
+```{r populations}
+
+plot_ly(cws)%>%
+  add_lines(x = c(0,9000000), y = c(0,9000000),name = "1:1", line = list(color = '#00673E', width = 4, dash = 'dot'))%>%
+  add_markers(x = ~Population_C, y = ~Population_Served_Count, color = ~Method,
+              text = ~paste(PWS_Name,"<br>",
+                           "PWS ID: ",PWSID,"<br>",
+                           "Census Population: ", format(Population_C, big.mark=","),"<br>",
+                           "SDWIS Population: ",format(Population_Served_Count, big.mark = ","),"<br>",
+                           "SDWIS Connections: ",format(Service_Connections_Count, big.mark=","),"<br>",
+                           "Housing Units: ",format(Housing_O, big.mark = ","),"<br>",
+                           "Method:", Method),
+              hoverinfo = 'text')%>%
+  layout(title = "",
+         xaxis = list(title = "Census Calculated Population (2020)"),
+         yaxis = list (title = "SDWIS Reported Population"))
+```
+
+
+## Census Occupied Housing Units vs. Reported Service Connections
+
+```{r connections}
+plot_ly(cws)%>%
+  add_lines(x = c(0,3500000), y = c(0,3500000),name = "1:1", line = list(color = '#00673E', width = 4, dash = 'dot'))%>%
+  add_markers(x = ~Housing_O, y = ~Service_Connections_Count, color = ~Method,
+              text = ~paste(PWS_Name,"<br>",
+                           "PWS ID: ",PWSID,"<br>",
+                           "Census Population: ", format(Population_C, big.mark=","),"<br>",
+                           "SDWIS Population: ",format(Population_Served_Count, big.mark = ","),"<br>",
+                           "SDWIS Connections: ",format(Service_Connections_Count, big.mark=","),"<br>",
+                           "Housing Units: ",format(Housing_O, big.mark = ","),"<br>",
+                           "Method:", Method),
+              hoverinfo = 'text')%>%
+  layout(title = "",
+         xaxis = list(title = "Census Calculated Occupied Housing Units (2020)"),
+         yaxis = list (title = "SDWIS Reported Service Connections"))
+```
+

@@ -1,0 +1,34 @@
+%% Define Colors
+\definecolor{epagreen}{HTML}{00673E}
+
+%% format the cover
+\def\titlepage{\sf
+  \pagecolor{epagreen}
+
+  % EPA Logo
+  \begin{tikzpicture}[remember picture,overlay,shift={(current page.north west)}]
+  \node[anchor=north west,xshift=0.93in,yshift=-0.43in]{\includegraphics[width=2in]{_extensions/ORD_ceser/img/epa_logo_vert_white.png}};
+  \end{tikzpicture}
+  
+  % Report Number
+  \begin{textblock}{16}(19,2)
+  \textcolor{white}{$report-no$ | $month$ $year$ | www.epa.gov/research}
+  \end{textblock}
+  
+  % Title
+  \begin{textblock}{16}(4,22)
+  \textcolor{white}{$title$}
+  \end{textblock}
+  
+  % Cover Image
+  \begin{tikzpicture}[remember picture,overlay,shift={(current page.north west)}]
+  \node[anchor=north west,xshift=-0.05in,yshift=-4in]{\includegraphics[width=\paperwidth]{$cover-img$}};
+  \end{tikzpicture}
+
+  }
+  
+\titlepage
+
+\newpage
+
+\pagecolor{white}
