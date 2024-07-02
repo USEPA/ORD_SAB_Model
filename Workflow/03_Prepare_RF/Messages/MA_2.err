@@ -1,0 +1,100 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘vroom’
+
+The following objects are masked from ‘package:readr’:
+
+    as.col_spec, col_character, col_date, col_datetime, col_double,
+    col_factor, col_guess, col_integer, col_logical, col_number,
+    col_skip, col_time, cols, cols_condense, cols_only, date_names,
+    date_names_lang, date_names_langs, default_locale, fwf_cols,
+    fwf_empty, fwf_positions, fwf_widths, locale, output_column,
+    problems, spec
+
+
+Attaching package: ‘stringdist’
+
+The following object is masked from ‘package:tidyr’:
+
+    extract
+
+Rows: 8132968 Columns: 125
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (26): GISJOIN, GEOID, GEOCODE, STATE, STATEA, COUNTY, COUNTYA, COUSUBA, ...
+dbl (98): YEAR, REGIONA, DIVISIONA, CONCITA, BLKGRPA, BLOCKA, AIANHHA, RES_O...
+lgl  (1): SUBMCDA
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 106291 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): GISJOIN
+dbl (3): Population, Pop_km, Area_Km
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 7958382 Columns: 23
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (5): GISJOIN, GEOID, State, Tree_Cat, Flag
+dbl (18): Area_Km, HU_1990, Wells_1990, Well_Density_1990, Prob_Pub, HU_2020...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 92482 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): GISJOIN
+dbl (5): meanBldg_m, minBldg_m, maxBldg_m, sdBldg_m, nBuildings
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 8174955 Columns: 63
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (33): GISJOIN, STUSAB, GEOID, GEOCODE, STATE, STATEA, COUNTY, COUNTYA, C...
+dbl (30): YEAR, REGIONA, DIVISIONA, SUBMCDA, CONCITA, BLKGRPA, BLOCKA, AIANH...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5961686 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): GISJOIN
+dbl (2): meanResAcres, nParcels
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 106291 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (4): GISJOIN, SubCounty, Place, County
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Warning message:
+One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat <- vroom(...)
+  problems(dat) 
+Joining with `by = join_by(PWS_ID)`
+Warning message:
+In left_join(county.served, city.served) :
+  Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 477 of `x` matches multiple rows in `y`.
+ℹ Row 871 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.
+Joining with `by = join_by(GISJOIN)`
+Joining with `by = join_by(GISJOIN)`

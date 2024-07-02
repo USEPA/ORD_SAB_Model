@@ -1,0 +1,25 @@
+[1] "Loaded Data @ 2024-05-15 18:48:21"
+[1] "1263 Blocks with probabilities > 0.45 ...2024-05-15 18:48:21"
+[1] "15 Systems ...2024-05-15 18:48:27"
+[1] "Running 090605033"
+[1] "Running CA2010010"
+[1] "Running 090605129"
+[1] "Running CA5500074"
+[1] "Running 090600059"
+[1] "Running CA4400631"
+[1] "Running CA2701740"
+[1] "Running 090605012"
+[1] "Running 090605080"
+[1] "Running 090605130"
+[1] "Running 090600154"
+[1] "Running 090605116"
+[1] "Running CA3810001"
+[1] "Running CA4910020"
+[1] "Trimmed data to 185 blocks ... 2024-05-15 18:48:34"
+[1] "Saving table of blocks ... 2024-05-15 18:48:34"
+[1] "Saving spatial aggegated files ... 2024-05-15 18:48:36"
+Deleting layer `CA' using driver `GPKG'
+Writing layer `CA' to data source 
+  `/work/GRDVULN/PWS/Workflow/11_Post_Process_Missing/Outputs/Systems.gpkg' using driver `GPKG'
+Writing 14 features with 8 fields and geometry type Multi Polygon.
+[1] "SCRIPT COMPLETE ... 2024-05-15 18:48:36"

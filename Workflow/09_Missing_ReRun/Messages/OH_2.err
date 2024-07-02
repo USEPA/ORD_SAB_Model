@@ -1,0 +1,61 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+Attaching package: ‘vroom’
+
+The following objects are masked from ‘package:readr’:
+
+    as.col_spec, col_character, col_date, col_datetime, col_double,
+    col_factor, col_guess, col_integer, col_logical, col_number,
+    col_skip, col_time, cols, cols_condense, cols_only, date_names,
+    date_names_lang, date_names_langs, default_locale, fwf_cols,
+    fwf_empty, fwf_positions, fwf_widths, locale, output_column,
+    problems, spec
+
+── Attaching packages ────────────────────────────────────── tidymodels 1.1.0 ──
+✔ broom        1.0.4     ✔ rsample      1.1.1
+✔ dials        1.2.0     ✔ tune         1.1.1
+✔ infer        1.0.4     ✔ workflows    1.1.3
+✔ modeldata    1.1.0     ✔ workflowsets 1.0.1
+✔ parsnip      1.1.0     ✔ yardstick    1.2.0
+✔ recipes      1.0.6     
+── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✖ scales::discard() masks purrr::discard()
+✖ dplyr::filter()   masks stats::filter()
+✖ recipes::fixed()  masks stringr::fixed()
+✖ dplyr::lag()      masks stats::lag()
+✖ yardstick::spec() masks vroom::spec(), readr::spec()
+✖ recipes::step()   masks stats::step()
+• Use suppressPackageStartupMessages() to eliminate package startup messages
+Rows: 6209 Columns: 50
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (40): PWS ID, PWS Name, EPA Region, Primacy Agency, PWS Type, Owner Type...
+dbl  (4): Submission Year, Submission Quarter, Population Served Count, Serv...
+lgl  (6): Season Begin Date, Season End Date, Deactivation Date, Alt Phone N...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 96207 Columns: 50
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (42): PWS ID, PWS Name, EPA Region, Primacy Agency, PWS Type, Owner Type...
+dbl  (5): Submission Year, Submission Quarter, Service Connections Count, CD...
+num  (1): Population Served Count
+lgl  (2): Phone Ext Number, Seasonal Startup System
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Warning message:
+One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat <- vroom(...)
+  problems(dat) 

@@ -1,0 +1,21 @@
+[1] "Loaded Data @ 2024-05-15 18:46:57"
+[1] "136 Blocks with probabilities > 0.45 ...2024-05-15 18:46:57"
+[1] "10 Systems ...2024-05-15 18:46:58"
+[1] "Running RI2980481"
+[1] "Running RI2000059"
+[1] "Running RI2882117"
+[1] "Running RI1000020"
+[1] "Running RI1592012"
+[1] "Running RI2814410"
+[1] "Running RI2519426"
+[1] "Running RI2000004"
+[1] "Running RI2980478"
+[1] "Running RI2980461"
+[1] "Trimmed data to 14 blocks ... 2024-05-15 18:46:59"
+[1] "Saving table of blocks ... 2024-05-15 18:46:59"
+[1] "Saving spatial aggegated files ... 2024-05-15 18:47:00"
+Deleting layer `RI' using driver `GPKG'
+Writing layer `RI' to data source 
+  `/work/GRDVULN/PWS/Workflow/11_Post_Process_Missing/Outputs/Systems.gpkg' using driver `GPKG'
+Writing 10 features with 8 fields and geometry type Polygon.
+[1] "SCRIPT COMPLETE ... 2024-05-15 18:47:00"

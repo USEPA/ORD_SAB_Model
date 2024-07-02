@@ -1,0 +1,12 @@
+[1] "Loaded Data @ 2024-05-15 18:41:05"
+[1] "16 Blocks with probabilities > 0.45 ...2024-05-15 18:41:05"
+[1] "1 Systems ...2024-05-15 18:41:05"
+[1] "Running KY0210419"
+[1] "Trimmed data to 2 blocks ... 2024-05-15 18:41:06"
+[1] "Saving table of blocks ... 2024-05-15 18:41:06"
+[1] "Saving spatial aggegated files ... 2024-05-15 18:41:06"
+Deleting layer `KY' using driver `GPKG'
+Writing layer `KY' to data source 
+  `/work/GRDVULN/PWS/Workflow/11_Post_Process_Missing/Outputs/Systems.gpkg' using driver `GPKG'
+Writing 1 features with 8 fields and geometry type Polygon.
+[1] "SCRIPT COMPLETE ... 2024-05-15 18:41:07"

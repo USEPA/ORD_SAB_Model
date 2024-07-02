@@ -1,0 +1,18 @@
+[1] "Loading blocks @ 2024-05-21 16:03:44"
+Reading layer `KY_block_2020' from data source 
+  `/work/GRDVULN/census/KY_block_2020.shp' using driver `ESRI Shapefile'
+Simple feature collection with 132662 features and 18 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 569714.9 ymin: -92795.19 xmax: 1223918 ymax: 241702.7
+Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
+[1] "Loading CWS Boundaries @ 2024-05-21 16:04:02"
+Reading layer `Final' from data source `/work/GRDVULN/PWS/data/final_052024.gdb' using driver `OpenFileGDB'
+Simple feature collection with 44415 features and 28 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -19664170 ymin: 2143819 xmax: -7454937 ymax: 11513680
+Projected CRS: WGS 84 / Pseudo-Mercator
+[1] "Performing Intersection @ 2024-05-21 16:20:00"
+[1] "Intersection complete --- Writing output @ 2024-05-21 16:20:29"
+[1] "SCRIPT COMPLETE @ 2024-05-21 16:20:29"

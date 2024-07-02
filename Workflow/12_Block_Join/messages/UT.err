@@ -1,0 +1,17 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Linking to GEOS 3.11.2, GDAL 3.6.4, PROJ 9.2.0; sf_use_s2() is TRUE
+Warning message:
+In CPL_read_ogr(dsn, layer, query, as.character(options), quiet,  :
+  GDAL Message 1: organizePolygons() received a polygon with more than 100 parts. The processing may be really slow.  You can skip the processing by setting METHOD=SKIP, or only make it analyze counter-clock wise parts by setting METHOD=ONLY_CCW if you can assume that the outline of holes is counter-clock wise defined
+Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 

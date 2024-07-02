@@ -1,0 +1,15 @@
+[1] "Loaded Data @ 2024-05-15 18:42:53"
+[1] "53 Blocks with probabilities > 0.45 ...2024-05-15 18:42:53"
+[1] "4 Systems ...2024-05-15 18:42:53"
+[1] "Running CT0960221"
+[1] "Running CT0970021"
+[1] "Running CT0421041"
+[1] "Running CT0380041"
+[1] "Trimmed data to 8 blocks ... 2024-05-15 18:42:54"
+[1] "Saving table of blocks ... 2024-05-15 18:42:54"
+[1] "Saving spatial aggegated files ... 2024-05-15 18:42:55"
+Deleting layer `CT' using driver `GPKG'
+Writing layer `CT' to data source 
+  `/work/GRDVULN/PWS/Workflow/11_Post_Process_Missing/Outputs/Systems.gpkg' using driver `GPKG'
+Writing 4 features with 8 fields and geometry type Multi Polygon.
+[1] "SCRIPT COMPLETE ... 2024-05-15 18:42:55"

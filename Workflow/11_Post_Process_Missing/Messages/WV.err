@@ -1,0 +1,66 @@
+Linking to GEOS 3.11.2, GDAL 3.6.4, PROJ 9.2.0; sf_use_s2() is TRUE
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ readr::col_character()   masks vroom::col_character()
+✖ readr::col_date()        masks vroom::col_date()
+✖ readr::col_datetime()    masks vroom::col_datetime()
+✖ readr::col_double()      masks vroom::col_double()
+✖ readr::col_factor()      masks vroom::col_factor()
+✖ readr::col_guess()       masks vroom::col_guess()
+✖ readr::col_integer()     masks vroom::col_integer()
+✖ readr::col_logical()     masks vroom::col_logical()
+✖ readr::col_number()      masks vroom::col_number()
+✖ readr::col_skip()        masks vroom::col_skip()
+✖ readr::col_time()        masks vroom::col_time()
+✖ readr::cols()            masks vroom::cols()
+✖ readr::date_names_lang() masks vroom::date_names_lang()
+✖ readr::default_locale()  masks vroom::default_locale()
+✖ dplyr::filter()          masks stats::filter()
+✖ readr::fwf_cols()        masks vroom::fwf_cols()
+✖ readr::fwf_empty()       masks vroom::fwf_empty()
+✖ readr::fwf_positions()   masks vroom::fwf_positions()
+✖ readr::fwf_widths()      masks vroom::fwf_widths()
+✖ dplyr::lag()             masks stats::lag()
+✖ readr::locale()          masks vroom::locale()
+✖ readr::output_column()   masks vroom::output_column()
+✖ readr::problems()        masks vroom::problems()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Rows: 42034 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Warning message:
+In st_cast.sf(., "POLYGON") :
+  repeating attributes for all sub-geometries for which they may not be constant
+Warning message:
+st_point_on_surface assumes attributes are constant over geometries 
+Warning message:
+Using one column matrices in `filter()` was deprecated in dplyr 1.1.0.
+ℹ Please use one dimensional logical vectors instead. 
+Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 
+Joining with `by = join_by(GISJOIN)`
+Rows: 49396 Columns: 50
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (40): PWS ID, PWS Name, EPA Region, Primacy Agency, PWS Type, Owner Type...
+dbl  (3): Submission Year, Submission Quarter, Service Connections Count
+num  (1): Population Served Count
+lgl  (6): Season Begin Date, Season End Date, Deactivation Date, Alt Phone N...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Warning message:
+One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat <- vroom(...)
+  problems(dat) 

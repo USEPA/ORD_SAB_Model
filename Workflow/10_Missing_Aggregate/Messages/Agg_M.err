@@ -1,0 +1,827 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Rows: 431873 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 113239 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 114062 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 65998 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 64776 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 413789 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 412564 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 412986 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 412837 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 411892 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 411505 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4371235 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4375033 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 277058 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 12476 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1184782 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5247795 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5231875 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5231776 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5247666 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3987758 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3971143 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3973380 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 173079 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 831843 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 829834 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3001275 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2867524 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2866533 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2612141 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2639285 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 677611 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 677077 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 677616 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 38968 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 38309 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1933 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1898 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1533026 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1539001 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2743523 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2751630 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2772028 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 495087 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1881960 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1883150 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1881492 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1724535 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1715801 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1439224 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1437592 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1433868 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 350681 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 350503 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 829450 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 6721135 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 6728246 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 6732850 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 82395 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 215699 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 215906 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 74844 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 764381 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 762808 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 73241 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 74750 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1254184 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1824680 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1836880 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1894297 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1887239 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1890494 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1166947 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1163907 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2222298 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2216876 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 301606 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 300321 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 302471 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 472313 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1113875 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1113805 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 1277236 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 11828 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 11699 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 332769 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 331637 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 331684 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 329549 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 331142 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 331389 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 800695 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2902824 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2881374 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 438991 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2911746 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2910380 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2195570 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2221469 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2215355 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 171587 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 180949 Columns: 32
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): GISJOIN, Near_PWSID, Facility_Type, Place_Match, SubCounty_Match, ...
+dbl (24): .pred_TRUE, .pred_FALSE, Facility_Dist, Ctr_Dist, Dist_Rank, Place...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.

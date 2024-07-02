@@ -1,0 +1,48 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Linking to GEOS 3.11.2, GDAL 3.6.4, PROJ 9.2.0; sf_use_s2() is TRUE
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: parallel
+Rows: 49396 Columns: 50
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (40): PWS ID, PWS Name, EPA Region, Primacy Agency, PWS Type, Owner Type...
+dbl  (3): Submission Year, Submission Quarter, Service Connections Count
+num  (1): Population Served Count
+lgl  (6): Season Begin Date, Season End Date, Deactivation Date, Alt Phone N...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Warning message:
+One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat <- vroom(...)
+  problems(dat) 
+Rows: 6387614 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): GISJOIN
+dbl (5): meanBldg_m, minBldg_m, maxBldg_m, sdBldg_m, nBuildings
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Warning message:
+st_point_on_surface assumes attributes are constant over geometries 
+Rows: 287223 Columns: 6
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (4): PWSID, PWS_Name, Facility_Type, Pt_ID
+dbl (2): X, Y
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.

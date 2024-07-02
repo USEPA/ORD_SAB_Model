@@ -1,0 +1,23 @@
+[1] "Loaded Data @ 2024-05-15 18:44:18"
+[1] "627 Blocks with probabilities > 0.45 ...2024-05-15 18:44:18"
+[1] "12 Systems ...2024-05-15 18:44:22"
+[1] "Running AL0001229"
+[1] "Running AL0001760"
+[1] "Running AL0000087"
+[1] "Running AL0001799"
+[1] "Running AL0001764"
+[1] "Running AL0001159"
+[1] "Running AL0000028"
+[1] "Running AL0000149"
+[1] "Running AL0000184"
+[1] "Running AL0000398"
+[1] "Running AL0001261"
+[1] "Running AL0001782"
+[1] "Trimmed data to 154 blocks ... 2024-05-15 18:44:28"
+[1] "Saving table of blocks ... 2024-05-15 18:44:28"
+[1] "Saving spatial aggegated files ... 2024-05-15 18:44:30"
+Deleting layer `AL' using driver `GPKG'
+Writing layer `AL' to data source 
+  `/work/GRDVULN/PWS/Workflow/11_Post_Process_Missing/Outputs/Systems.gpkg' using driver `GPKG'
+Writing 12 features with 8 fields and geometry type Multi Polygon.
+[1] "SCRIPT COMPLETE ... 2024-05-15 18:44:30"

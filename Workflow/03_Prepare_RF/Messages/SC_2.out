@@ -1,0 +1,8 @@
+[1] "Loading data describing census blocks --- 2024-05-13 14:04:53"
+[1] "Loading population data --- 2024-05-13 14:05:32"
+[1] "Loading building data --- 2024-05-13 14:05:39"
+[1] "Loading parcel data --- 2024-05-13 14:06:08"
+[1] "Performing Fuzzy matching on names and places --- 2024-05-13 14:06:14"
+[1] "Joining Everything Together ... 2024-05-13 14:08:58"
+[1] "Writing file... 2024-05-13 14:10:00.063886"
+[1] "--- SCRIPT COMPLETE --- 2024-05-13 14:10:31"
