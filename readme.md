@@ -75,6 +75,8 @@ This repository reused material from [GSA](https://www.gsa.gov/),
 Lab](https://www.llnl.gov/), and from the [Consumer Financial Protection
 Bureau's policy](https://github.com/cfpb/source-code-policy).
 
+Image at top: Map data OpenStreetMap contributors, Microsoft Building Footprints, Scene Layer by ESRI, Source: Airbus,USGS,NGA,NASA,CGIAR,NLS,OS,NMA,Geodatastyrelsen, GSA,GSI and the GIS User Community, Map data © OpenStreetMap contributors, Microsoft, Facebook, Google, Esri Community Maps contributors, Map layer by Esri
+
 ### Disclaimer
 
 The United States Environmental Protection Agency (EPA) GitHub project
