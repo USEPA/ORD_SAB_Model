@@ -9,6 +9,9 @@ Environmental Protection Agency. It does not represent and should not be
 construed to represent any agency determination or policy.</span>
 
 
+![](/Documentation/img/example_boundary.png)
+
+
 ## Project Description
 
 The Office of Research and Development has released a publicly available
