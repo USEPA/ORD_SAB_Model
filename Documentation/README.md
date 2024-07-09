@@ -1,4 +1,4 @@
 
 ## Documentation
 
-![](Documentation/img/cover.png)
+![](/Documentation/img/cover.png)
