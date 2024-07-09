@@ -2,8 +2,6 @@
 ## Please check back soon
 (Posted: July 2, 2024)
 
-
-
 # Workflow for Creating Boundaries
 
 The scripts in this folder describe the step by step process of creating an updated Service Area Boundary (SAB) dataset. Note that some of these steps are highly computationally intensive and require the use of high-performance computing. Many of the scripts are written to be run on the EPA Atmos cluster and are noted as such.

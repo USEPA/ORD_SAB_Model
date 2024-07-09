@@ -1,0 +1,73 @@
+---
+title: ""
+format: pdf
+---
+
+## Checking Primacy for Tribal Systems & Wyoming
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(sf)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(vroom)
+library(here)
+library(ggplot2)
+
+# Import live dataset anf ilter to tribal and wyoming
+sf <- st_read(here("Output_Data/Final_052024.gdb/Final_052024.gdb"),layer = "Final")%>%
+  filter(substr(PWSID_12,1,2)%in% c("01","02","03","04","05","06","07","08","08","09","10","WY","NN"))
+
+# Import system details
+df <- vroom(here("Input_Data/SDWIS/Water_System_Detail_2023Q4.csv"))%>%
+  filter(`PWS ID`%in% sf$PWSID_12)
+```
+
+
+### Map systems by Primacy Agency
+
+Here we convert the service areas to centroids and color them by primacy agency then layer them on top of the EPA region map.
+
+```{r cntrd}
+cntrd <- sf%>%
+  st_point_on_surface()%>%
+  select(PWSID_12,Primacy_Agency)%>%
+  st_transform(5070)
+
+regions <- st_read("D:/data/EPA/boundaries.gpkg", layer = "EPA_Regions")%>%
+  mutate(color = case_match(Region, 1 ~ "#CCCCFF",
+                            2 ~ "#FFFF99",
+                            3 ~ "#B1E6FE",
+                            4 ~ "#CCFF99",
+                            5 ~ "#FFBB77",
+                            6 ~ "#CCCC66",
+                            7 ~ "#99CCFF",
+                            8 ~ "#99CC99",
+                            9 ~ "#99FFCC",
+                            10 ~ "#FEE89A"))%>%
+  mutate(Region = as.character(Region))%>%
+  st_transform(5070)%>%
+  filter(!name %in% c("Alaska","Hawaii","Puerto Rico"))
+
+regions$Region <- factor(regions$Region, levels = c("1","2","3","4","5","6","7","8","9","10"))
+
+ggplot(regions)+
+  geom_sf(aes(fill = Region))+
+  geom_sf(data = cntrd, aes(fill = Primacy_Agency), color = "black", shape = 21)+
+  scale_fill_manual(values=c("1" = "#CCCCFF",
+                            "2" = "#FFFF99",
+                            "3" = "#B1E6FE",
+                            "4" = "#CCFF99",
+                            "5" = "#FFBB77",
+                            "6" = "#CCCC66",
+                            "7" = "#99CCFF",
+                            "8" = "#99CC99",
+                            "9" = "#99FFCC",
+                            "10" = "#FEE89A",
+                            "NN" = "black",
+                            "WY" = "#99CC99"))+
+  theme(legend.position = "bottom")+
+  labs(title = "Non-State Primacy", fill = "Primacy")
+```
+
