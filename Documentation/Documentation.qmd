@@ -4,7 +4,7 @@ author: "Andrew Murray & Alex Hall"
 subtitle: "Documentation"
 month: "May"
 year: 2024
-report-no: "EPA 600/XXX/XXX"
+report-no: "EPA/600/X-24/226"
 disclaimer: "This document is distributed solely for the purpose of pre-dissemination peer review under applicable information quality guidelines. It has not been formally disseminated by the U.S. Environmental Protection Agency. It does not represent and should not be construed to represent any agency determination or policy."
 link-citations: true
 linkcolor: "blue"
@@ -39,7 +39,7 @@ library(vroom)
 library(here)
 
 # Load final boundaries
-pws <- vroom(here("Output_Data/Final_052024.csv"))
+pws <- vroom(here("Output_Data/Archive/Final_052024.csv"))
 colnames(pws)[1] <- "PWSID"
 # Load Service Area Types
 sa.type <- vroom(here("Input_Data/SDWIS/Primary_Service_Area_Type.csv"))
@@ -805,7 +805,7 @@ To view or download the data, visit the [Service Area web application](https://e
 ## Table of systems by Primacy Agency and Method
 
 ```{r methodTable}
-methods <- vroom(here("Output_Data/Final_052024.csv"))%>%
+methods <- vroom(here("Output_Data/Archive/Final_052024.csv"))%>%
   drop_na(Method)%>%
   group_by(Primacy_Agency,Method)%>%
   summarise(n = n())%>%
