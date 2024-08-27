@@ -1,0 +1,143 @@
+---
+title: "Connecting SDWIS with CWS Service Areas"
+author: "Andrew Murray"
+date: "2024-08-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+In this example, we're going to create a map to view nitrate violations for the United States, going back to 2010.
+
+
+## Load libraries
+```{r libraries, message=FALSE}
+library(vroom)
+library(sf)
+library(dplyr)
+library(leaflet)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+```
+
+
+## Load SDWIS DATA
+
+SDWIS data can be [downloaded here](https://echo.epa.gov/tools/data-downloads) under the 'Drinking Water Data Downloads' heading. Detailed information about each file and metadata can be [found here](https://echo.epa.gov/tools/data-downloads/sdwa-download-summary).
+
+We use the contaminant code '1040' which refers to nitrate. Violations can be reported in different ways, so we need to determine which violation codes to include. This is where understanding the metadata of SDWIS reporting is essential. Let's focus in on MCL violations. To do this, we can use the `VIOLATION_CATEGORY_CODE` field to filter for `MCL`. Within the MCL violations category are two violation codes:
+
+- '01' = 'Maximum Contaminant Level Violation, Single Sample'
+- '02' = 'Maximum Contaminant Level Violation, Average'
+
+To include as many systems as possible, we'll look at both. Be sure to either filter on units of measure or perform a unit conversion if multiple units are used to report the contaminant you are using. Finally, we will restrict this analysis to violations reported since the beginning of 2010. The compliance period begin date field (`COMPL_PER_BEGIN_DATE`) is the most accurate indicator of when a violation occurred.
+
+```{r sdwis, echo = TRUE, eval = FALSE}
+df <- vroom("D:/SDWA_Full/SDWA_latest_downloads/SDWA_VIOLATIONS_ENFORCEMENT.csv",
+            show_col_types = FALSE)%>%
+  # Apply filters
+  filter(CONTAMINANT_CODE == "1040")%>%
+  filter(VIOLATION_CATEGORY_CODE == "MCL")%>%
+  filter(VIOLATION_CODE %in% c("01","02"))%>%
+  filter(UNIT_OF_MEASURE == "MG/L")%>%
+  # Drop columns we don't need right now
+  select(PWSID, VIOLATION_ID,COMPL_PER_BEGIN_DATE,VIOLATION_CATEGORY_CODE,
+         VIOLATION_CODE,CONTAMINANT_CODE,VIOL_MEASURE,UNIT_OF_MEASURE)%>%
+  # Eliminate duplicate rows
+  distinct()%>%
+  # Format the data field and filter
+  mutate(COMPL_PER_BEGIN_DATE = mdy(COMPL_PER_BEGIN_DATE))%>%
+  filter(COMPL_PER_BEGIN_DATE > mdy("12/31/2009"))
+
+head(df)
+```
+
+
+```{r sdwisRUN, echo = FALSE}
+df <- vroom("D:/SDWA_VIOLATIONS_ENFORCEMENT.csv", show_col_types = FALSE)%>%
+  filter(UNIT_OF_MEASURE == "MG/L")%>%
+  select(PWSID,VIOLATION_ID,COMPL_PER_BEGIN_DATE,
+         CONTAMINANT_CODE,VIOL_MEASURE,UNIT_OF_MEASURE)
+
+head(df)
+```
+
+
+## Load Service Areas Data
+
+We load the community water system service areas data and join the violations using the `PWSID`, which is the unique identifier for each system in SDWIS.
+
+```{r}
+sf <- st_read("D:/EPA_CWS_V1.shp", quiet = TRUE)%>%
+  left_join(df, by = "PWSID")%>%
+  drop_na(VIOL_MEASURE)%>%
+  st_transform(st_crs(4326))
+```
+
+### Create a Map
+Since we're looking at this data nationally, we can create points from the polygons to make the data easier to see on a national map. We'll add some styling to the map so we can visualize the age of the violation, as well as the sample value. The map below illustrates nitrate violations since 2010. The size of each circle represents the magnitude of the nitrate level reported (10-370 MG/L). The color represents the year of the violation.
+
+```{r dotMap}
+pts <- sf%>%
+  st_point_on_surface()%>%
+  filter(VIOL_MEASURE < 400 & VIOL_MEASURE > 10)%>%
+  mutate(Year = year(COMPL_PER_BEGIN_DATE))%>%
+  arrange(-VIOL_MEASURE)
+
+# Create a color palette for violation year
+pal <- colorNumeric(
+  palette = "YlOrRd",
+  domain = pts$Year)
+
+leaflet(pts)%>%
+  addTiles()%>%
+  addCircleMarkers(fillColor = ~pal(Year), color = "black", weight = 1, fillOpacity = 0.8, radius = ~VIOL_MEASURE/4,
+                   popup = paste0("<b>",pts$PWS_Name,"</b><br>",
+                                  "PWSID: ", pts$PWSID,"<br>",
+                                  "Violation Year: ", pts$Year,"<br>",
+                                  "Nitrate Reported: ",pts$VIOL_MEASURE," [",pts$UNIT_OF_MEASURE,"]"))%>%
+  addLegend("bottomright", pal = pal, values = ~Year, labFormat = labelFormat(big.mark = ""))
+
+```
+
+
+### A More Detailed View
+Now that we've looked at the data from a national perspective, let's drill down on a specific area. For this example, we'll use Kansas. We want to use the polygon layer for this and we will filter based on the primacy agency. Kansas has some tribal systems as well, so we need to make sure we include them since their primacy agency is not Kansas, but EPA region 7. In the previous map, we could view multiple violations within the same system because of the way it is drawn (with smaller circles on top of larger circles). Here, we need to make a decision on how we want to represent multiple violations in a system. For now, let's take the average value of violations.
+
+```{r Kansas}
+ks <- sf%>%
+  filter(Primacy_Ag %in% c("Kansas", "EPA Region 7"))%>%
+  filter(VIOL_MEASURE < 400 & VIOL_MEASURE > 10)
+
+ks.map <- ks%>%
+  group_by(PWSID)%>%
+  summarise(Nitrate = round(mean(VIOL_MEASURE),1),
+            nViolations = n(),
+            Name = PWS_Name[1])
+
+ks.dots <- ks.map%>%
+  st_point_on_surface()
+
+pal2 <- colorNumeric(
+  palette = "YlOrRd",
+  domain = ks.map$Nitrate)
+
+leaflet(ks.map)%>%
+  addProviderTiles("Esri.WorldImagery")%>%
+  addPolygons(fillColor = ~pal2(Nitrate), color = "black", weight = 1, fillOpacity = 0.5,
+                   popup = paste0("<b>",ks.map$Name,"</b><br>",
+                                  "PWSID: ", ks.map$PWSID,"<br>",
+                                  "# Violations since 2010: ", ks.map$nViolations,"<br>",
+                                  "Average Nitrate Violation Reported: ",ks.map$Nitrate," [MG/L]"))%>%
+  addCircleMarkers(data = ks.dots, fillColor = ~pal2(Nitrate), color = "black", weight = 1, fillOpacity = 0.5,radius = 8,
+                   popup = paste0("<b>",ks.map$Name,"</b><br>",
+                                  "PWSID: ", ks.map$PWSID,"<br>",
+                                  "# Violations since 2010: ", ks.map$nViolations,"<br>",
+                                  "Average Nitrate Violation Reported: ",ks.map$Nitrate," [MG/L]"))%>%
+  addLegend("bottomright", pal = pal2, values = ~Nitrate, labFormat = labelFormat(big.mark = ""), title = "Nitrate [mg/L]")
+```
+
