@@ -1,9 +1,29 @@
 library(tidyverse)
 library(sf)
+library(vroom)
 
 v1 <- st_read("Output_Data/Archive/Final_052024/Final_052024.gdb", layer = "Final")
 
 v1.1 <- st_read("Version_History/1_1/SAB_1_1.gdb", layer = "Boundaries")
+
+# Load Details
+deets <- vroom("Input_Data/SDWIS/Water_System_Detail_2023Q4.csv")
+
+
+# Missing
+missing <- deets%>%
+  filter(!`PWS ID` %in% v1.1$PWSID)%>%
+  select(`PWS ID`,`Primacy Agency`,`Population Served Count`,`Service Connections Count`)
+write.csv(missing,"Version_History/1_1/Missing_Systems_V_1_1.csv")
+# Missing by Primacy
+
+bp <- missing%>%
+  group_by(`Primacy Agency`)%>%
+  summarise(Systems = n(),
+            Population = sum(`Population Served Count`,na.rm = TRUE),
+            Connections = sum(`Service Connections Count`,na.rm = TRUE))
+
+write.csv(bp,"Version_History/1_1/Missing_Systems_by_Primacy.csv")
 
 
 added <- v1.1%>%

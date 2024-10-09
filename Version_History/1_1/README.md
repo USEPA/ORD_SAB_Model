@@ -69,3 +69,73 @@ Version 1.1 includes the addition of service area boundaries that were obtained 
 | FL3590473, FL3594107, FL3590571, FL3590785                       | NA                                      | NA                      | STATE           |
 | FL3351182, FL3351464                                             | NA                                      | NA                      | STATE           |
 | FL3350322, FL3350426                                             | NA                                      | NA                      | STATE           |
+
+## Systems that are Missing from Version 1.1
+The following is a breakdown of missing system boundaries by primacy agency. For a full list of systems, please refer to 'Missing_Systems_V_1_1.csv'
+
+| Primacy Agency           | Systems | Population | Connections |
+| ------------------------ | ------- | ---------- | ----------- |
+| Alabama                  | 14      | 6778       | 2200        |
+| Alaska                   | 106     | 59677      | 6440        |
+| American Samoa           | 10      | 48940      | 9788        |
+| Arizona                  | 15      | 2600       | 1194        |
+| California               | 16      | 190117     | 51226       |
+| Colorado                 | 219     | 139551     | 64324       |
+| Connecticut              | 5       | 949        | 177         |
+| Delaware                 | 27      | 7816       | 1955        |
+| District of Columbia     | 2       | 15690      | 57          |
+| EPA Region 1             | 2       | 37932      | 73          |
+| EPA Region 10            | 11      | 2838       | 444         |
+| EPA Region 2             | 7       | 12187      | 3007        |
+| EPA Region 4             | 2       | 1080       | 217         |
+| EPA Region 5             | 16      | 26204      | 376         |
+| EPA Region 6             | 11      | 26945      | 712         |
+| EPA Region 7             | 2       | 305        | 113         |
+| EPA Region 8             | 23      | 7201       | 1173        |
+| EPA Region 9             | 80      | 43934      | 3799        |
+| Florida                  | 211     | 183789     | 71196       |
+| Georgia                  | 327     | 33471      | 11864       |
+| Guam                     | 5       | 174316     | 47789       |
+| Hawaii                   | 22      | 18243      | 1080        |
+| Idaho                    | 165     | 17676      | 5820        |
+| Illinois                 | 142     | 90796      | 19045       |
+| Indiana                  | 26      | 18673      | 5804        |
+| Iowa                     | 84      | 116582     | 45839       |
+| Kansas                   | 10      | 15111      | 2559        |
+| Louisiana                | 130     | 89268      | 26991       |
+| Maine                    | 90      | 7002       | 2303        |
+| Maryland                 | 85      | 25999      | 5264        |
+| Massachusetts            | 74      | 50569      | 1861        |
+| Michigan                 | 156     | 41153      | 17373       |
+| Minnesota                | 56      | 15915      | 4036        |
+| Mississippi              | 42      | 31555      | 9228        |
+| Missouri                 | 163     | 136239     | 53635       |
+| Montana                  | 176     | 23242      | 6888        |
+| Navajo Nation            | 25      | 6246       | 1223        |
+| Nebraska                 | 30      | 5005       | 2278        |
+| Nevada                   | 32      | 9048       | 1386        |
+| New Hampshire            | 10      | 890        | 198         |
+| New Jersey               | 2       | 5338       | 2097        |
+| New Mexico               | 6       | 6862       | 2369        |
+| New York                 | 451     | 172182     | 48388       |
+| North Carolina           | 252     | 53306      | 20641       |
+| North Dakota             | 21      | 18572      | 6702        |
+| Northern Mariana Islands | 37      | 64937      | 13102       |
+| Ohio                     | 59      | 114165     | 42682       |
+| Oklahoma                 | 98      | 92919      | 21257       |
+| Oregon                   | 174     | 117033     | 32178       |
+| Pennsylvania             | 21      | 4761       | 1597        |
+| Puerto Rico              | 405     | 3564416    | 1522060     |
+| Rhode Island             | 9       | 1336       | 269         |
+| South Carolina           | 64      | 10526      | 4331        |
+| South Dakota             | 67      | 101267     | 40877       |
+| Tennessee                | 1       | 162        | 68          |
+| Texas                    | 58      | 8475       | 1771383     |
+| US Virgin Islands        | 77      | 81072      | 35401       |
+| Utah                     | 16      | 6008       | 514         |
+| Vermont                  | 76      | 11958      | 29222       |
+| Virginia                 | 214     | 69500      | 17274       |
+| Washington               | 179     | 15877      | 5684        |
+| West Virginia            | 23      | 10275      | 4161        |
+| Wisconsin                | 121     | 12215      | 4120        |
+| Wyoming                  | 71      | 12944      | 4544        |
