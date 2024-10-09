@@ -2,10 +2,11 @@ library(tidyverse)
 library(vroom)
 
 # Load Universe
-universe <- vroom("Workflow/Data/Universe_System_Detail_2023Q4.csv")
+universe <- vroom("Workflow/Data/Universe_System_Detail_2023Q4.csv")%>%
+  filter(`Population Served Count` >= 25 & `Service Connections Count` >= 15)
 
 # Load Mapped Systems
-mapped <- sf::st_read("Output_Data/Final_Boundaries.gpkg", layer = "Final_03282024")%>%
+mapped <- sf::st_read("Output_Data/Archive/Final_052024/Final_052024.gdb", layer = "Final")%>%
   sf::st_drop_geometry()
 
 # Filter universe to missing systems
@@ -15,6 +16,7 @@ missing <- universe%>%
 # Save output
 vroom_write(missing,"Output_Data/Missing_2023Q4.csv")
 
+missing <- vroom("Output_Data/Archive/Missing_2023Q4.csv")
 
 # Merge block files
 files <- list.files("Output_Data/Final_Blocks", full.names = TRUE)

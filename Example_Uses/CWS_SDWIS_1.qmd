@@ -37,7 +37,7 @@ We use the contaminant code '1040' which refers to nitrate. Violations can be re
 To include as many systems as possible, we'll look at both. Be sure to either filter on units of measure or perform a unit conversion if multiple units are used to report the contaminant you are using. Finally, we will restrict this analysis to violations reported since the beginning of 2010. The compliance period begin date field (`COMPL_PER_BEGIN_DATE`) is the most accurate indicator of when a violation occurred.
 
 ```{r sdwis, echo = TRUE, eval = FALSE}
-df <- vroom("D:/SDWA_Full/SDWA_latest_downloads/SDWA_VIOLATIONS_ENFORCEMENT.csv",
+df <- vroom("D:/data/SDWA/SDWA_Full/SDWA_latest_downloads/SDWA_VIOLATIONS_ENFORCEMENT.csv",
             show_col_types = FALSE)%>%
   # Apply filters
   filter(CONTAMINANT_CODE == "1040")%>%
@@ -86,21 +86,37 @@ pts <- sf%>%
   st_point_on_surface()%>%
   filter(VIOL_MEASURE < 400 & VIOL_MEASURE > 10)%>%
   mutate(Year = year(COMPL_PER_BEGIN_DATE))%>%
-  arrange(-VIOL_MEASURE)
+  group_by(PWSID)%>%
+  summarise(VIOL_MEASURE = mean(VIOL_MEASURE))%>%
+  arrange(VIOL_MEASURE)%>%
+  mutate(class = ifelse(VIOL_MEASURE <15,"10 - 14",
+                        ifelse(VIOL_MEASURE < 30,"15 - 29",
+                               ifelse(VIOL_MEASURE < 60, "30 - 59"," > 59"))))
 
 # Create a color palette for violation year
-pal <- colorNumeric(
-  palette = "YlOrRd",
-  domain = pts$Year)
+# pal <- colorNumeric(
+#   palette = "YlOrRd",
+#   domain = pts$Year)
+# 
+# leaflet(pts)%>%
+#   addTiles()%>%
+#   addCircleMarkers(fillColor = ~pal(Year), color = "black", weight = 1, fillOpacity = 0.8, radius = ~VIOL_MEASURE/4,
+#                    popup = paste0("<b>",pts$PWS_Name,"</b><br>",
+#                                   "PWSID: ", pts$PWSID,"<br>",
+#                                   "Violation Year: ", pts$Year,"<br>",
+#                                   "Nitrate Reported: ",pts$VIOL_MEASURE," [",pts$UNIT_OF_MEASURE,"]"))%>%
+#   addLegend("bottomright", pal = pal, values = ~Year, labFormat = labelFormat(big.mark = ""))
+
+# Alternate map to just show average over last ten years
+pal <- colorFactor(
+  palette = c("#ffffb2","#fecc5c","#fd8d3c","#e31a1c"),
+  domain = forcats::fct_reorder(pts$class,pts$VIOL_MEASURE))
 
 leaflet(pts)%>%
   addTiles()%>%
-  addCircleMarkers(fillColor = ~pal(Year), color = "black", weight = 1, fillOpacity = 0.8, radius = ~VIOL_MEASURE/4,
-                   popup = paste0("<b>",pts$PWS_Name,"</b><br>",
-                                  "PWSID: ", pts$PWSID,"<br>",
-                                  "Violation Year: ", pts$Year,"<br>",
-                                  "Nitrate Reported: ",pts$VIOL_MEASURE," [",pts$UNIT_OF_MEASURE,"]"))%>%
-  addLegend("bottomright", pal = pal, values = ~Year, labFormat = labelFormat(big.mark = ""))
+  addCircleMarkers(fillColor = ~pal(class), color = "black", weight = 1, fillOpacity = 0.8, radius = 10)%>%
+  addLegend("bottomright", pal = pal, values = ~forcats::fct_reorder(class,VIOL_MEASURE), labFormat = labelFormat(big.mark = ""),
+            title = "Nitrate [ug/L]")
 
 ```
 

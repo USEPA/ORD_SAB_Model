@@ -1,7 +1,7 @@
 library(tidyverse)
 library(vroom)
 
-# Seller information is taken from the facilities dataset poer guidance from OW
+# Seller information is taken from the facilities dataset per guidance from OW
 
 df <- vroom("Input_Data/SDWIS/Facility_Seller_Report_2023Q4.csv")%>%
   setNames(str_replace_all(colnames(.)," ","_"))
