@@ -5,7 +5,7 @@
 
 /Input_Data/SDWIS/
 /Input_Data/Utility_Data/
-/Output_Data/Archive
+/Output_Data
 /External_Boundaries/Utility_Data/Existing_Systems_010924.zip
 /Documentation/Presentations/
 /Documentation/Documentation_files
@@ -19,7 +19,11 @@
 /Analysis/MASS_Compare_files/
 /Analysis/GAO
 /Analysis/Correct_State_Check.R
-
+/Version_History/Version_Updater.R
+/Version_History/1_2/Pct_Buyers.csv
+/Version_History/1_2/CWS_1_2.gdb
+/Version_History/1_2/CWS_1_2.gpkg
+/version_History/CWS_Boundaries_Latest.zip
 
 /misc
 /tables

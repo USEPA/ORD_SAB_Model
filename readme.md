@@ -1,4 +1,6 @@
 
+## Version 1.2 Now Available (February 6, 2025), see /Version_History for Details
+
 
 # EPA Office of Research and Development Community Water System Service Area Boundaries
 
@@ -56,9 +58,8 @@ of code. Some large datasets are not included in this folder and need to
 be downloaded by the end user. These are described in the README file
 within the 'Input_Data' folder.
 
-**Output_Data**
-
-Final output dataset location.
+**Version_History**
+Current dataset location and archive of all previous version updates.
 
 **Workflow**
 

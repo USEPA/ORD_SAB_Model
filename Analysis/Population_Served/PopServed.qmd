@@ -17,7 +17,6 @@ library(plotly)
 library(here)
 ```
 
-
 ## Load data
 
 ```{r dataImport, eval = FALSE}
@@ -61,10 +60,10 @@ vroom_write(cws, here("Analysis/Population_Served/CWS_Populations.csv"), append 
 
 ```
 
-
 ## SDWIS Population Served vs. Service Connections
 
 Even within SDWIS there is not a uniform relationship between Population Served and Service Connections
+
 ```{r popvConn}
 cws <- vroom(here("Analysis/Population_Served/CWS_Populations.csv"))%>%
   drop_na(Method)
@@ -74,12 +73,12 @@ lm <- lm(Population_Served_Count ~ Service_Connections_Count, data = cws)
 summary(lm)
 ```
 
-
 Formula:
 
 $$POP_{served}=Connections*3.304-540.56$$
 
 R^2^ = 0.66
+
 ```{r}
 new.df <- data.frame(Service_Connections_Count = c(0,3000000))
 
@@ -101,8 +100,8 @@ plot_ly()%>%
          yaxis = list (title = "Population Served Count"))
 ```
 
-
 ## Census Population vs. Reported Population
+
 ```{r populations}
 
 plot_ly(cws)%>%
@@ -120,7 +119,6 @@ plot_ly(cws)%>%
          xaxis = list(title = "Census Calculated Population (2020)"),
          yaxis = list (title = "SDWIS Reported Population"))
 ```
-
 
 ## Census Occupied Housing Units vs. Reported Service Connections
 
@@ -140,4 +138,3 @@ plot_ly(cws)%>%
          xaxis = list(title = "Census Calculated Occupied Housing Units (2020)"),
          yaxis = list (title = "SDWIS Reported Service Connections"))
 ```
-

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<title>MARYLAND_CWS</title>
+				<geoform>vector digital data</geoform>
+			</citeinfo>
+		</citation>
+		<descript>
+			<abstract>Provider Description: Defines the ownership category of the water system consisting of: Federal: owned by federal government; Mixed (Public/Private): owned by both private owner and public (local, state, federal); Private: owned by a private owner; Local: owned by a municipality; State Government: owned by the State Water Source Description: Code showing the primary source of water: GW: groundwater; GWP: groundwater purchased; SW: surface water; SWP: surface water purchased; GU: groundwater under influence of surface water; GUP: purchased ground water under influence of surface water sourceData Source: lists the origin of the displayed system area. MDE: Internal files; Water System: file provided by system; County GIS: County provide GIS layers; County W&amp;amp;S: Water &amp;amp; Sewer Plan Maps; SDWIS: information from State database</abstract>
+			<purpose>A polygon feature class to represent the the Community water System service areas that provide public water across Maryland. 
+</purpose>
+		</descript>
+		<spdom>
+			<bounding>
+				<westbc>-79.475882</westbc>
+				<eastbc>-75.049422</eastbc>
+				<northbc>39.722980</northbc>
+				<southbc>37.963267</southbc>
+			</bounding>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>None</themekt>
+				<themekey>Maryland</themekey>
+				<themekey>Community Water System</themekey>
+				<themekey>Water System</themekey>
+				<themekey>CWS</themekey>
+				<themekey>Distribution Area</themekey>
+				<themekey>Service Area</themekey>
+				<themekey>Water Served</themekey>
+			</theme>
+		</keywords>
+		<accconst>None</accconst>
+		<useconst>Data is subject to change.  Information displayed from these files will be updated and modified as new information is received from water systems. </useconst>
+		<datacred>MDE WSP</datacred>
+		<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.7.1.11595</native>
+	</idinfo>
+	<spdoinfo>
+		<direct>Vector</direct>
+		<ptvctinf>
+			<sdtsterm>
+				<sdtstype>Complete chain</sdtstype>
+				<ptvctcnt>0</ptvctcnt>
+			</sdtsterm>
+		</ptvctinf>
+	</spdoinfo>
+	<eainfo>
+		<detailed>
+			<enttyp>
+				<enttypl>CWS</enttypl>
+			</enttyp>
+			<attr>
+				<attrlabl>FID</attrlabl>
+				<attrdef>Internal feature number.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE</attrlabl>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>PWSID</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>SYSTEM</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>PROVIDER</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>SOURCE</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>COUNTY</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>DATE</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>DATASOURCE</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>CCR_Link</attrlabl>
+			</attr>
+			<attr>
+				<attrlabl>Shape_area</attrlabl>
+				<attrdef>Area of feature in internal units squared.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Positive real numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>Shape_len</attrlabl>
+			</attr>
+		</detailed>
+	</eainfo>
+	<metainfo>
+		<metd>20241125</metd>
+		<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+		<metstdv>FGDC-STD-001-1998</metstdv>
+		<mettc>local time</mettc>
+	</metainfo>
+</metadata>
