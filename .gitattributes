@@ -2,3 +2,4 @@
 Version_History/1_1/SAB_1_1.gdb.zip filter=lfs diff=lfs merge=lfs -text
 Version_History/1_0/Final_052024.gdb.zip filter=lfs diff=lfs merge=lfs -text
 /Version_History/CWS_Boundaries_Latest.zip filter=lfs diff=lfs merge=lfs -text
+/Version_History/1_2/Census_Tables/Blocks.csv filter=lfs diff=lfs merge=lfs -text

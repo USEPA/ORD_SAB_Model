@@ -24,3 +24,22 @@ Systems that are no longer active were removed, as were some wholesaler systems 
 Some previously modeled systems have been removed due to conflicts with newly acquired authoritative data from states.
 
 For a full list of changes listed by Public Water System ID (PWSID) refer to the file 'ORD_SAB_Model/Version_History/1_2/Changes_1dot1_1dot2.csv'.
+
+### Updated Census Tables
+
+The table to join census blocks to service areas has been updated with a new weighting metric using Microsoft building footprints. The block file still contains area based weights. Tables are also now available to join block groups and tracts to service area boundaries.
+
+### Building Weights Explained
+[Microsoft Building footprints](https://github.com/microsoft/GlobalMLBuildingFootprints) were downloaded and filtered to structures > 40 square meters to remove structures unlikely to be homes. 40 square meters was chosen as it roughly the size of a detached 2-car garage and remains small enough to allow for the inclusion of small homes.
+
+![](building_weights.png)
+
+
+
+
+
+
+
+
+
+
