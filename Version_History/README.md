@@ -55,7 +55,7 @@ At the block level, we calculate weights for both area and building footprints. 
 ### Census Block Groups
 
 | Column Name | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | GEOID20 | The census bureau identifier for the 2020 census block group. |
 | PWSID | The unique water system identifier, as is used in the Safe Drinking Water Information System (SDWIS). |
 | BG_Buildings | Total number of buildings (\>40m^2^) within the census block group. |
@@ -67,7 +67,7 @@ At the block level, we calculate weights for both area and building footprints. 
 ### Census Tracts
 
 | Column | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | GEOID20 | The census bureau identifier for the 2020 census tract. |
 | PWSID | The unique water system identifier, as is used in the Safe Drinking Water Information System (SDWIS). |
 | Tract_Buildings | Total number of buildings (\>40m^2^) within the census tract. |
@@ -75,3 +75,7 @@ At the block level, we calculate weights for both area and building footprints. 
 | Weight | The building weight to use to multiply census tract data to return the estimated value within the service area, calculated as $$Tract\_O\_Buildings/Tract\_Buildings$$. |
 
 : Column descriptions for the census tracts to service area join table.
+
+
+## Zip Code Join Table
+We have added a join table for PWSIDs to zip codes ('1_2/PWS_Zip_Codes.csv'). Unlike the census crosswalks, this table does not provide weights to determine the percent of zip codes served by each water system. This table simply provides a list of zip codes that intersect community water systems.
