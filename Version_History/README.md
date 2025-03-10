@@ -41,11 +41,11 @@ At the block level, we calculate weights for both area and building footprints. 
 | Column Name | Description |
 |------------------------------------|------------------------------------|
 | GEOID20 | The census bureau identifier for the 2020 census block. |
-| Block_Area_Km | Total area of the census block (km^2^). |
+| Block_Area_Km | Total area of the census block (km<sup>2</sup>). |
 | PWSID | The unique water system identifier, as is used in the Safe Drinking Water Information System (SDWIS). |
-| CWS_Area_Km | Total area of the service area (km^2^). |
-| Intersect_Km | Area of intersection between the census block and service area. (km^2^). |
-| Block_Buildings | Total number of buildings (\>40m^2^) within the census block. |
+| CWS_Area_Km | Total area of the service area (km<sup>2</sup>). |
+| Intersect_Km | Area of intersection between the census block and service area. (km<sup>2</sup>). |
+| Block_Buildings | Total number of buildings (\>40m<sup>2</sup>) within the census block. |
 | O_Buildings | Number of buildings within the intersecting area between the census block and service area. |
 | Bldg_Weight | The building weight to use to multiply census block data to return the estimated value within the service area calculated as $$O\_Buildings/Block\_Buildings$$. |
 | Area_Weight | The area weight to use to multiply census block data to return the estimated value within the service area calculated as $$Intersect\_Km/Block\_Area\_Km$$. |
@@ -58,7 +58,7 @@ At the block level, we calculate weights for both area and building footprints. 
 |------------------------------------|------------------------------------|
 | GEOID20 | The census bureau identifier for the 2020 census block group. |
 | PWSID | The unique water system identifier, as is used in the Safe Drinking Water Information System (SDWIS). |
-| BG_Buildings | Total number of buildings (\>40m^2^) within the census block group. |
+| BG_Buildings | Total number of buildings (\>40m<sup>2</sup>) within the census block group. |
 | BG_O_Buildings | Number of buildings within the intersecting area between the census block group and service area. |
 | Weight | The building weight to use to multiply census block group data to return the estimated value within the service area, calculated as $$BG\_O\_Buildings/BG\_Buildings$$. |
 
