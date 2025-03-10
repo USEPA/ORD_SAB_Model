@@ -47,8 +47,8 @@ At the block level, we calculate weights for both area and building footprints. 
 | Intersect_Km | Area of intersection between the census block and service area. (km<sup>2</sup>). |
 | Block_Buildings | Total number of buildings (\>40m<sup>2</sup>) within the census block. |
 | O_Buildings | Number of buildings within the intersecting area between the census block and service area. |
-| Bldg_Weight | The building weight to use to multiply census block data to return the estimated value within the service area calculated as $$O\_Buildings/Block\_Buildings$$. |
-| Area_Weight | The area weight to use to multiply census block data to return the estimated value within the service area calculated as $$Intersect\_Km/Block\_Area\_Km$$. |
+| Bldg_Weight | The building weight to use to multiply census block data to return the estimated value within the service area calculated as *O_Buildings / Block_Buildings*. |
+| Area_Weight | The area weight to use to multiply census block data to return the estimated value within the service area calculated as *Intersect_Km / Block_Area_Km*. |
 
 : Column descriptions for census block to service area join table.
 
@@ -60,7 +60,7 @@ At the block level, we calculate weights for both area and building footprints. 
 | PWSID | The unique water system identifier, as is used in the Safe Drinking Water Information System (SDWIS). |
 | BG_Buildings | Total number of buildings (\>40m<sup>2</sup>) within the census block group. |
 | BG_O_Buildings | Number of buildings within the intersecting area between the census block group and service area. |
-| Weight | The building weight to use to multiply census block group data to return the estimated value within the service area, calculated as $$BG\_O\_Buildings/BG\_Buildings$$. |
+| Weight | The building weight to use to multiply census block group data to return the estimated value within the service area, calculated as: *BG_O_Buildings / BG_Buildings*. |
 
 : Column descriptions for the census block group to service area join table.
 
@@ -72,7 +72,7 @@ At the block level, we calculate weights for both area and building footprints. 
 | PWSID | The unique water system identifier, as is used in the Safe Drinking Water Information System (SDWIS). |
 | Tract_Buildings | Total number of buildings (\>40m<sup>2</sup>) within the census tract. |
 | Tract_O_Buildings | Number of buildings within the intersecting area between the census tract and service area. |
-| Weight | The building weight to use to multiply census tract data to return the estimated value within the service area, calculated as: $Tract\_O\_Buildings/Tract\_Buildings$. |
+| Weight | The building weight to use to multiply census tract data to return the estimated value within the service area, calculated as: *Tract_O_Buildings / Tract_Buildings*. |
 : Column descriptions for the census tracts to service area join table.
 
 ## Zip Code Join Table
