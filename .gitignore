@@ -14,8 +14,6 @@
 /Workflow/Data
 /Workflow/Scripts
 /Version_History/1_1/SAB_1_1.gdb
-/Version_History/1_3
-/Version_History/1_3/
 /Analysis/MASS_Compare.html
 /Analysis/MASS_Compare.qmd
 /Analysis/MASS_Compare_files/
@@ -25,8 +23,9 @@
 /Version_History/1_0/Final_052024/
 /Version_History/1_2/Pct_Buyers.csv
 /Version_History/1_2/CWS_1_2.gdb
-/Version_History/1_2/CWS_1_2.gpkg
 /Version_History/2_0/CWS_WebMapUpdate_091725.gdb
+/Version_History/2_0/CWS_2_0.zip
+/Version_History/2_0/CWS_WebMap_V2.gdb
 /Version_History/CWS_Boundaries_Latest
 /misc
 /tables
