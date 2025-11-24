@@ -2,19 +2,19 @@ library(tidyverse)
 library(sf)
 library(vroom)
 
-old <- st_read("Version_History/1_2/CWS_1_2.gpkg", layer = "Boundaries")
+old <- st_read("Version_History/2_0/CWS_2_0.gpkg", layer = "Boundaries")
 
-new <- st_read("Version_History/2_0/CWS_2_0.gdb", layer = "Boundaries_wgs")
+new <- st_read("Version_History/2_1/CWS_2_1.gpkg", layer = "Boundaries")
 
 # Load Details
-deets <- vroom("Input_Data/SDWIS/Water_System_Detail_2025Q2.csv")
+deets <- vroom("Input_Data/SDWIS/Water_System_Detail_2025Q3.csv")
 
 
 # Missing
 missing <- deets%>%
   filter(!`PWS ID` %in% new$PWSID)%>%
   select(`PWS ID`,`PWS Name`,`Primacy Agency`,`Population Served Count`,`Service Connections Count`)
-write.csv(missing,"Version_History/2_0/Missing_Systems_V_2_0.csv")
+write.csv(missing,"Version_History/2_1/Missing_Systems_V_2_1.csv")
 
 # Missing by Primacy
 # bp <- missing%>%
@@ -31,7 +31,7 @@ added <- new%>%
   filter(!PWSID %in% old$PWSID)%>%
   select(PWSID,PWS_Name,Population_Served_Count,Symbology_Field)
 
-write.csv(added,"Version_History/2_0/Added_Systems_V_2_0.csv")
+write.csv(added,"Version_History/2_1/Added_Systems_V_2_1.csv")
 
 
 removed <- old%>%
@@ -39,30 +39,26 @@ removed <- old%>%
   filter(!PWSID %in% new$PWSID)%>%
   select(PWSID,PWS_Name,Population_Served_Count,Symbology_Field)
 
-write.csv(removed, "Version_History/2_0/Removed_Systems_V_2_0.csv")
+write.csv(removed, "Version_History/2_1/Removed_Systems_V_2_1.csv")
 
 # Determine Changes
 
-exist <- v1%>%
-  filter(PWSID_12 %in% v1.1$PWSID)
+old.sel <- old%>%
+  st_drop_geometry()%>%
+  select(PWSID,Symbology_Field)%>%
+  setNames(c("PWSID","Old_Method"))
 
-changelog <- data.frame()
+method.compare <- new%>%
+  st_drop_geometry()%>%
+  select(PWSID,Symbology_Field)%>%
+  setNames(c("PWSID","New_Method"))%>%
+  left_join(old.sel)%>%
+  filter(!New_Method == Old_Method)%>%
+  mutate(change = paste0(Old_Method," -> ",New_Method))%>%
+  select(PWSID,change)
 
-pb <- txtProgressBar(min = 0, max = nrow(exist), style = 3)
-for(n in 1:nrow(exist)){
-  old <- exist[1,]
-  
-  new <- v1.1%>%
-    filter(PWSID == old$PWSID_12)
-  
-  newRow <- data.frame(PWSID = old$PWSID_12, Change = st_geometry(old)==st_geometry(new))
-  
-  changelog <- rbind(changelog,newRow)
-  
-  setTxtProgressBar(pb, n)
-}
+vroom_write(method.compare,"Version_History/2_1/New_System_Sourced_V_2_1.csv",
+            delim = ",")
 
 
-head(changelog)
 
-table(changelog$Change)

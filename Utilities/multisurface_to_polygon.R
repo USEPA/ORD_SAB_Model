@@ -12,9 +12,15 @@ ensure_multipolygons <- function(X) {
 }
 
 # Load dataset
-sf <- st_read("Version_History/2_0/CWS_2_0.gdb", layer = "Boundaries_wgs")
+sf <- st_read("Version_History/2_1/CWS_2_1.gdb", layer = "Boundaries")%>%
+  st_transform(st_crs(4326))
 
 ## Try it on your data
-sf.multi <- ensure_multipolygons(sf)
+sf.multi <- ensure_multipolygons(sf)%>%
+  st_make_valid()
 
-st_write(sf.multi, "Version_History/2_0/CWS_2_0.gpkg", layer = "Boundaries", append = FALSE)
+# check geometries
+as.data.frame(table(st_geometry_type(sf.multi)))%>%
+  filter(Freq > 1)
+
+st_write(sf.multi, "Version_History/2_1/CWS_2_1.gpkg", layer = "Boundaries", append = FALSE)

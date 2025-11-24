@@ -1,4 +1,9 @@
+# THESE FILES HAVE BEEN DEPRECATED
+Please use crosswalk files from version 2.1
+
+
 ### Census Tables
+
 
 The table to join census blocks to service areas has been updated with a new weighting metric using Microsoft building footprints. The block file still contains area based weights. Tables are also now available to join block groups and tracts to service area boundaries.
 
