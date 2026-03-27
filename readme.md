@@ -1,5 +1,8 @@
 
-## Version 2.1 Now Available (November 24, 2025), see /Version_History for Details
+## Version 3.0 Now Available (March 17, 2026), see /Version_History for Details
+Version 3.0 extends the drinking water service area boundaries to include 
+Transient and Non-Transient Non-Community Water Systems. The service areas for 
+community water systems are identical to the release of version 2.1. 
 
 
 # EPA Office of Research and Development Community Water System Service Area Boundaries

@@ -9,3 +9,6 @@ Version_History/1_2/Census_Tables/Blocks_V_1_2.csv filter=lfs diff=lfs merge=lfs
 Version_History/2_0/Census_Tables/Blocks_V_2_0.csv filter=lfs diff=lfs merge=lfs -text
 /Version_History/2_1/CWS_2_1.gpkg filter=lfs diff=lfs merge=lfs -text
 /Version_History/2_1/Census_Tables/Blocks_V_2_1.csv filter=lfs diff=lfs merge=lfs -text
+/Version_History/3_0/Service_Areas_V_3_0.gpkg filter=lfs diff=lfs merge=lfs -text
+/version_history/3_0/Blocks_V_3_0.csv filter=lfs diff=lfs merge=lfs -text
+/Version_History/3_0/Census_Tables/Blocks_V_3_0.csv filter=lfs diff=lfs merge=lfs -text
