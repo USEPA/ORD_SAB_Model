@@ -24,7 +24,7 @@ Layer Name: 'T_NTNC'
 | Service_Connections_Count | The reported number of service connections in the system. |
 | parcelnumb | Unique parcel identifier. |
 | AREAKM | The area in square kilometers. |
-| SERVICE_AREA_TYPE | Definition of each individual service area type code. See \href{https://usepa.servicenowservices.com/sdwisprogram/en/safe-drinking-water-information-system-federal-data-reporting-requirements?id=kb_article_view&sysparm_article=KB0016175}{SDWIS Federal Data Reporting Requirements} for a complete listing of codes. |
+| SERVICE_AREA_TYPE | Definition of each individual service area type code. See [SDWIS Federal Data Reporting Requirements](https://usepa.servicenowservices.com/sdwisprogram/en/safe-drinking-water-information-system-federal-data-reporting-requirements?id=kb_article_view&sysparm_article=KB0016175) for a complete listing of codes. |
 | Detailed_Facility_Report | Links to the detailed enforcement and compliance history for public water systems in the EPA Enforcement and Compliance History Online (ECHO). |
 | Data_Source | Source of Data. |
 | Shape | Polygon Geometry |
