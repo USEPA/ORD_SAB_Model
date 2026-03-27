@@ -7,6 +7,34 @@ Data is available [HERE](https://epa.maps.arcgis.com/home/item.html?id=80c6912ef
 
 Columns denoted with '*' reflect added columns to conform with recently developed service area data standards and do not have data for all systems.
 
+### Transient / Non-Transient Non-Community Water Systems
+
+Layer Name: 'T_NTNC'
+
+| Column | Decription |
+|:------ | :--------- |
+| PWSID  | Public water system identifier as assigned by SDWIS. |
+| PWS_Name | Name of public water system as reported to SDWIS. |
+| Location Confidence |**HIGHER:** Describes service areas that were estimated with multiple geographic variables that point to the same parcel location. **LOWER:** Describes service areas that were estimated with a single geographic variable that points to a parcel location. |
+| PRIMACY_AGENCY_CODE | The state or EPA region that holds primacy over the system and handles reporting. |
+| PWS_TYPE_CODE | **Non-Transient Non-Community Water System (NTNCWS):** A public water system that regularly supplies water to at least 25 of the same people at least six months per year. Some examples are schools, factories, office buildings, and hospitals which have their own water systems. **Transient Non-Community Water System (TNCWS):** A public water system that provides water in a place such as a gas station or campground where people do not remain for long periods of time. |
+| Population_Served_Count | The reported population that the system serves. |
+| PRIMARY_SOURCE_CODE | Identifies the primary source of water for the water system to a further extent.<br>GW - ground water<br>GWP - groundwater purchased<br>SW - surface water (SW), surface water purchased<br>GU - groundwater under influence of surface water |
+| IS_WHOLESALER_IND | Indicates if the system is a wholesaler of water, indicating that it primarily sells the water it produces to other water systems rather than directly to consumers. |
+| IS_SCHOOL_OR_DAYCARE_IND | Indicates if this system is primarily a school or daycare. |
+| Service_Connections_Count | The reported number of service connections in the system. |
+| parcelnumb | Unique parcel identifier. |
+| AREAKM | The area in square kilometers. |
+| SERVICE_AREA_TYPE | Definition of each individual service area type code. See [SDWIS Federal Data Reporting Requirements](https://usepa.servicenowservices.com/sdwisprogram/en/safe-drinking-water-information-system-federal-data-reporting-requirements?id=kb_article_view&sysparm_article=KB0016175) for a complete listing of codes. |
+| Detailed_Facility_Report | Links to the detailed enforcement and compliance history for public water systems in the EPA Enforcement and Compliance History Online (ECHO). |
+| Data_Source | Source of Data. |
+| Shape | Polygon Geometry |
+
+
+### Community Water Systems
+
+Layer Name: 'CWS'
+
 | Column | Decription |
 |:------ | :--------- |
 | PWSID  | Public water system identifier as assigned by SDWIS. |
